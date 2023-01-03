@@ -206,15 +206,33 @@
                                                         <option value="Khonghucu">Khonghucu</option>
                                                     </select>
                                                 </div>
-                                                <label class="col-sm-4">身長<br>Height</label>
+
+                                                <label class="col-sm-4">身長/体重<br>Height/Weight</label>
                                                 <div class="col-sm-8">
-                                                    <input type="number" class="form-control" name="height"
-                                                        value="{{ $crew->height }}">
+                                                    <div class="input-group mb-0">
+                                                        <input type="number" class="form-control" name="height"
+                                                            value="{{ $crew->height }}">
+                                                        <span class="input-group-text" id="basic-addon1">cm</span>
+                                                        <input type="number" class="form-control" name="weight"
+                                                            value="{{ $crew->weight }}">
+                                                        <span class="input-group-text" id="basic-addon1">kg</span>
+                                                    </div>
+
+
                                                 </div>
-                                                <label for="" class="col-sm-4">体重<br>Weight</label>
-                                                <div class="col-sm-8">
-                                                    <input type="number" class="form-control" name="weight"
-                                                        value="{{ $crew->weight }}">
+
+                                                <div class="input-group mb-0">
+                                                    <label class="col-sm-4" style="margin-right: 12px;">未婚・既婚<br>Marital
+                                                        Status</label>
+                                                    <select class="form-select" name="kappa">
+                                                        <!--<option value="{{ $crew->marital }}">{{ $crew->marital }}</option>-->
+                                                        <option value="Married">Married</option>
+                                                        <option value="Single">Single</option>
+                                                    </select>
+                                                    <label style="margin-left: 8px;margin-right: 13px;">子供<br>Child</label>
+                                                    <input type="text" class="form-control" name="marital"
+                                                        value="0">
+                                                    <span class="input-group-text">人</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -384,28 +402,15 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-4">
-                                            <div class="input-group mb-0">
-                                                <label class="col-sm-4" style="margin-right: 12px;">未婚・既婚<br>Marital
-                                                    Status</label>
-                                                <select class="form-select" name="kappa">
-                                                    <!--<option value="{{ $crew->marital }}">{{ $crew->marital }}</option>-->
-                                                    <option value="Married">Married</option>
-                                                    <option value="Single">Single</option>
-                                                </select>
-                                                <label style="margin-left: 8px;margin-right: 13px;">子供<br>Child</label>
-                                                <input type="text" class="form-control" name="marital"
-                                                    value="0">
-                                                <span class="input-group-text">人</span>
-                                            </div>
+                                            {{-- marital status --}}
+
                                             <div class="form-group row mb-0">
                                                 <label class="col-sm-4">入国査証<br>Entry Visa</label>
                                                 <div class="col-sm-8">
-                                                    <select class="form-select" name="visa">
-                                                        @foreach ($docs->where('type', 'Entry Visa') as $visa)
-                                                            <option value="{{ $visa->id }}">{{ $visa->no }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
+                                                    <input type="text" class="form-control date"
+                                                        placeholder="yyyy/mm/dd" name="visa_issued"
+                                                        value="{{ $crew->visa_valid }}">
+
                                                 </div>
                                                 <label class="col-sm-4">入国査証番号<br>Entry Visa No.</label>
                                                 <div class="col-sm-8">
@@ -417,6 +422,12 @@
                                                             </option>
                                                         @endforeach
                                                     </select>
+                                                </div>
+                                                <label class="col-sm-4">発給日<br>Issued Date</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control date"
+                                                        placeholder="yyyy/mm/dd" name="visa_issued"
+                                                        value="{{ $crew->visa_valid }}">
                                                 </div>
                                                 <label class="col-sm-4">有効期限<br>Valid Until</label>
                                                 <div class="col-sm-8">
@@ -640,6 +651,9 @@
                                                 <td scope="row"></td>
                                                 <td></td>
                                                 <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
                                                 <td>
                                                     <div class="input-group mb-3">
                                                         <div class="input-group mb-3">
@@ -792,6 +806,9 @@
                                         <tbody>
                                             <tr>
                                                 <td scope="row"></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
                                                 <td></td>
                                                 <td></td>
                                                 <td>
@@ -949,6 +966,9 @@
                                         <tbody>
                                             <tr>
                                                 <td scope="row"></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
                                                 <td></td>
                                                 <td></td>
                                                 <td>
@@ -1208,95 +1228,9 @@
                     </div>
                     <div id="document" class="tab-pane">
                         <div class="card-body">
-                            <h3>船員書類 (Crew Documents)</h3>
+
                             <div class="row">
-                                <div class="col-md-6">
-
-                                    <form action="{{ route('doc.store') }}" enctype="multipart/form-data"
-                                        method="POST">
-                                        @csrf
-                                        <input name="crew_id" value="{{ $crew->id }}" hidden>
-
-                                        <div class="mb-3 row">
-                                            <label for="phone" class="col-sm-4 col-form-label form-label">書類伍
-                                                (PDF)<br />Document File
-                                                (PDF)</label>
-                                            <div class="col-md-8 col-12">
-                                                <input type="file" class="form-control-file" name="file"
-                                                    id="path" placeholder="" aria-describedby="fileHelpId">
-                                            </div>
-                                        </div>
-                                        <!-- row -->
-                                        <div class="mb-3 row">
-                                            <label for="location"
-                                                class="col-sm-4 col-form-label
-                                              form-label">書類方
-                                                <br />Document
-                                                Type </label>
-                                            <div class="col-md-8 col-12">
-                                                <select class="form-select" id="location" name="type">
-                                                    <option selected>==Select==</option>
-                                                    <option value="Passport">Passport</option>
-                                                    <option value="Seaman Book">Seaman Book</option>
-                                                    <option value="Orange Book">Orange Book</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <!-- row -->
-                                        <div class="mb-3 row">
-                                            <label for="addressLine"
-                                                class="col-sm-4 col-form-label
-                                              form-label">書類番号<br />Document
-                                                No.</label>
-                                            <div class="col-md-8 col-12">
-                                                <input type="text" class="form-control" id="addressLine"
-                                                    required="" name="no">
-                                            </div>
-                                        </div>
-                                        <!-- row -->
-                                        <div class="mb-3 row">
-                                            <label for="addressLineTwo"
-                                                class="col-sm-4
-                                              col-form-label form-label">発給日
-                                                <br />Issued
-                                                Date</label>
-                                            <div class="col-md-8 col-12">
-                                                <input type="text" class="form-control date" placeholder="yyyy/mm/dd"
-                                                    id="addressLineTwo" required="" name="issued">
-                                            </div>
-                                        </div>
-                                        <div class="mb-3 row">
-                                            <label for="addressLineTwo"
-                                                class="col-sm-4
-                                              col-form-label form-label">発給地
-                                                <br />Issued
-                                                Place</label>
-                                            <div class="col-md-8 col-12">
-                                                <input type="text" class="form-control" placeholder="Jakarta"
-                                                    id="addressLineTwo" name="place" required="">
-                                            </div>
-                                        </div>
-                                        <div class="mb-3 row">
-                                            <label for="addressLineTwo"
-                                                class="col-sm-4
-                                              col-form-label form-label">有効期限<br />Valid
-                                                Until</label>
-                                            <div class="col-md-8 col-12">
-                                                <input type="text" name="valid" class="form-control date"
-                                                    placeholder="yyyy/mm/dd" id="addressLineTwo" required="">
-                                            </div>
-                                        </div>
-                                        <!-- row -->
-                                        <div class="d-grid gap-2">
-
-                                            <button class="btn btn-primary" type="submit">Upload</button>
-                                        </div>
-
-                                    </form>
-
-
-                                </div>
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <h3>Documents List</h3>
                                     <div class="table-responsive">
                                         <table class="table table-bordered border-dark">
@@ -1313,7 +1247,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($docs as $index => $doc)
+                                                @foreach ($docs->whereNotIn('type', 'Entry Visa') as $index => $doc)
                                                     <tr>
                                                         <td>{{ $index + 1 }}</td>
                                                         <td>{{ $doc->type }}</td>
@@ -1349,19 +1283,16 @@
                                     </div>
 
                                 </div>
-                            </div>
-                            <div class="row">
-                                <h3>船員入国査証 (Crew Entry Visa)</h3>
-                                <div class="col-md-6">
-
+                                <div class="col-md-4">
+                                    <h3>船員書類 (Crew Documents)</h3>
                                     <form action="{{ route('doc.store') }}" enctype="multipart/form-data"
                                         method="POST">
                                         @csrf
                                         <input name="crew_id" value="{{ $crew->id }}" hidden>
 
-                                        <div class="mb-3 row">
-                                            <label for="phone" class="col-sm-4 col-form-label form-label">入国査証伍
-                                                (PDF)<br />Entry Visa File
+                                        <div class="row">
+                                            <label for="phone" class="col-sm-4 col-form-label form-label">書類伍
+                                                (PDF)<br />Document File
                                                 (PDF)</label>
                                             <div class="col-md-8 col-12">
                                                 <input type="file" class="form-control-file" name="file"
@@ -1369,42 +1300,34 @@
                                             </div>
                                         </div>
                                         <!-- row -->
-                                        <div class="mb-3 row">
+                                        <div class="row">
                                             <label for="location"
                                                 class="col-sm-4 col-form-label
-                                              form-label">査証方<br />Visa
+                                              form-label">書類方
+                                                <br />Document
                                                 Type </label>
                                             <div class="col-md-8 col-12">
                                                 <select class="form-select" id="location" name="type">
                                                     <option selected>==Select==</option>
-                                                    <option value="Entry Visa">Entry Visa</option>
-
+                                                    <option value="Passport">Passport</option>
+                                                    <option value="Seaman Book">Seaman Book</option>
+                                                    <option value="Orange Book">Orange Book</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="mb-3 row">
+                                        <!-- row -->
+                                        <div class="row">
                                             <label for="addressLine"
                                                 class="col-sm-4 col-form-label
-                                              form-label">国<br />Country
-                                            </label>
+                                              form-label">書類番号<br />Document
+                                                No.</label>
                                             <div class="col-md-8 col-12">
                                                 <input type="text" class="form-control" id="addressLine"
                                                     required="" name="no">
                                             </div>
                                         </div>
                                         <!-- row -->
-                                        <div class="mb-3 row">
-                                            <label for="addressLine"
-                                                class="col-sm-4 col-form-label
-                                              form-label">入国査証<br />Entry
-                                                Visa No.</label>
-                                            <div class="col-md-8 col-12">
-                                                <input type="text" class="form-control" id="addressLine"
-                                                    required="" name="no">
-                                            </div>
-                                        </div>
-                                        <!-- row -->
-                                        <div class="mb-3 row">
+                                        <div class="row">
                                             <label for="addressLineTwo"
                                                 class="col-sm-4
                                               col-form-label form-label">発給日
@@ -1415,7 +1338,7 @@
                                                     id="addressLineTwo" required="" name="issued">
                                             </div>
                                         </div>
-                                        <div class="mb-3 row">
+                                        <div class="row">
                                             <label for="addressLineTwo"
                                                 class="col-sm-4
                                               col-form-label form-label">発給地
@@ -1426,7 +1349,7 @@
                                                     id="addressLineTwo" name="place" required="">
                                             </div>
                                         </div>
-                                        <div class="mb-3 row">
+                                        <div class="row">
                                             <label for="addressLineTwo"
                                                 class="col-sm-4
                                               col-form-label form-label">有効期限<br />Valid
@@ -1446,15 +1369,114 @@
 
 
                                 </div>
-                                <div class="col-md-6">
-                                    <h3>Documents List</h3>
+
+                            </div>
+                            <hr>
+                            <div class="row mt-4">
+                                <h3>船員入国査証 (Crew Entry Visa)</h3>
+                                <div class="col-md-4">
+
+                                    <form action="{{ route('doc.store') }}" enctype="multipart/form-data"
+                                        method="POST">
+                                        @csrf
+                                        <input name="crew_id" value="{{ $crew->id }}" hidden>
+
+                                        <div class="row">
+                                            <label for="phone" class="col-sm-4 col-form-label form-label">入国査証伍
+                                                (PDF)<br />Entry Visa File
+                                                (PDF)</label>
+                                            <div class="col-md-8 col-12">
+                                                <input type="file" class="form-control-file" name="file"
+                                                    id="path" placeholder="" aria-describedby="fileHelpId">
+                                            </div>
+                                        </div>
+                                        <!-- row -->
+                                        <div class="row">
+                                            <label for="location"
+                                                class="col-sm-4 col-form-label
+                                              form-label">査証方<br />Visa
+                                                Type </label>
+                                            <div class="col-md-8 col-12">
+                                                <select class="form-select" id="location" name="type">
+                                                    <option selected>==Select==</option>
+                                                    <option value="Entry Visa">Entry Visa</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label for="addressLine"
+                                                class="col-sm-4 col-form-label
+                                              form-label">国<br />Country
+                                            </label>
+                                            <div class="col-md-8 col-12">
+                                                <input type="text" class="form-control" id="addressLine"
+                                                    required="" name="no">
+                                            </div>
+                                        </div>
+                                        <!-- row -->
+                                        <div class="row">
+                                            <label for="addressLine"
+                                                class="col-sm-4 col-form-label
+                                              form-label">入国査証<br />Entry
+                                                Visa No.</label>
+                                            <div class="col-md-8 col-12">
+                                                <input type="text" class="form-control" id="addressLine"
+                                                    required="" name="no">
+                                            </div>
+                                        </div>
+                                        <!-- row -->
+                                        <div class="row">
+                                            <label for="addressLineTwo"
+                                                class="col-sm-4
+                                              col-form-label form-label">発給日
+                                                <br />Issued
+                                                Date</label>
+                                            <div class="col-md-8 col-12">
+                                                <input type="text" class="form-control date" placeholder="yyyy/mm/dd"
+                                                    id="addressLineTwo" required="" name="issued">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label for="addressLineTwo"
+                                                class="col-sm-4
+                                              col-form-label form-label">発給地
+                                                <br />Issued
+                                                Place</label>
+                                            <div class="col-md-8 col-12">
+                                                <input type="text" class="form-control" placeholder="Jakarta"
+                                                    id="addressLineTwo" name="place" required="">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label for="addressLineTwo"
+                                                class="col-sm-4
+                                              col-form-label form-label">有効期限<br />Valid
+                                                Until</label>
+                                            <div class="col-md-8 col-12">
+                                                <input type="text" name="valid" class="form-control date"
+                                                    placeholder="yyyy/mm/dd" id="addressLineTwo" required="">
+                                            </div>
+                                        </div>
+                                        <!-- row -->
+                                        <div class="d-grid gap-2">
+
+                                            <button class="btn btn-primary" type="submit">Upload</button>
+                                        </div>
+
+                                    </form>
+
+
+                                </div>
+                                <div class="col-md-7">
+                                    <h3>Entry Visa List</h3>
                                     <div class="table-responsive">
                                         <table class="table table-bordered border-dark">
 
                                             <thead class="table-dark text-white">
                                                 <tr>
                                                     <th scope="col">No.</th>
-                                                    <th scope="col">Document Type</th>
+                                                    <th scope="col">Country</th>
                                                     <th scope="col">Document No.</th>
                                                     <th scope="col">Issued Date</th>
                                                     <th scope="col">Issued Place</th>
@@ -1463,10 +1485,10 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($docs as $index => $doc)
+                                                @foreach ($docs->Where('type', 'Entry Visa') as $index => $doc)
                                                     <tr>
                                                         <td>{{ $index + 1 }}</td>
-                                                        <td>{{ $doc->type }}</td>
+                                                        <td>{{ $doc->country }}</td>
                                                         <td>{{ $doc->no }}</td>
                                                         <td>{{ $doc->issued }}</td>
                                                         <td>{{ $doc->place }}</td>
@@ -1507,7 +1529,7 @@
                         <div class="card-body">
                             <h3>船員連絡先 (Crew Contacts)</h3>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <form action="{{ route('contact.store') }}" enctype="multipart/form-data"
                                         method="POST">
                                         @csrf
@@ -1523,19 +1545,6 @@
                                         </div>
                                         <!-- row -->
 
-                                        <div class="mb-3 row">
-                                            <label for="phone" class="col-sm-4 col-form-label form-label">ID方<br>
-                                                ID Type</label>
-                                            <div class="col-md-8 col-12">
-                                                <select class="form-control">
-                                                    <option>--SELECT--</option>
-                                                    <option>National ID</option>
-                                                    <option>Family ID</option>
-
-                                                </select>
-                                            </div>
-                                        </div>
-
                                         <!-- row -->
                                         <div class="mb-3 row">
                                             <label for="addressLine"
@@ -1549,6 +1558,16 @@
                                                     required="">
                                             </div>
                                         </div>
+
+                                        <div class="mb-3 row">
+                                            <label for="phone" class="col-sm-4 col-form-label form-label">ID伍
+                                                (PDF)<br /> ID File (PDF)</label>
+                                            <div class="col-md-8 col-12">
+                                                <input type="file" class="form-control-file" name="file"
+                                                    id="path" placeholder="" aria-describedby="fileHelpId">
+                                            </div>
+                                        </div>
+
                                         <!-- row -->
                                         <div class="mb-3 row">
                                             <label for="addressLineTwo"
@@ -1982,7 +2001,14 @@
                                                 <div class="input-group">
                                                     <select class="form-select" name="currencysalary"
                                                         id="inputGroupSelect02">
-                                                        <option value="Rp">Rp (Indonesian Rupiah)</option>
+                                                        <option value="{{ $crew->currencysalary }}">
+                                                            {{ $crew->currencysalary }}
+                                                        </option>
+                                                        @foreach ($currencies as $currency)
+                                                            <option value="{{ $currency->symbol }}">
+                                                                {{ $currency->name }}</option>
+                                                        @endforeach
+                                                        {{-- <option value="Rp">Rp (Indonesian Rupiah)</option>
                                                         <option value="RM">RM (Malaysian Ringgit)</option>
                                                         <option value="B$">B$ (Brunei Dollar)</option>
                                                         <option value="S$">S$ (Singapore Dollar)</option>
@@ -2012,7 +2038,7 @@
                                                         <option value="HK$">HK$ (Hong Kong Dollar)</option>
                                                         <option value="€">€ (Euro)</option>
                                                         <option value="Fr">Fr (Swiss Franc)</option>
-                                                        <option value="£">£ (British Pound Sterling)</option>
+                                                        <option value="£">£ (British Pound Sterling)</option> --}}
                                                     </select>
                                                     <input type="number" class="form-control" name="salary">
                                                 </div>

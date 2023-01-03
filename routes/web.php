@@ -13,6 +13,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContractController;
+use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\MedicalController;
@@ -56,6 +57,7 @@ Route::resource('/contract', ContractController::class);
 Route::resource('/medical', MedicalController::class);
 Route::resource('/port', PortController::class);
 Route::resource('/national', NationalController::class);
+Route::resource('/currency', CurrencyController::class);
 
 Route::get('/order/{inv}/step2', [OrderController::class, 'step2'])->name('order.step2');
 Route::get('/admin/order/{inv}', [OrderController::class, 'adminview'])->name('order.adminview');

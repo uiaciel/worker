@@ -107,6 +107,13 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link has-arrow " href="/currency">
+                            <i data-feather="clipboard" class="nav-icon icon-xs me-2">
+                            </i> Currencies
+                        </a>
+                    </li>
+
 
                     <!-- Nav item -->
                     <li class="nav-item">
@@ -140,8 +147,8 @@
                         </div>
                     </li>
                     <!-- Nav item -->
-                    
-                    
+
+
                     <li class="nav-item">
                         <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse"
                             data-bs-target="#applicationletter" aria-expanded="false"

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContactsTable extends Migration
+class CreateCurrenciesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateContactsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contacts', function (Blueprint $table) {
+        Schema::create('currencies', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('crew_id')->unsigned();
-            $table->foreign('crew_id')->references('id')->on('crews');
-            $table->string('type');
-            $table->string('path');
-            $table->string('contact_id');
+            $table->string('symbol');
+            $table->string('name');
+            $table->string('country')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateContactsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contacts');
+        Schema::dropIfExists('currencies');
     }
 }

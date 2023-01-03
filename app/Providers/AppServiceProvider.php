@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Company;
 use App\Models\Crew;
+use App\Models\Currency;
 use App\Models\Job;
 use App\Models\Klien;
 use App\Models\Shipname;
@@ -41,6 +42,7 @@ class AppServiceProvider extends ServiceProvider
                 'companies' => Company::all(),
                 'crews' => Crew::all(),
                 'shipnames' => Shipname::all(),
+                'currencies' => Currency::all(),
             ]);
 
         });

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Company;
+use App\Models\Currency;
 use App\Models\Document;
 use App\Models\Job;
 use App\Models\Klien;
@@ -23,6 +24,40 @@ class CrewSeeder extends Seeder
     public function run()
     {
         //crew jobs
+
+        $currency = [
+            ['symbol' => 'Rp','name' =>'Rp (Indonesian Rupiah)'],
+            ['symbol' => 'RM','name' =>'RM (Malaysian Ringgit)'],
+            ['symbol' => '₱','name' =>'₱ (Phillipphine Peso)'],
+            ['symbol' => '฿','name' =>'฿ (Thai Baht)'],
+            ['symbol' => '៛','name' =>'៛ (Cambodian Riel)'],
+            ['symbol' => '₫','name' =>'₫ (Vietnamese Dong)'],
+            ['symbol' => '₭','name' =>'₭ (Lao Kip)'],
+            ['symbol' => 'Ks','name' =>'Ks (Myanmar Kyat)'],
+            ['symbol' => '৳','name' =>'৳ (Bangladeshi Taka)'],
+            ['symbol' => '₹','name' =>'₹ (Indian Rupee)'],
+            ['symbol' => 'Rs','name' =>'Rs (Pakistani & Sri Lankan Rupee)'],
+            ['symbol' => 'SAR','name' =>'SAR (Saudi Riyal)'],
+            ['symbol' => 'AED','name' =>'AED (UAE Dirham)'],
+            ['symbol' => 'BD','name' =>'BD (Bahrain Dinar)'],
+            ['symbol' => 'QR','name' =>'QR (Qatari Riyal)'],
+            ['symbol' => '¥','name' =>'¥ (Japanese Yen & Chinese Yuan)'],
+            ['symbol' => '₩','name' =>'₩ (Korean Won)'],
+            ['symbol' => '₽','name' =>'₽ (Russian Ruble)'],
+            ['symbol' => '₴','name' =>'₴ (Ukrainian Hrynia)'],
+            ['symbol' => 'US$','name' =>'US$ (US Dollar)'],
+            ['symbol' => 'CA$','name' =>'CA$ (Canadian Dollar)'],
+            ['symbol' => 'AU$','name' =>'AU$ (Australian Dollar)'],
+            ['symbol' => 'NZ$','name' =>'NZ$ (New Zealand Dollar)'],
+            ['symbol' => 'SG$','name' =>'SG$ (Singapore Dollar)'],
+            ['symbol' => 'HK$','name' =>'HK$ (Hong Kong Dollar)'],
+            ['symbol' => '€','name' =>'€ (Euro)'],
+            ['symbol' => 'Fr','name' =>'Fr (Swiss Franc)'],
+            ['symbol' => '£','name' =>'£ (British Pound Sterling)'],
+
+        ];
+
+        Currency::insert($currency);
 
         $jobs = [
             ['name' => 'Master/Captain', 'code' => 'M'],
@@ -533,12 +568,14 @@ class CrewSeeder extends Seeder
                 'religion' => 'Islam',
                 'height' => $faker->numberBetween(167, 178),
                 'weight' => $faker->numberBetween(80, 100),
-                'marital' => $faker->randomElement(['Kawin', 'Belum Kawin']),
+                'marital' => $faker->randomElement(['Married', 'Single']),
+                'child' => $faker->numberBetween(0, 3),
                 'specialmark' => $faker->sentence(),
                 'photo' => 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg',
 
                 'signoff' => $faker->date(),
                 'job_id' => $faker->randomElement([1, 2, 3, 4]),
+                'currencysalary' => 'Rp',
                 'salary' => $faker->numberBetween(2000, 3000),
                 'shoes' => $faker->numberBetween(20, 32),
                 'glove' => $faker->randomElement(['S', 'M', 'L', 'XL', 'XXL']),
@@ -557,6 +594,7 @@ class CrewSeeder extends Seeder
         $document->place = 'Jakarta';
         $document->issued = '2022/12/22';
         $document->valid = '2022/12/22';
+        $document->country = 'JAPAN';
         $document->save();
 
         $document = new Document;

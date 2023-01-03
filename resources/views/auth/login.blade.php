@@ -70,7 +70,7 @@
                             <div>
                                 <a href="{{ route('password.request') }}"
                                     class="text-inherit
-                    fs-5">Forgot your password?</a>
+                    fs-5">Forgot your password? a</a>
                             </div>
 
                         </div>

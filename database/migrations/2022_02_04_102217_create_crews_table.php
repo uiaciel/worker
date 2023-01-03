@@ -24,29 +24,17 @@ class CreateCrewsTable extends Migration
             $table->integer('height')->nullable();
             $table->integer('weight')->nullable();
             $table->string('marital')->nullable();
+            $table->string('child')->nullable();
             $table->string('specialmark')->nullable();
             $table->string('status')->nullable();;
             $table->string('nationaly')->nullable();
             $table->string('photo')->nullable();
+
             $table->string('visa_id')->nullable();
-            $table->date('visa_issued')->nullable();
-            $table->string('visa_place')->nullable();
-            $table->date('visa_valid')->nullable();
-            
             $table->string('passport_id')->nullable();
-            $table->date('passport_issued')->nullable();
-            $table->string('passport_place')->nullable();
-            $table->date('passport_valid')->nullable();
-
             $table->string('orangebook_id')->nullable();
-            $table->date('orangebook_issued')->nullable();
-            $table->string('orangebook_place')->nullable();
-            $table->date('orangebook_valid')->nullable();
-
             $table->string('seamanbook_id')->nullable();
-            $table->date('seamanbook_issued')->nullable();
-            $table->string('seamanbook_place')->nullable();
-            $table->date('seamanbook_valid')->nullable();
+            
             
             $table->string('signoff')->nullable();
             $table->string('currencysalary')->nullable();
@@ -57,6 +45,27 @@ class CreateCrewsTable extends Migration
             $table->string('kappa')->nullable();
             $table->string('remark')->nullable();
             $table->string('license')->nullable();
+
+            $table->integer('mobile')->nullable();
+            $table->string('email')->nullable();
+
+            $table->string('emergency_name_1')->nullable();
+            $table->string('emergency_relation_1')->nullable();
+            $table->string('emergency_mobile_1')->nullable();
+            $table->string('emergency_email_1')->nullable();
+
+            $table->string('emergency_name_2')->nullable();
+            $table->string('emergency_relation_2')->nullable();
+            $table->string('emergency_mobile_2')->nullable();
+            $table->string('emergency_email_2')->nullable();
+
+            $table->string('path_ktp')->nullable();
+            $table->string('ktp_id')->nullable();
+
+            $table->string('path_kk')->nullable();
+            $table->string('kk_id')->nullable();
+
+
             $table->timestamps();
         });
     }
