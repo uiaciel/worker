@@ -212,28 +212,31 @@
                                                     <div class="input-group mb-0">
                                                         <input type="number" class="form-control" name="height"
                                                             value="{{ $crew->height }}">
-                                                        <span class="input-group-text" id="basic-addon1">cm</span>
+                                                        <span class="input-group-text fs-5">cm</span>
                                                         <input type="number" class="form-control" name="weight"
                                                             value="{{ $crew->weight }}">
-                                                        <span class="input-group-text" id="basic-addon1">kg</span>
+                                                        <span class="input-group-text fs-5">kg</span>
                                                     </div>
 
 
                                                 </div>
-
-                                                <div class="input-group mb-0">
-                                                    <label class="col-sm-4" style="margin-right: 12px;">未婚・既婚<br>Marital
-                                                        Status</label>
-                                                    <select class="form-select" name="kappa">
-                                                        <!--<option value="{{ $crew->marital }}">{{ $crew->marital }}</option>-->
-                                                        <option value="Married">Married</option>
-                                                        <option value="Single">Single</option>
-                                                    </select>
-                                                    <label style="margin-left: 8px;margin-right: 13px;">子供<br>Child</label>
-                                                    <input type="text" class="form-control" name="marital"
-                                                        value="0">
-                                                    <span class="input-group-text">人</span>
+                                                <label class="col-sm-4 fs-6">未婚・既婚<br>Marital
+                                                    Status</label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group mb-0">
+                                                        <select class="form-select" name="kappa">
+                                                            <!--<option value="{{ $crew->marital }}">{{ $crew->marital }}</option>-->
+                                                            <option value="Married">Married</option>
+                                                            <option value="Single">Single</option>
+                                                        </select>
+                                                        <label
+                                                            style="margin-left: 8px;margin-right: 13px;">子供<br>Child</label>
+                                                        <input type="text" class="form-control" name="marital"
+                                                            value="0">
+                                                        <span class="input-group-text">人</span>
+                                                    </div>
                                                 </div>
+
                                             </div>
                                         </div>
                                         <div class="col-3">
@@ -255,7 +258,7 @@
                                                         placeholder="yyyy/mm/dd" name="passport_valid"
                                                         value="{{ $crew->passport_valid }}">
                                                 </div>
-                                                <label class="col-sm-5">船員手帳<br>Seaman Book</label>
+                                                <label class="col-sm-5 fs-6">船員手帳<br>Seaman Book</label>
                                                 <div class="col-sm-7">
                                                     <select class="form-select" name="seamanbook_id">
                                                         @foreach ($docs->where('type', 'Seaman Book') as $seaman)
