@@ -564,7 +564,7 @@ class CrewSeeder extends Seeder
                 'name' => $faker->firstNameMale,
                 'place' => $faker->city,
                 'birth' => $faker->date('Y/m/d', 'now'),
-                'status' => $faker->randomElement(['Onboard', 'Standby']),
+                'status' => $faker->randomElement(['On board', 'Stand-by', 'Unstand-by']),
                 'religion' => 'Islam',
                 'height' => $faker->numberBetween(167, 178),
                 'weight' => $faker->numberBetween(80, 100),

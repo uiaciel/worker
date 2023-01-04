@@ -9,24 +9,31 @@
     <link rel="shortcut icon" type="image/x-icon" href="./assets/images/favicon/favicon.ico">
     <!-- Libs CSS -->
     {{-- <link href="./assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-<link href="./assets/libs/dropzone/dist/dropzone.css"  rel="stylesheet">
-<link href="./assets/libs/prismjs/themes/prism-okaidia.css" rel="stylesheet"> --}}
+    <link href="./assets/libs/dropzone/dist/dropzone.css"  rel="stylesheet">
+    <link href="./assets/libs/prismjs/themes/prism-okaidia.css" rel="stylesheet"> --}}
     <!-- Theme CSS -->
     <link href="/css/materialdesignicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/css/themes.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paper-css/0.3.0/paper.css">
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paper-css/0.3.0/paper.css"> --}}
 
     <title>PT AKBAR ANGKASA TARUNA - Internal System</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css"
-        rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
     <script src="/tinymce/tinymce.min.js"></script>
     <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script type="text/javascript">
         tinymce.init({
             selector: '#mytextarea',
             plugins: 'table advtable',
             menubar: 'file edit insert view format table tools help'
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.date').datepicker({
+                format: "yyyy/mm/dd",
+            });
         });
     </script>
     <style>
@@ -224,77 +231,7 @@
                             </ul>
                         </div>
                     </li>
-                    <!-- Nav item -->
-                    {{-- <li class="nav-item">
-                        <div class="navbar-heading">UI Components</div>
-                    </li> --}}
-                    <!-- Nav item -->
-                    {{-- <li class="nav-item">
-                        <a class="nav-link has-arrow " href="./docs/accordions.html">
-                            <i data-feather="package" class="nav-icon icon-xs me-2">
-                            </i> Components
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse"
-                            data-bs-target="#navMenuLevel" aria-expanded="false" aria-controls="navMenuLevel">
-                            <i data-feather="corner-left-down" class="nav-icon icon-xs me-2">
-                            </i> Menu Level
-                        </a>
-                        <div id="navMenuLevel" class="collapse " data-bs-parent="#sideNavbar">
-                            <ul class="nav flex-column">
-                                <li class="nav-item">
-                                    <a class="nav-link has-arrow " href="#!" data-bs-toggle="collapse"
-                                        data-bs-target="#navMenuLevelSecond" aria-expanded="false"
-                                        aria-controls="navMenuLevelSecond">
-                                        Two Level
-                                    </a>
-                                    <div id="navMenuLevelSecond" class="collapse" data-bs-parent="#navMenuLevel">
-                                        <ul class="nav flex-column">
-                                            <li class="nav-item">
-                                                <a class="nav-link " href="#!"> NavItem 1</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link " href="#!"> NavItem 2</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link has-arrow  collapsed  " href="#!" data-bs-toggle="collapse"
-                                        data-bs-target="#navMenuLevelThree" aria-expanded="false"
-                                        aria-controls="navMenuLevelThree">
-                                        Three Level
-                                    </a>
-                                    <div id="navMenuLevelThree" class="collapse " data-bs-parent="#navMenuLevel">
-                                        <ul class="nav flex-column">
-                                            <li class="nav-item">
-                                                <a class="nav-link  collapsed " href="#!" data-bs-toggle="collapse"
-                                                    data-bs-target="#navMenuLevelThreeOne" aria-expanded="false"
-                                                    aria-controls="navMenuLevelThreeOne">
-                                                    NavItem 1
-                                                </a>
-                                                <div id="navMenuLevelThreeOne" class="collapse collapse "
-                                                    data-bs-parent="#navMenuLevelThree">
-                                                    <ul class="nav flex-column">
-                                                        <li class="nav-item">
-                                                            <a class="nav-link " href="#!">
-                                                                NavChild Item 1
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link " href="#!"> Nav Item 2</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </li> --}}
-                    <!-- Nav item -->
+
                     <li class="nav-item">
                         <div class="navbar-heading">Settings</div>
                     </li>

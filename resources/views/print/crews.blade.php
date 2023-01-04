@@ -15,11 +15,18 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css"
-        rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
 
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.date').datepicker({
+                format: "yyyy/mm/dd",
+            });
+        });
+    </script>
 </head>
 <style>
     body {
@@ -90,7 +97,10 @@
     .form-select {
         color: black;
         border: 1px solid hwb(234deg 0% 45%);
+        background-image: none;
     }
+
+
 
     @page {
         size: A4 Landscape;
@@ -111,6 +121,8 @@
             display: none;
 
         }
+
+
 
         .form-control {
             color: black;
@@ -135,10 +147,9 @@
             <div class="row mb-1">
                 <div class="col-6">
                     <div class="input-group">
-                        <label class="input-group-text" for="inputGroupSelect01"
-                            style="
+                        <label class="input-group-text" for="inputGroupSelect01" style="
     width: 68px;
-">From:</label>
+">To:</label>
                         <select class="form-select" id="inputGroupSelect01">
                             @foreach ($kliens as $klien)
                                 <option value="{{ $klien->id }}">{{ $klien->nama }}</option>
@@ -152,7 +163,7 @@
                             <label class="input-group-text"
                                 for="inputGroupSelect01"style="
     width: 68px;
-">To:</label>
+">From:</label>
                             <select class="form-select" id="inputGroupSelect01">
                                 @foreach ($companys as $company)
                                     <option value="{{ $company->id }}">{{ $company->nama }}</option>
@@ -211,7 +222,12 @@
                     </label>
                 </div>
                 <div class="col-2 p-1">
-                    <input type="text" class="form-control" name="subid" value="" placeholder="LAS PALMAS">
+                    <select class="form-select">
+                        @foreach ($ports as $port)
+                            <option value="{{ $port->name }}">{{ $port->name }}</option>
+                        @endforeach
+                    </select>
+                    {{-- <input type="text" class="form-control" name="subid" value="" placeholder="LAS PALMAS"> --}}
                 </div>
             </div>
             <div class="row mb-3 ">
@@ -233,14 +249,20 @@
                     <div class="form-group row mb-0">
                         <label for="" class="col-sm-5">旅券番号<br>Passport No.</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="passport_id"
-                                value="{{ $crew->passport_id }}">
+                            <select class="form-select" name="passport_id">
+                                {{-- @foreach ($docs->where('type', 'Passport') as $passport) --}}
+                                {{-- <option value="{{ $passport->id }}">{{ $passport->no }}
+                                    </option> --}}
+                                {{-- @endforeach --}}
+                            </select>
+
                         </div>
                     </div>
                 </div>
                 <div class="col-5">
                     <div class="form-group row mb-0">
-                        <label for="" class="col-sm-3">特記<br>Special Remark</label>
+                        <label for="" class="col-sm-3" style="font-size: 13px;">特記<br>Special
+                            Remark</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" name="specialmark"
                                 value="{{ $crew->specialmark }}">
@@ -261,35 +283,66 @@
                         </div>
                         <label for="" class="col-sm-4">生年月日<br>Birth Date</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="birth" value="{{ $crew->birth }}">
+                            <input type="text" class="form-control date" placeholder="yyyy/mm/dd" name="birth"
+                                value="{{ $crew->birth }}">
                         </div>
                         <label class="col-sm-4">年齢<br>Age</label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control"
-                                value="{{ \Carbon\Carbon::parse($crew->birth)->diff(\Carbon\Carbon::now())->y }} tahun"
+                                value="{{ \Carbon\Carbon::parse($crew->birth)->diff(\Carbon\Carbon::now())->y }}"
                                 disabled>
                         </div>
                         <label for="" class="col-sm-4">宗教<br>Religion</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="religion"
-                                value="{{ $crew->religion }}">
+                            <!--<input type="text" class="form-control" name="religion" value="{{ $crew->religion }}">-->
+                            <select class="form-select" name="religion">
+                                <option value="{{ $crew->religion }}">{{ $crew->religion }}
+                                </option>
+                                <option value="Islam">Islam</option>
+                                <option value="Protestant">Protestant</option>
+                                <option value="Catholic">Catholic</option>
+                                <option value="Hinduism">Hinduism</option>
+                                <option value="Buddhism">Buddhism</option>
+                                <option value="Khonghucu">Khonghucu</option>
+                            </select>
                         </div>
-                        <label class="col-sm-4">身長<br>Height</label>
+
+                        <label class="col-sm-4">身長/体重<br>Height/Weight</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="height" value="{{ $crew->height }}">
+                            <div class="input-group mb-0">
+                                <input type="number" class="form-control" name="height"
+                                    value="{{ $crew->height }}">
+                                <span class="input-group-text fs-5">cm</span>
+                                <input type="number" class="form-control" name="weight"
+                                    value="{{ $crew->weight }}">
+                                <span class="input-group-text fs-5">kg</span>
+                            </div>
+
+
                         </div>
-                        <label for="" class="col-sm-4">体重<br>Weight</label>
+                        <label class="col-sm-4 fs-6">未婚・既婚<br>Marital
+                            Status</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="weight" value="{{ $crew->weight }}">
+                            <div class="input-group mb-0">
+                                <select class="form-select" name="kappa">
+                                    <!--<option value="{{ $crew->marital }}">{{ $crew->marital }}</option>-->
+                                    <option value="Married">Married</option>
+                                    <option value="Single">Single</option>
+                                </select>
+                                <label style="margin-left: 8px;margin-right: 13px;">子供<br>Child</label>
+                                <input type="text" class="form-control" name="marital" value="0">
+                                <span class="input-group-text">人</span>
+                            </div>
                         </div>
+
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group row mb-0">
                         <label class="col-sm-5">発給日<br>Issued Date</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="passport_issued"
-                                value="{{ $crew->passport_issued }}">
+                            <input type="text" class="form-control date" placeholder="yyyy/mm/dd" id="txtDate"
+                                name="passport_issued" value="{{ $crew->passport_issued }}">
                         </div>
                         <label for="" class="col-sm-5">発給地<br>Issued Place</label>
                         <div class="col-sm-7">
@@ -298,18 +351,22 @@
                         </div>
                         <label for="" class="col-sm-5">有効期限<br>Valid Until</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="passport_valid"
-                                value="{{ $crew->passport_valid }}">
+                            <input type="text" class="form-control date" placeholder="yyyy/mm/dd"
+                                name="passport_valid" value="{{ $crew->passport_valid }}">
                         </div>
-                        <label class="col-sm-5">船員手帳<br>Seaman Book</label>
+                        <label class="col-sm-5 fs-6">船員手帳<br>Seaman Book</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="seamanbook_id"
-                                value="{{ $crew->seamanbook_id }}">
+                            <select class="form-select" name="seamanbook_id">
+                                {{-- @foreach ($docs->where('type', 'Seaman Book') as $seaman)
+                                    <option value="{{ $seaman->id }}">{{ $seaman->no }}
+                                    </option>
+                                @endforeach --}}
+                            </select>
                         </div>
                         <label class="col-sm-5">発給日<br>Issued Date</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="seamanbook_issued"
-                                value="{{ $crew->seamanbook_issued }}">
+                            <input type="text" class="form-control date" placeholder="yyyy/mm/dd"
+                                name="seamanbook_issued" value="{{ $crew->seamanbook_issued }}">
                         </div>
                         <label for="" class="col-sm-5">発給地<br>Issued Place</label>
                         <div class="col-sm-7">
@@ -318,8 +375,8 @@
                         </div>
                         <label for="" class="col-sm-5">有効期限<br>Valid Until</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="seamanbook_valid"
-                                value="{{ $crew->seamanbook_valid }}">
+                            <input type="text" class="form-control date" placeholder="yyyy/mm/dd"
+                                name="seamanbook_valid" value="{{ $crew->seamanbook_valid }}">
                         </div>
                     </div>
                 </div>
@@ -327,88 +384,166 @@
                     <div class="form-group row mb-0">
                         <label class="col-sm-5">最終経歴<br>Last Vessel</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" placeholder="ambil dari data">
                         </div>
                         <label for="" class="col-sm-5">下船日<br>Sign-Off</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="signoff" value="{{ $crew->signoff }}">
+                            <input type="text" class="form-control" name="signoff" value="{{ $crew->signoff }}"
+                                placeholder="ambil dari data">
                         </div><label for="" class="col-sm-5">新基本給<br>New Salary</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="salary"
-                                value="{{ $crew->currencysalary }} {{ $crew->salary }}">
-                        </div><label for="" class="col-sm-5">職種<br>Job</label>
+                            <div class="input-group mb-0">
+                                <select class="form-control-inline" id="inputGroupSelect02"
+                                    style="margin-right: 1px;width: 40px;border: 1px solid hwb(234deg 0% 45%);border-radius: 0.375rem;">
+                                    <option value="{{ $crew->currencysalary }}">
+                                        {{ $crew->currencysalary }}</option>
+                                    <option value="Rp">Rp (Indonesian Rupiah)</option>
+                                    <option value="RM">RM (Malaysian Ringgit)</option>
+                                    <option value="B$">B$ (Brunei Dollar)</option>
+                                    <option value="S$">S$ (Singapore Dollar)</option>
+                                    <option value="₱">₱ (Philippine Peso)</option>
+                                    <option value="฿">฿ (Thai Baht)</option>
+                                    <option value="៛">៛ (Cambodian Riel)</option>
+                                    <option value="₫">₫ (Vietnamese Dong)</option>
+                                    <option value="₭">₭ (Lao Kip)</option>
+                                    <option value="Ks">Ks (Myanmar Kyat)</option>
+                                    <option value="৳">৳ (Bangladeshi Taka)</option>
+                                    <option value="₹">₹ (Indian Rupee)</option>
+                                    <option value="Rs">Rs (Pakistani & Sri Lankan Rupee)
+                                    </option>
+                                    <option value="SAR">SAR (Saudi Riyal)</option>
+                                    <option value="AED">AED (UAE Dirham)</option>
+                                    <option value="BD">BD (Bahrain Dinar)</option>
+                                    <option value="QR">QR (Qatari Riyal)</option>
+                                    <option value="¥">¥ (Japanese Yen & Chinese Yuan)</option>
+                                    <option value="₩">₩ (Korean Won)</option>
+                                    <option value="₽">₽ (Russian Ruble)</option>
+                                    <option value="₴">₴ (Ukrainian Hrynia)</option>
+                                    <option value="US$">US$ (US Dollar)</option>
+                                    <option value="CA$">CA$ (Canadian Dollar)</option>
+                                    <option value="AU$">AU$ (Australian Dollar)</option>
+                                    <option value="NZ$">NZ$ (New Zealand Dollar)</option>
+                                    <option value="HK$">HK$ (Hong Kong Dollar)</option>
+                                    <option value="€">€ (Euro)</option>
+                                    <option value="Fr">Fr (Swiss Franc)</option>
+                                    <option value="£">£ (British Pound Sterling)</option>
+                                </select>
+                                <input type="text" class="form-control" name="salary"
+                                    value="{{ $crew->salary }}">
+                            </div>
+                        </div>
+                        <label for="" class="col-sm-5">職種<br>Job</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="job"
-                                value="{{ $crew->job->code }}">
+                            <select class="form-select" name="job_id">
+                                <option value="">{{ $crew->job->code }}</option>
+                                @foreach ($jobs as $job)
+                                    <option value="{{ $job->id }}">{{ $job->code }}
+                                        ({{ $job->name }})
+                                    </option>
+                                @endforeach
+                                {{-- <option value="DECK">DECK</option>
+                                <option value="ENGINE">ENGINE</option>
+                                <option value="ASSISTANT ICE MASTER">ASSISTANT ICE MASTER</option>
+                                <option value="ICE MASTER">ICE MASTER</option>
+                                <option value="ASSISTANT COOK">ASSISTANT COOK</option>
+                                <option value="CHIEF COOK">CHIEF COOK</option>
+                                <option value="BOSUN">BOSUN</option>
+                                <option value="QUARTER MASTER">QUARTER MASTER</option> --}}
+                            </select>
                         </div><label for="" class="col-sm-5">足のサイズ<br>Shoes Size</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="shoes" value="{{ $crew->shoes }}">
+                            <!--<input type="text" class="form-control"  name="shoes" value="{{ $crew->shoes }}">-->
+                            <select class="form-select" name="shoes">
+                                <option value="{{ $crew->shoes }}">{{ $crew->shoes }}</option>
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                            </select>
                         </div><label for="" class="col-sm-5">手袋<br>Glove Size</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="glove" value="{{ $crew->glove }}">
+                            <!--<input type="text" class="form-control"  name="glove" value="{{ $crew->glove }}">-->
+                            <select class="form-select" name="glove">
+                                <option value="{{ $crew->glove }}">{{ $crew->glove }}</option>
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                            </select>
                         </div><label for="" class="col-sm-5">カッパ<br>Kappa Size</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="kappa" value="{{ $crew->kappa }}">
+                            <!--<input type="text" class="form-control"  name="kappa" value="{{ $crew->kappa }}">-->
+                            <select class="form-select" name="kappa">
+                                <option value="{{ $crew->kappa }}">{{ $crew->kappa }}</option>
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                            </select>
                         </div>
-                        {{-- <button type="submit" class="btn btn-primary">Update</button>
-                        <button type="button" class="btn btn-success">Print</button> --}}
                     </div>
                 </div>
                 <div class="col-2">
-                    <div class="form-group row mb-0">
-                        <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg" alt="..."
-                            class="img-thumbnail" style="width: 150px;">
-                    </div>
+                    <img src="/img/foto-4x6.png" alt="..." class="img-thumbnail" style="width: 200px;">
+                    {{-- <div class="mt-2"
+                        style="position: absolute;margin-top: -20px !important;width: 180px;margin-left: 10px;">
+                        <input class="form-control form-control-sm" id="formFileSm" name="photo" type="file">
+                    </div> --}}
                 </div>
             </div>
             <div class="row">
                 <div class="col-4">
-                    <div class="input-group mb-0">
-                        <label class="col-sm-4" style="margin-right: 12px;">未婚・既婚<br>Marital Status</label>
-                        <input type="text" class="form-control" name="nationaly" value="Married"
-                            style="
-    margin-right: 1px;
-    width: 92px;
-">
-                        <label class="form-control-inline"
-                            style="
-    margin-right: 10px;
-    margin-left: 10px;
-">子供<br>Child</label>
-                        <input type="text" class="form-control" name="marital" value="0">
-                        <span class="input-group-text">人</span>
-                    </div>
+                    {{-- marital status --}}
+
                     <div class="form-group row mb-0">
                         <label class="col-sm-4">入国査証<br>Entry Visa</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="nationaly"
-                                value="{{ $crew->nationaly }}">
+                            <input type="text" class="form-control date" placeholder="yyyy/mm/dd"
+                                name="visa_issued" value="{{ $crew->visa_valid }}">
+
                         </div>
-                        <label class="col-sm-4">査証番号<br>Visa Number</label>
+                        <label class="col-sm-4">入国査証番号<br>Entry Visa No.</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="visa_id" value="{{ $crew->visa_id }}">
+                            {{-- <input type="text" class="form-control" name="visa_id" --}}
+                            {{-- value="{{ $crew->visa_id }}"> --}}
+                            <select class="form-select" name="job_id">
+                                @foreach ($jobs as $job)
+                                    <option value="{{ $job->id }}">{{ $job->code }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <label class="col-sm-4">発給日<br>Issued Date</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control date" placeholder="yyyy/mm/dd"
+                                name="visa_issued" value="{{ $crew->visa_valid }}">
                         </div>
                         <label class="col-sm-4">有効期限<br>Valid Until</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="visa_valid"
-                                value="{{ $crew->visa_valid }}">
+                            <input type="text" class="form-control date" placeholder="yyyy/mm/dd"
+                                name="visa_valid" value="{{ $crew->visa_valid }}">
                         </div>
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group row">
-                        <label for="" class="col-sm-5" style="
-    font-size: smaller;
-">オレンジブック<br>Orange
+                        <label for="" class="col-sm-5" style=" font-size: smaller; ">オレンジブック<br>Orange
                             Book</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="orangebook_id"
-                                value="{{ $crew->orangebook_id }}">
+                            <select class="form-select" name="orangebook_id">
+                                {{-- @foreach ($docs->where('type', 'Orange Book') as $orange)
+                                    <option value="{{ $orange->id }}">{{ $orange->no }}
+                                    </option>
+                                @endforeach --}}
+                            </select>
                         </div>
                         <label class="col-sm-5">発給日<br>Issued Date</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="orangebook_issued"
-                                value="{{ $crew->orangebook_issued }}">
+                            <input type="text" class="form-control date" placeholder="yyyy/mm/dd"
+                                name="orangebook_issued" value="{{ $crew->orangebook_issued }}">
                         </div>
                         <label for="" class="col-sm-5">発給地<br>Issued Place</label>
                         <div class="col-sm-7">
@@ -417,8 +552,8 @@
                         </div>
                         <label for="" class="col-sm-5">有効期限<br>Valid Until</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="orangebook_valid"
-                                value="{{ $crew->orangebook_valid }}">
+                            <input type="text" class="form-control date" placeholder="yyyy/mm/dd"
+                                name="orangebook_valid" value="{{ $crew->orangebook_valid }}">
                         </div>
                     </div>
                 </div>
@@ -435,13 +570,15 @@
                     </div>
                 </div>
             </div>
+
             <div class="row mt-3">
                 <span>{{ \Carbon\Carbon::parse($tahun)->format('Y') }} 年以降の乗船経歴</span>
                 <h5>Experience since {{ \Carbon\Carbon::parse($tahun)->format('Y') }}</h5>
-                <table class="text-center tableFixHead ">
-                    <thead>
+                <table class="table tableexp text-nowrap p-0">
+                    <thead class="table-dark">
                         <tr>
-                            <th>船名<br>Vessel's Name</th>
+                            <th>船名<br>Vessel Name</th>
+                            <th>所属<br>Affiliation</th>
                             <th>乗船日<br>Sign On</th>
                             <th>下船日<br>Sign Off</th>
                             <th>乗船期限（月）<br>Period (Month)</th>
@@ -449,43 +586,26 @@
                             <th>ボーナス<br>Bonus</th>
                             <th>職種<br>Job</th>
                             <th>船籍<br>Ship Flag</th>
-                            <th>凍結・生<br>Freezer</th>
+                            <th>凍結・生<br>Raw Freezing</th>
                             <th>種別<br>Type</th>
-                            <th>主漁場<br>Fishing Ground</th>
+                            <th>主漁場<br>F/G</th>
                             <th>トン数<br>Tonnage</th>
-                            <th>漁労長<br>Fishing Master</th>
+                            <th>漁労長<br>F/M</th>
                             <th>寒冷<br>Cold Area</th>
-                            <th>下船理由<br>Disembark. Reason</th>
+                            <th>下船理由<br>Disembark.<br>Reason</th>
                             <th>評価<br>Grade</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($exp as $exp)
                             <tr>
-                                <td>{{ $exp->vesselsname }}</td>
+                                <td>{{ $exp->shipname->name }} {{ $exp->maru }} {{ $exp->number }}</td>
+                                <td>{{ $exp->affiliation }}</td>
                                 <td>{{ $exp->signon }}</td>
                                 <td>{{ $exp->signoff }}</td>
                                 <td>{{ $exp->periode }}</td>
-                                <td>Rp. {{ $exp->salary }}</td>
-                                <td>Rp. {{ $exp->bonus }}</td>
-                                <td>{{ $exp->job->code }}</td>
-                                <td>{{ $exp->shipflag }}</td>
-                                <td>{{ $exp->freezer }}</td>
-                                <td>{{ $exp->type }}</td>
-                                <td>{{ $exp->fishingground }}</td>
-                                <td>{{ $exp->tonnage }}</td>
-                                <td>{{ $exp->fishingmaster }}</td>
-                                <td>{{ $exp->coldarea }}</td>
-                                <td>{{ $exp->disembark }}</td>
-                                <td>{{ $exp->grade }}</td>
-                            </tr>
-                            <tr>
-                                <td>{{ $exp->vesselsname }}</td>
-                                <td>{{ $exp->signon }}</td>
-                                <td>{{ $exp->signoff }}</td>
-                                <td>{{ $exp->periode }}</td>
-                                <td>Rp. {{ $exp->salary }}</td>
-                                <td>Rp. {{ $exp->bonus }}</td>
+                                <td>{{ $exp->currencysalary }} {{ $exp->salary }}</td>
+                                <td>{{ $exp->currencybonus }} {{ $exp->bonus }}</td>
                                 <td>{{ $exp->job->code }}</td>
                                 <td>{{ $exp->shipflag }}</td>
                                 <td>{{ $exp->freezer }}</td>
@@ -498,14 +618,72 @@
                                 <td>{{ $exp->grade }}</td>
                             </tr>
                         @endforeach
-
-
                     </tbody>
                 </table>
             </div>
         </div>
         <!--pages-->
     </div>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid;
+        }
+
+        .tableexp {
+            table-layout: fixed;
+            color: #000;
+            border-color: #000;
+
+        }
+
+        .tableexp thead th {
+            font-weight: 500;
+            padding: 0;
+
+            font-size: 0.6rem;
+            text-align: center !important;
+            vertical-align: middle;
+
+
+            /* color: #637381; */
+        }
+
+        .tableexp tbody td {
+            font-weight: 500;
+            padding: 0;
+            font-size: 0.6rem;
+            text-align: center !important;
+            vertical-align: middle;
+        }
+
+
+
+        .form-control {
+            color: black;
+            border: 1px solid hwb(234deg 0% 45%);
+        }
+
+        .input-group-text {
+            color: black;
+            border: 1px solid hwb(234deg 0% 45%);
+        }
+
+        .form-select {
+            color: black;
+            border: 1px solid hwb(234deg 0% 45%);
+        }
+
+        .select2-container--open {
+            z-index: 9999999
+        }
+
+        .select2-container--bootstrap .select2-selection {
+            color: black;
+            border: 1px solid hwb(234deg 0% 45%);
+        }
+    </style>
     <script>
         window.print();
     </script>

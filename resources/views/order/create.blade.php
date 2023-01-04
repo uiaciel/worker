@@ -145,7 +145,7 @@
                                     <div class="input-group">
                                         <span class="input-group-text" id="inputGroup-sizing-default">Date</span>
                                         <input type="text" name="start" value="2022-01-01" id="datestart"
-                                            class="form-control">
+                                            class="form-control date">
                                         <span class="input-group-text" id="inputGroup-sizing-default">Port</span>
                                         <select class="form-select select2" name="portstart">
                                             @foreach ($port as $po)
@@ -161,7 +161,7 @@
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-text" id="inputGroup-sizing-default">Date</span>
-                                        <input type="text" name="end" value="2022-01-01" class="form-control"
+                                        <input type="text" name="end" value="2022-01-01" class="form-control date"
                                             id="dateend" aria-label="Sizing example input"
                                             aria-describedby="inputGroup-sizing-default">
                                         <span class="input-group-text" id="inputGroup-sizing-default">Port</span>
@@ -173,13 +173,10 @@
                                     </div>
                                 </div>
                             </div>
-                            {{-- <div class="mb-3 row">
-                    <label for="inputPassword" class="col-sm-4 col-form-label">Password</label>
-                    <div class="col-sm-8">
-                      <input type="text" class="form-control" id="inputPassword">
-                    </div>
-                  </div> --}}
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <div class="d-grid gap-2 mt-5">
+                                <button class="btn btn-primary" type="submit">Submit</button>
+                              </div>
+                            
                         </form>
                     </div>
                 </div>
@@ -301,7 +298,7 @@
             });
         </script>
         <style>
-            .btn {
+            .sizebtn {
                 width: 150px;
             }
         </style>
