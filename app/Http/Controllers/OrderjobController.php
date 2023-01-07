@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Models\Orderjob;
 use App\Models\Order;
 use Illuminate\Contracts\Queue\Job;
@@ -35,23 +37,22 @@ class OrderjobController extends Controller
     {
 
         $joborder = new Orderjob;
-            $joborder->order_id = $request->order_id;
-            $joborder->job_id = $request->job;
-            $joborder->age = $request->age;
-            $joborder->exp = $request->exp;
-            $joborder->number = $request->number;
-            $joborder->remark = $request->remark;
-            $joborder->crew_id = $request->crew_id;
-            $joborder->save();
+        $joborder->order_id = $request->order_id;
+        $joborder->job_id = $request->job;
+        $joborder->age = $request->age;
+        $joborder->exp = $request->exp;
+        $joborder->number = $request->number;
+        $joborder->remark = $request->remark;
+        $joborder->crew_id = $request->crew_id;
+        $joborder->save();
 
-            Order::where('id', $request->order_id)->update([
-                'step_1' => 1
-            ]);
+        Order::where('id', $request->order_id)->update([
+            'step_1' => 1
+        ]);
 
         $idorder = Order::where('id', $request->order_id)->first();
 
-        return redirect()->route('order.show', $idorder->inv)->with('success','Data created successfully.');
-
+        return redirect()->route('order.show', $idorder->inv)->with('success', 'Data created successfully.');
     }
     /**
      * Display the specified resource.
@@ -94,6 +95,6 @@ class OrderjobController extends Controller
     {
         $ordercrew = Orderjob::findOrFail($id);
         $ordercrew->delete();
-        return redirect()->back()->with('success','Data Delete successfully.');
+        return redirect()->back()->with('success', 'Data Delete successfully.');
     }
 }
