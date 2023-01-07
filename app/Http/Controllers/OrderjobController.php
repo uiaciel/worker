@@ -35,7 +35,6 @@ class OrderjobController extends Controller
      */
     public function store(Request $request)
     {
-
         $joborder = new Orderjob;
         $joborder->order_id = $request->order_id;
         $joborder->job_id = $request->job;
