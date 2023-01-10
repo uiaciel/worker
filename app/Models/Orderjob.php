@@ -9,7 +9,7 @@ class Orderjob extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    
+
     public function order()
     {
         return $this->belongsTo('App\Models\Order', 'order_id');
@@ -23,5 +23,10 @@ class Orderjob extends Model
     public function crew()
     {
         return $this->belongsTo('App\Models\Crew', 'crew_id');
+    }
+
+    public function ordercrew()
+    {
+        return $this->hasMany('App\Models\Ordercrew', 'orderjob_id');
     }
 }

@@ -8,17 +8,21 @@
     <!-- Favicon icon-->
     <link rel="shortcut icon" type="image/x-icon" href="./assets/images/favicon/favicon.ico">
     <!-- Libs CSS -->
-    {{-- <link href="./assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="./assets/libs/dropzone/dist/dropzone.css"  rel="stylesheet">
-    <link href="./assets/libs/prismjs/themes/prism-okaidia.css" rel="stylesheet"> --}}
+
     <!-- Theme CSS -->
     <link href="/css/materialdesignicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/css/themes.css">
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paper-css/0.3.0/paper.css"> --}}
 
     <title>PT AKBAR ANGKASA TARUNA - Internal System</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
+
+    <style>
+        .navbar-vertical .navbar-brand img {
+            height: 13rem;
+        }
+    </style>
     <script src="/tinymce/tinymce.min.js"></script>
     <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
@@ -36,21 +40,23 @@
             });
         });
     </script>
-    <style>
-        .select2-selection--multiple {
-            overflow: hidden !important;
-            height: auto !important;
-        }
 
-        .navbar-vertical .navbar-brand img {
-            height: 13rem;
-        }
-    </style>
+
 
     <!-- Styles -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+
+
+    <script src="/js/select2.js"></script>
+
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" /> --}}
+    {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
+    <link rel="stylesheet" href="/css/select2-bootstrap.css" />
+
+
 </head>
 
 <body class="bg-light">
@@ -68,70 +74,72 @@
                     <li class="nav-item">
                         <div class="navbar-heading">Dashboard</div>
                     </li>
-                    <!-- Nav item -->
-                    <li class="nav-item">
-                        <div class="navbar-heading">Data</div>
-                    </li>
+                    @can('admin')
+                        <!-- Nav item -->
+                        <li class="nav-item">
+                            <div class="navbar-heading">Data</div>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link has-arrow " href="/company">
-                            <i data-feather="clipboard" class="nav-icon icon-xs me-2">
-                            </i> Companies
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link has-arrow " href="/company">
+                                <i data-feather="clipboard" class="nav-icon icon-xs me-2">
+                                </i> Companies
+                            </a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link has-arrow " href="/klien">
-                            <i data-feather="clipboard" class="nav-icon icon-xs me-2">
-                            </i> Clients
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link has-arrow " href="/shipname">
-                            <i data-feather="clipboard" class="nav-icon icon-xs me-2">
-                            </i> Ship Names
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link has-arrow " href="/klien">
+                                <i data-feather="clipboard" class="nav-icon icon-xs me-2">
+                                </i> Clients
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link has-arrow " href="/shipname">
+                                <i data-feather="clipboard" class="nav-icon icon-xs me-2">
+                                </i> Ship Names
+                            </a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link has-arrow " href="/port">
-                            <i data-feather="clipboard" class="nav-icon icon-xs me-2">
-                            </i> Ports
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link has-arrow " href="/port">
+                                <i data-feather="clipboard" class="nav-icon icon-xs me-2">
+                                </i> Ports
+                            </a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link has-arrow " href="/job">
-                            <i data-feather="clipboard" class="nav-icon icon-xs me-2">
-                            </i> Jobs
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link has-arrow " href="/job">
+                                <i data-feather="clipboard" class="nav-icon icon-xs me-2">
+                                </i> Jobs
+                            </a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link has-arrow " href="/national">
-                            <i data-feather="clipboard" class="nav-icon icon-xs me-2">
-                            </i> Nationality
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link has-arrow " href="/national">
+                                <i data-feather="clipboard" class="nav-icon icon-xs me-2">
+                                </i> Nationality
+                            </a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link has-arrow " href="/currency">
-                            <i data-feather="clipboard" class="nav-icon icon-xs me-2">
-                            </i> Currencies
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link has-arrow " href="/currency">
+                                <i data-feather="clipboard" class="nav-icon icon-xs me-2">
+                                </i> Currencies
+                            </a>
+                        </li>
 
 
-                    <!-- Nav item -->
-                    <li class="nav-item">
-                        <div class="navbar-heading">Management</div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link has-arrow " href="{{ route('crew.index') }}">
-                            <i data-feather="clipboard" class="nav-icon icon-xs me-2">
-                            </i> Crew Database
-                        </a>
-                    </li>
+                        <!-- Nav item -->
+                        <li class="nav-item">
+                            <div class="navbar-heading">Management</div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link has-arrow " href="{{ route('crew.index') }}">
+                                <i data-feather="clipboard" class="nav-icon icon-xs me-2">
+                                </i> Crew Database
+                            </a>
+                        </li>
+                    @endcan
                     <li class="nav-item">
                         <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse"
                             data-bs-target="#navPages" aria-expanded="false" aria-controls="navPages">
@@ -154,113 +162,112 @@
                         </div>
                     </li>
                     <!-- Nav item -->
+                    @can('admin')
+                        <li class="nav-item">
+                            <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse"
+                                data-bs-target="#applicationletter" aria-expanded="false"
+                                aria-controls="applicationletter">
+                                <i data-feather="lock" class="nav-icon icon-xs me-2">
+                                </i> Letters
+                            </a>
+                            <div id="applicationletter" class="collapse" data-bs-parent="#applicationletter">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item ">
+                                        <a class="nav-link  "href="/">Sign-On Letter</a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a class="nav-link  " href="/">Airport Officer Letter</a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a class="nav-link  " href="/">Airline Officer Letter</a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a class="nav-link  " href="/">Local Imigration</a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a class="nav-link  " href="/">International Imigration</a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a class="nav-link  " href="/">Guarantee Letter</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="navbar-heading">Finance</div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse"
+                                data-bs-target="#navFinance" aria-expanded="false" aria-controls="navPages">
+                                <i data-feather="layers" class="nav-icon icon-xs me-2">
+                                </i> Invoicing
+                            </a>
+                            <div id="navFinance" class="collapse " data-bs-parent="#sideNavbar">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link has-arrow   " href="">
+                                            Recruitment Fee
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link " href="">
+                                            Management Fee
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse"
+                                data-bs-target="#navsalary" aria-expanded="false" aria-controls="navPages">
+                                <i data-feather="layers" class="nav-icon icon-xs me-2">
+                                </i> Salary
+                            </a>
+                            <div id="navsalary" class="collapse " data-bs-parent="#sideNavbar">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link has-arrow   " href="">
+                                            Crews Salary
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link " href="">
+                                            Family Remittance
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
 
-
-                    <li class="nav-item">
-                        <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse"
-                            data-bs-target="#applicationletter" aria-expanded="false"
-                            aria-controls="applicationletter">
-                            <i data-feather="lock" class="nav-icon icon-xs me-2">
-                            </i> Letters
-                        </a>
-                        <div id="applicationletter" class="collapse" data-bs-parent="#applicationletter">
-                            <ul class="nav flex-column">
-                                <li class="nav-item ">
-                                    <a class="nav-link  "href="/">Sign-On Letter</a>
-                                </li>
-                                <li class="nav-item ">
-                                    <a class="nav-link  " href="/">Airport Officer Letter</a>
-                                </li>
-                                <li class="nav-item ">
-                                    <a class="nav-link  " href="/">Airline Officer Letter</a>
-                                </li>
-                                <li class="nav-item ">
-                                    <a class="nav-link  " href="/">Local Imigration</a>
-                                </li>
-                                <li class="nav-item ">
-                                    <a class="nav-link  " href="/">International Imigration</a>
-                                </li>
-                                <li class="nav-item ">
-                                    <a class="nav-link  " href="/">Guarantee Letter</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <div class="navbar-heading">Finance</div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse"
-                            data-bs-target="#navFinance" aria-expanded="false" aria-controls="navPages">
-                            <i data-feather="layers" class="nav-icon icon-xs me-2">
-                            </i> Invoicing
-                        </a>
-                        <div id="navFinance" class="collapse " data-bs-parent="#sideNavbar">
-                            <ul class="nav flex-column">
-                                <li class="nav-item">
-                                    <a class="nav-link has-arrow   " href="">
-                                        Recruitment Fee
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link " href="">
-                                        Management Fee
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse"
-                            data-bs-target="#navsalary" aria-expanded="false" aria-controls="navPages">
-                            <i data-feather="layers" class="nav-icon icon-xs me-2">
-                            </i> Salary
-                        </a>
-                        <div id="navsalary" class="collapse " data-bs-parent="#sideNavbar">
-                            <ul class="nav flex-column">
-                                <li class="nav-item">
-                                    <a class="nav-link has-arrow   " href="">
-                                        Crews Salary
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link " href="">
-                                        Family Remittance
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li class="nav-item">
-                        <div class="navbar-heading">Settings</div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link has-arrow " href="./docs/index.html">
-                            <i data-feather="clipboard" class="nav-icon icon-xs me-2">
-                            </i> Tutorial
-                        </a>
-                    </li>
-                    <!-- Nav item -->
-                    <li class="nav-item">
-                        <a class="nav-link has-arrow " href="./docs/index.html">
-                            <i data-feather="clipboard" class="nav-icon icon-xs me-2">
-                            </i> Time & Language
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link has-arrow " href="./docs/index.html">
-                            <i data-feather="clipboard" class="nav-icon icon-xs me-2">
-                            </i> About
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link has-arrow " href="./docs/index.html">
-                            <i data-feather="clipboard" class="nav-icon icon-xs me-2">
-                            </i> Theme
-                        </a>
-                    </li>
-
+                        <li class="nav-item">
+                            <div class="navbar-heading">Settings</div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link has-arrow " href="./docs/index.html">
+                                <i data-feather="clipboard" class="nav-icon icon-xs me-2">
+                                </i> Tutorial
+                            </a>
+                        </li>
+                        <!-- Nav item -->
+                        <li class="nav-item">
+                            <a class="nav-link has-arrow " href="./docs/index.html">
+                                <i data-feather="clipboard" class="nav-icon icon-xs me-2">
+                                </i> Time & Language
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link has-arrow " href="./docs/index.html">
+                                <i data-feather="clipboard" class="nav-icon icon-xs me-2">
+                                </i> About
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link has-arrow " href="./docs/index.html">
+                                <i data-feather="clipboard" class="nav-icon icon-xs me-2">
+                                </i> Theme
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
             </div>
         </nav>
@@ -474,16 +481,8 @@
     </div>
     <!-- Libs JS -->
     <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/libs/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="/assets/libs/feather-icons/dist/feather.min.js"></script>
-    <script src="/assets/libs/prismjs/prism.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
-    {{-- <script src="/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-  <script src="/assets/libs/dropzone/dist/min/dropzone.min.js"></script>
-  <script src="/assets/libs/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
-  <script src="/assets/libs/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script> --}}
 
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script> --}}
     <script>
         $(document).ready(function() {
             $(".select2").select2({
@@ -492,10 +491,6 @@
             });
         });
     </script>
-
-
-
-
     <!-- Theme JS -->
     <script src="/assets/js/main.js"></script>
 </body>

@@ -45,6 +45,8 @@ class OrderjobController extends Controller
         $joborder->crew_id = $request->crew_id;
         $joborder->save();
 
+
+
         Order::where('id', $request->order_id)->update([
             'step_1' => 1
         ]);

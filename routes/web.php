@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CrewController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderjobController;
@@ -78,3 +79,6 @@ Route::post('/ticket/update/{id}', [TicketController::class, 'update'])->name('t
 Route::get('/re/create', [ReController::class, 'stepOne'])->name('re.stepone');
 Route::post('/re', [ReController::class, 'storeStepOne'])->name('re.storeone');
 Route::get('/re/steptwo/{id}', [ReController::class, 'stepTwo'])->name('re.steptwo');
+Route::get('/filter/crews/{id}', [HomeController::class, 'filter'])->name('filter.crew');
+
+Route::resource('/admin', AdminController::class);

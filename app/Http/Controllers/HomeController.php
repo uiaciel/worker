@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Crew;
 use App\Models\Port;
 use App\Models\National;
 use App\Models\Shipname;
@@ -29,26 +30,30 @@ class HomeController extends Controller
     {
         return view('home');
     }
-    
+
     public function setting()
     {
         $shipname = Shipname::orderBy('name', 'asc')->get();
-        
+
         return view('setting', [
             'shipname' => $shipname
-            ]);
-        
+        ]);
     }
-    
+
     public function storeshipname(Request $request)
     {
-        
+
         $shipname = new Shipname;
         $shipname->name = $request->name;
         $shipname->save();
-        
-        toast('Shipname added.','success');
+
+        toast('Shipname added.', 'success');
         return redirect()->back();
-        
+    }
+
+    public function filter($id)
+    {
+        $crews = Crew::with('job')->where('job_id', $id)->get();
+        return json_encode($crews);
     }
 }

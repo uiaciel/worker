@@ -559,7 +559,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($orderjob as $index => $reqjob)
+                                    @forelse ($orderjob as $index => $reqjob)
                                         <tr>
                                             <td>{{ ++$index }}</td>
                                             <td>{{ $reqjob->job->name }}</td>
@@ -569,10 +569,6 @@
                                             <td>{{ $reqjob->remark }}</td>
                                             <td>
                                                 <div class="input-group mb-3">
-
-                                                    <button class="btn btn-sm btn-outline-primary" type="button"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#com{{ $reqjob->id }}">Edit</button>
                                                     <form onsubmit="return confirm('Are you sure?');"
                                                         action="{{ route('orderjob.destroy', $reqjob->id) }}"
                                                         method="POST">
@@ -583,8 +579,9 @@
                                                             id="button-addon2">Delete</button>
                                                     </form>
                                                     @if ($reqjob->remark !== 'NEW')
-                                                        <button class="btn btn-sm btn-outline-primary" type="button"
-                                                            data-bs-toggle="modal" data-bs-target="#datacrewnya"
+                                                        <button class="btn btn-sm btn-outline-primary cekdata"
+                                                            type="button" data-bs-toggle="modal"
+                                                            data-bs-target="#com{{ $reqjob->id }}"
                                                             id="creww">Select Crew(s)</button>
                                                     @endif
                                                 </div>
@@ -592,101 +589,124 @@
 
                                             </td>
                                         </tr>
-
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="com{{ $reqjob->id }}" tabindex="-1"
+                                        <div class="modal fade" id="com{{ $reqjob->id }}" style="z-index: 1051;"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
+                                            <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Edit
+                                                        <h5 class="modal-title" id="exampleModalLabel">SELECT CREWS
                                                             {{ $reqjob->job->name }}</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
-                                                    <form action="{{ route('orderjob.store') }}"
+                                                    <form action="{{ route('ordercrew.store') }}"
                                                         enctype="multipart/form-data" method="POST">
                                                         @csrf
                                                         <div class="modal-body">
 
-                                                            <input value="{{ $order->id }}" name="order_id" hidden>
-                                                            <div class="mb-3">
-                                                                <label for="exampleInputEmail1"
-                                                                    class="form-label">JOB</label>
-                                                                <select class="form-control" name="job">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <input value="{{ $order->id }}" name="order_id"
+                                                                        hidden>
+                                                                    <input value="{{ $reqjob->id }}" name="orderjob_id"
+                                                                        hidden>
+                                                                    <div class="mb-3">
+                                                                        <label for="exampleInputEmail1"
+                                                                            class="form-label">JOB</label>
+                                                                        <input class="form-control"
+                                                                            value="{{ $reqjob->job->name }}" readonly>
 
-                                                                    <option value="{{ $reqjob->job->id }}">
-                                                                        {{ $reqjob->job->name }}</option>
-                                                                    @foreach ($jobs as $jobx)
-                                                                        <option value="{{ $jobx->id }}">
-                                                                            {{ $jobx->name }}</option>
-                                                                    @endforeach
 
-                                                                </select>
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="exampleInputPassword1"
-                                                                    class="form-label">AGE</label>
-                                                                <select class="form-control" name="age"
-                                                                    id="">
-                                                                    <option value="{{ $reqjob->age }}">
-                                                                        {{ $reqjob->age }}</option>
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label for="exampleInputPassword1"
+                                                                            class="form-label">AGE</label>
+                                                                        <select class="form-control" name="age"
+                                                                            id="">
+                                                                            <option value="{{ $reqjob->age }}">
+                                                                                {{ $reqjob->age }}</option>
 
-                                                                    <option value="18-30">18-30</option>
-                                                                    <option value="18-30">31-40</option>
-                                                                    <option value="40+">40+</option>
-                                                                </select>
+                                                                            <option value="18-30">18-30</option>
+                                                                            <option value="18-30">31-40</option>
+                                                                            <option value="40+">40+</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="mb-3">
+                                                                        <label for="exampleInputPassword1"
+                                                                            class="form-label">EXP</label>
+                                                                        <select class="form-control" name="exp"
+                                                                            id="">
+                                                                            <option value="{{ $reqjob->exp }}">
+                                                                                {{ $reqjob->exp }}</option>
+                                                                            <option value="YES">YES</option>
+                                                                            <option value="NO">NO</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label for="exampleInputPassword1"
+                                                                            class="form-label">NUMBER</label>
+                                                                        <select class="form-control" name="number"
+                                                                            id="">
+                                                                            <option value="{{ $reqjob->number }}">
+                                                                                {{ $reqjob->number }}</option>
+                                                                            <option value="1">1</option>
+                                                                            <option value="2">2</option>
+                                                                            <option value="3">3</option>
+                                                                            <option value="4">4</option>
+                                                                            <option value="5">5</option>
+                                                                            <option value="6">6</option>
+                                                                            <option value="7">7</option>
+                                                                            <option value="8">8</option>
+                                                                            <option value="9">9</option>
+                                                                            <option value="10">10</option>
+                                                                            <option value="11">11</option>
+                                                                            <option value="12">12</option>
+                                                                            <option value="13">13</option>
+                                                                            <option value="14">14</option>
+                                                                            <option value="15">15</option>
+                                                                            <option value="16">16</option>
+                                                                            <option value="17">17</option>
+                                                                            <option value="18">18</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="mb-3">
+                                                                        <label for="remark"
+                                                                            class="form-label">REMARKS</label>
+                                                                        <select class="form-control" name="remark">
+                                                                            <option value="{{ $reqjob->remark }}">
+                                                                                {{ $reqjob->remark }}</option>
+                                                                            <option value="NEW">NEW</option>
+                                                                            <option value="FIXED">FIXED</option>
+                                                                            <option value="REJOIN">REJOIN</option>
+                                                                            <option value="RECOMMEND">RECOMMEND</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                            <div class="mb-3">
-                                                                <label for="exampleInputPassword1"
-                                                                    class="form-label">EXP</label>
-                                                                <select class="form-control" name="exp"
-                                                                    id="">
-                                                                    <option value="{{ $reqjob->exp }}">
-                                                                        {{ $reqjob->exp }}</option>
-                                                                    <option value="YES">YES</option>
-                                                                    <option value="NO">NO</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="exampleInputPassword1"
-                                                                    class="form-label">NUMBER</label>
-                                                                <select class="form-control" name="number"
-                                                                    id="">
-                                                                    <option value="{{ $reqjob->number }}">
-                                                                        {{ $reqjob->number }}</option>
-                                                                    <option value="1">1</option>
-                                                                    <option value="2">2</option>
-                                                                    <option value="3">3</option>
-                                                                    <option value="4">4</option>
-                                                                    <option value="5">5</option>
-                                                                    <option value="6">6</option>
-                                                                    <option value="7">7</option>
-                                                                    <option value="8">8</option>
-                                                                    <option value="9">9</option>
-                                                                    <option value="10">10</option>
-                                                                    <option value="11">11</option>
-                                                                    <option value="12">12</option>
-                                                                    <option value="13">13</option>
-                                                                    <option value="14">14</option>
-                                                                    <option value="15">15</option>
-                                                                    <option value="16">16</option>
-                                                                    <option value="17">17</option>
-                                                                    <option value="18">18</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="remark" class="form-label">REMARKS</label>
-                                                                <select class="form-control" id="remark"
-                                                                    name="remark">
-                                                                    <option value="{{ $reqjob->remark }}">
-                                                                        {{ $reqjob->remark }}</option>
-                                                                    <option value="NEW">NEW</option>
-                                                                    <option value="FIXED">FIXED</option>
-                                                                    <option value="REJOIN">REJOIN</option>
-                                                                    <option value="RECOMMEND">RECOMMEND</option>
-                                                                </select>
-                                                            </div>
+                                                            @if ($reqjob->remark == 'NEW')
+                                                            @else
+                                                                <div class="mb-3" id="formselect">
+
+                                                                    <label for="remark" class="form-label">SELECT
+                                                                        CREWS</label>
+                                                                    <select class="form-control select2" multiple
+                                                                        name="crew_id[]">
+
+                                                                        @foreach ($crews->where('job_id', $reqjob->job->id) as $op)
+                                                                            <option value="{{ $op->id }}">
+                                                                                {{ $op->subid }} -
+                                                                                {{ $op->name }} - {{ $op->birth }}
+                                                                                - {{ $op->job->name }} - No Passport
+                                                                            </option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            @endif
+
 
 
 
@@ -701,11 +721,39 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    @endforeach
+
+                                    @empty
+                                        <h3>Tidak ada data</h3>
+                                    @endforelse
                                 </tbody>
                                 <tfoot class="font-weight-bold small">
                                 </tfoot>
                             </table>
+
+                            <div class="modal fade" id="datacrewnya" aria-labelledby="datacrewnyaLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <a class="btn btn-primary" data-bs-toggle="collapse" href="#datacrew"
+                                                role="button" aria-expanded="false" aria-controls="datacrew">
+                                                SELECT CREWS
+                                            </a>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h4>Selected Crew(s)</h4>
+
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <!--table responsive end-->
                         <div class="form-group">
@@ -716,7 +764,7 @@
 NUMBER - REMARK
 1. CREWID NAMA DOB JOB PASSPORT
 
-Special Notes: 
+Special Notes:
 {{-- @foreach ($orderjob as $index => $jox)
 {{ $jox->remark }} {{ $jox->number }} {{ $jox->job->name }}
 {{ $jox->crew->subid }} {{ $jox->crew->name }}</ul>
@@ -730,9 +778,9 @@ Special Notes:
             </div>
         </div>
         <!-- row  -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
+        <div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true"
+            style="z-index: 1051;">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     {{-- <form method="POST" action="{{route('ordercrew.store')}}">
                       @csrf --}}
@@ -746,74 +794,86 @@ Special Notes:
                         <form action="{{ route('orderjob.store') }}" enctype="multipart/form-data" method="POST">
                             @csrf
                             <input value="{{ $order->id }}" name="order_id" hidden>
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">JOB</label>
-                                <select class="form-control" name="job">
-                                    <option>--SELECT--</option>
-                                    @foreach ($jobs as $job)
-                                        <option value="{{ $job->id }}">{{ $job->name }}</option>
-                                    @endforeach
-                                    {{-- <option>DECK</option>
-                          <option>ENGINE</option>
-                          <option>ASSISTANT ICE MASTER</option>
-                          <option>ICE MASTER</option>
-                          <option>ASSISTANT COOK</option>
-                          <option>CHIEF COOK</option>
-                          <option>BOSUN</option>
-                          <option>QUARTER MASTER</option> --}}
-                                </select>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">JOB</label>
+                                        <select class="form-control" name="job">
+                                            <option>--SELECT--</option>
+                                            @foreach ($jobs as $job)
+                                                <option value="{{ $job->id }}" data="{{ $job->id }}">
+                                                    {{ $job->name }}</option>
+                                            @endforeach
+
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputPassword1" class="form-label">AGE</label>
+                                        <select class="form-control" name="age" id="">
+                                            <option>--SELECT--</option>
+                                            <option value="18-30">18-30</option>
+                                            <option value="18-30">31-40</option>
+                                            <option value="40+">40+</option>
+                                        </select>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="exampleInputPassword1" class="form-label">EXP</label>
+                                        <select class="form-control" name="exp" id="">
+                                            <option>--SELECT--</option>
+                                            <option value="YES">YES</option>
+                                            <option value="NO">NO</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputPassword1" class="form-label">NUMBER</label>
+                                        <select class="form-control" name="number" id="">
+                                            <option>--SELECT--</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                            <option value="13">13</option>
+                                            <option value="14">14</option>
+                                            <option value="15">15</option>
+                                            <option value="16">16</option>
+                                            <option value="17">17</option>
+                                            <option value="18">18</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="remark" class="form-label">REMARKS</label>
+                                        <select class="form-control" name="remark">
+                                            <option>--SELECT--</option>
+                                            <option value="NEW">NEW</option>
+                                            <option value="FIXED">FIXED</option>
+                                            <option value="REJOIN">REJOIN</option>
+                                            <option value="RECOMMEND">RECOMMEND</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+
+
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">AGE</label>
-                                <select class="form-control" name="age" id="">
-                                    <option>--SELECT--</option>
-                                    <option value="18-30">18-30</option>
-                                    <option value="18-30">31-40</option>
-                                    <option value="40+">40+</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">EXP</label>
-                                <select class="form-control" name="exp" id="">
-                                    <option>--SELECT--</option>
-                                    <option value="YES">YES</option>
-                                    <option value="NO">NO</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">NUMBER</label>
-                                <select class="form-control" name="number" id="">
-                                    <option>--SELECT--</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                    <option value="13">13</option>
-                                    <option value="14">14</option>
-                                    <option value="15">15</option>
-                                    <option value="16">16</option>
-                                    <option value="17">17</option>
-                                    <option value="18">18</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="remark" class="form-label">REMARKS</label>
-                                <select class="form-control" id="remark" name="remark">
-                                    <option>--SELECT--</option>
-                                    <option value="NEW">NEW</option>
-                                    <option value="FIXED">FIXED</option>
-                                    <option value="REJOIN">REJOIN</option>
-                                    <option value="RECOMMEND">RECOMMEND</option>
-                                </select>
-                            </div>
+
+
+
 
 
                             <button type="submit" class="btn btn-primary">Add</button>
@@ -822,76 +882,7 @@ Special Notes:
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="datacrewnya" tabindex="-1" aria-labelledby="datacrewnyaLabel" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#datacrew" role="button"
-                            aria-expanded="false" aria-controls="datacrew">
-                            Data Crews
-                        </a>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <h4>Selected Crew(s)</h4>
-                        <form method="POST" action="{{ route('ordercrew.store') }}">
-                            @csrf
-                            <input value="{{ $order->id }}" name="order_id" hidden>
-                            <table id="destinationtable" class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Crew ID</th>
-                                        <th>Name</th>
-                                        <th>D.O.B</th>
-                                        <th>Job</th>
-                                        <th>Passport No.</th>
 
-                                    </tr>
-                                </thead>
-                            </table>
-                            <button type="submit" class="btn btn-primary btn-round btn-md mr-2"><span class="btn-label">
-                                    <i class="fa fa-pencil"></i>
-                                </span>Update</button>
-                        </form>
-                        <div class="collapse" id="datacrew">
-                            <div class="card card-body">
-                                <h3>Data Semua Crew :</h3>
-                                <table id="sourcetable" class="table table-bordered mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th>Crew ID</th>
-                                            <th>Name</th>
-                                            <th>D.O.B</th>
-                                            <th>Job</th>
-                                            <th>Passport No.</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($crew as $index => $kru)
-                                            <tr id="sour{{ $kru->id }}">
-                                                <td><input class="form-check-input" type="checkbox">
-                                                    {{ ++$index }}</td>
-                                                <td>{{ $kru->name }}</td>
-                                                <td>{{ $kru->birth }}</td>
-                                                <td>{{ $kru->job->name }}<input value="{{ $kru->id }}"
-                                                        name="crew_id[]" hidden></td>
-                                                <td>{{ $kru->passport_id }}</td>
-                                                <td>{{ \Carbon\Carbon::parse($kru->birth)->diff(\Carbon\Carbon::now())->y }}
-                                                    tahun</td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- Modal -->
         {{-- @isset($orderjob) --}}
         @if ($order->step_2 == 1)
@@ -938,12 +929,7 @@ Special Notes:
                                             </div>
                                         </div>
                                         <div>
-                                            {{-- <a href="/print/{{$order->inv}}" class="btn btn-primary" style="width:150px;" target="_blank">Print</a> --}}
-                                            {{-- <button type="button" class="btn btn-primary btn-round" style="width:150px;" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">
-                                        Add Request
-                                    </button> --}}
-                                            {{-- <button type="submit" class="btn btn-primary btn-md" style="width:150px;">Update</button> --}}
+
                                         </div>
                                     </div>
                                 </div>
@@ -966,106 +952,12 @@ Special Notes:
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+
+                                        {{-- <tr>
                                             <td colspan="5">
                                                 Fishing Master
                                             </td>
-                                        </tr>
-                                        <tr class="bg-primary text-white">
-                                            <td>1</td>
-                                            <td><input value="1" name="id[]" hidden="">Aditya</td>
-                                            <td>YES</td>
-                                            <td>1
-                                            </td>
-                                            <td>NEW
-                                            </td>
-                                            <td class="bg-primary">
-                                                <select name="status[]" class="form-control">
-                                                    <option value="ACC">APPROVE</option>
-                                                    <option value="RECOMMENDATION">NO ACC</option>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                        <tr class="bg-primary text-white">
-                                            <td>1</td>
-                                            <td><input value="1" name="id[]" hidden="">Aditya</td>
-                                            <td>YES</td>
-                                            <td>1
-                                            </td>
-                                            <td>NEW
-                                            </td>
-                                            <td class="bg-primary">
-                                                <select name="status[]" class="form-control">
-                                                    <option value="ACC">APPROVE</option>
-                                                    <option value="RECOMMENDATION">NO ACC</option>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                        <tr class="bg-primary text-white">
-                                            <td>1</td>
-                                            <td><input value="1" name="id[]" hidden="">Aditya</td>
-                                            <td>YES</td>
-                                            <td>1
-                                            </td>
-                                            <td>NEW
-                                            </td>
-                                            <td class="bg-primary">
-                                                <select name="status[]" class="form-control">
-                                                    <option value="ACC">APPROVE</option>
-                                                    <option value="RECOMMENDATION">NO ACC</option>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="5">
-                                                Chief Officer
-                                            </td>
-                                        </tr>
-                                        <tr class="bg-primary text-white">
-                                            <td>1</td>
-                                            <td><input value="1" name="id[]" hidden="">Aditya</td>
-                                            <td>Chief Officer</td>
-                                            <td>1
-                                            </td>
-                                            <td>View
-                                            </td>
-                                            <td class="bg-primary">
-                                                <select name="status[]" class="form-control">
-                                                    <option value="ACC">APPROVE</option>
-                                                    <option value="RECOMMENDATION">NO ACC</option>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                        <tr class="bg-primary text-white">
-                                            <td>1</td>
-                                            <td><input value="1" name="id[]" hidden="">Aditya</td>
-                                            <td>Chief Officer</td>
-                                            <td>1
-                                            </td>
-                                            <td>View
-                                            </td>
-                                            <td class="bg-primary">
-                                                <select name="status[]" class="form-control">
-                                                    <option value="ACC">APPROVE</option>
-                                                    <option value="RECOMMENDATION">NO ACC</option>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                        <tr class="bg-primary text-white">
-                                            <td>1</td>
-                                            <td><input value="1" name="id[]" hidden="">Aditya</td>
-                                            <td>Chief Officer</td>
-                                            <td>1
-                                            </td>
-                                            <td>View
-                                            </td>
-                                            <td class="bg-primary">
-                                                <select name="status[]" class="form-control">
-                                                    <option value="ACC">APPROVE</option>
-                                                    <option value="RECOMMENDATION">NO ACC</option>
-                                                </select>
-                                            </td>
-                                        </tr>
+                                        </tr> --}}
                                         @foreach ($ordercrew as $index => $ordercrx)
                                             <tr @if ($ordercrx->status == 'ACC') class="bg-primary text-white" @endif>
                                                 <td>{{ $index + 1 }}</td>
@@ -1074,7 +966,7 @@ Special Notes:
                                                 <td>{{ $ordercrx->crew->job->name }}</td>
                                                 <td>{{ \Carbon\Carbon::parse($ordercrx->crew->birth)->diff(\Carbon\Carbon::now())->y }}
                                                 </td>
-                                                <td>View
+                                                <td>{{ $ordercrx->remark }}</td>
                                                 </td>
                                                 <td class="bg-primary">
                                                     <select name="status[]" class="form-control">
@@ -1331,7 +1223,8 @@ Special Notes:
                                     <div class="mb-2 mb-lg-0 flex-fill">
                                         @if ($ticket->status == 'client')
                                             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                                <h4 class="mb-0 text-center">Please kindly arrange & upload Air Ticket(s) &
+                                                <h4 class="mb-0 text-center">Please kindly arrange & upload Air Ticket(s)
+                                                    &
                                                     Guarantee Letter of All Crews below!
                                                 </h4>
                                             </div>
@@ -1408,14 +1301,14 @@ Special Notes:
                             <div>
                                 <div class="d-flex">
                                     <div class="mb-2 mb-lg-0 flex-fill">
-                                       
+
                                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                                             <h4 class="mb-0 text-center">Please kindly arrange & upload Guarantee Letter of All Crews below!
                                             </h4>
                                         </div>
-                                       
+
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div> --}}
@@ -1448,28 +1341,22 @@ Special Notes:
                                         <td>1</td>
                                         <td>ID123</td>
                                         <td>AKBAR</td>
-                                        <td><a name="" id="" href="#"
-                                                role="button">124577495</a>
+                                        <td><a name="" id="" href="#" role="button">124577495</a>
                                         </td>
-                                        <td><a name="" id="" href="#"
-                                                role="button">14257754</a>
+                                        <td><a name="" id="" href="#" role="button">14257754</a>
                                         </td>
-                                        <td><a name="" id="" href="#"
-                                                role="button">14257754</a>
+                                        <td><a name="" id="" href="#" role="button">14257754</a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>2</td>
                                         <td>ID123</td>
                                         <td>SURYA</td>
-                                        <td><a name="" id="" href="#"
-                                                role="button">124577495</a>
+                                        <td><a name="" id="" href="#" role="button">124577495</a>
                                         </td>
-                                        <td><a name="" id="" href="#"
-                                                role="button">14257754</a>
+                                        <td><a name="" id="" href="#" role="button">14257754</a>
                                         </td>
-                                        <td><a name="" id="" href="#"
-                                                role="button">14257754</a>
+                                        <td><a name="" id="" href="#" role="button">14257754</a>
                                         </td>
                                     </tr>
                                     <tr>
@@ -1651,98 +1538,6 @@ Special Notes:
 
 
     </div>
-    <script>
-        $(document).ready(function() {
-            $('#remark').change(function() {
-                var job = $('#remark').val();
 
 
-                if (job !== "NEW") {
-
-                    document.getElementById("creww").style.visibility = "visible";
-                }
-            });
-        });
-    </script>
-    <script>
-        var addedrows = new Array();
-        $(document).ready(function() {
-            $("#sourcetable tbody tr").on("click", function(event) {
-                var ok = 0;
-                var theid = $(this).attr('id').replace("sour", "");
-                var newaddedrows = new Array();
-                for (index = 0; index < addedrows.length; ++index) {
-                    // if already selected then remove
-                    if (addedrows[index] == theid) {
-                        $(this).css("background-color", "#ffffff");
-                        // remove from second table :
-                        var tr = $("#dest" + theid);
-                        tr.css("background-color", "#FF3700");
-                        tr.fadeOut(400, function() {
-                            tr.remove();
-                        });
-                        //addedrows.splice(theid, 1);   
-                        //the boolean
-                        ok = 1;
-                    } else {
-                        newaddedrows.push(addedrows[index]);
-                    }
-                }
-                addedrows = newaddedrows;
-                // if no match found then add the row :
-                if (!ok) {
-                    // retrieve the id of the element to match the id of the new row :
-                    addedrows.push(theid);
-                    $(this).css("background-color", "#cacaca");
-                    $('#destinationtable tr:last').after('<tr id="dest' + theid + '"><td>' +
-                        $(this).find("td").eq(0).html() + '</td><td>' +
-                        $(this).find("td").eq(1).html() + '</td><td>' +
-                        $(this).find("td").eq(2).html() + '</td><td>' +
-                        $(this).find("td").eq(3).html() + '</td><td>' +
-                        $(this).find("td").eq(4).html() + '</td></tr>');
-                }
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('#sourcetable').DataTable();
-        });
-    </script>
-    <script>
-        $("#checkAll").click(function() {
-            $('input:checkbox').not(this).prop('checked', this.checked);
-            if ($('input:checkbox').is(":checked"))
-                $("#btndelete").show();
-            else
-                $("#btndelete").hide();
-        });
-    </script>
-    <script>
-        $('.delete-user').click(function(e) {
-            e.preventDefault() // Don't post the form, unless confirmed
-            if (confirm('Are you sure?')) {
-                // Post the form
-                $(e.target).closest('form').submit() // Post the surrounding form
-            }
-        });
-    </script>
-    <script>
-        $(".checkboxMail1").change(function() {
-            var setval = this.checked ? "ACC" : "RECOMMENDATION";
-            $(".checkMailOK").text(setval);
-            $("#mail1").val(setval);
-        });
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $(".addcl").click(function() {
-                var lsthmtl = $(".clone").html();
-                $(".increment").after(lsthmtl);
-            });
-            $("body").on("click", ".removecl", function() {
-                $(this).parents(".hdtuto control-group lst").remove();
-            });
-        });
-    </script>
 @endsection

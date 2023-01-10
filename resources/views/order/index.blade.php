@@ -58,15 +58,15 @@
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
-                                            <th>Request Date</th>
-                                            <th>Request No.</th>
-                                            <th>Status</th>
-                                            <th>Vessel Name</th>
-                                            <th>Fishing Area</th>
-                                            <th>Number of Crew</th>
-                                            <th>Estimated Date of Embarkation</th>
-                                            <th>Embarkation Port</th>
-                                            <th>Period of Employment</th>
+                                                <th>Request Date</th>
+                                                <th>Request No.</th>
+                                                <th>Status</th>
+                                                <th>Vessel Name</th>
+                                                <th>Fishing Area</th>
+                                                <th>Number of Crew</th>
+                                                <th>Estimated Date of Embarkation</th>
+                                                <th>Embarkation Port</th>
+                                                <th>Period of Employment</th>
 
 
                                             </tr>
@@ -75,15 +75,19 @@
                                             @foreach ($active as $index => $reqs)
                                                 <tr>
                                                     <td scope="row">{{ $index + 1 }}</td>
-                                                <td>{{ $reqs->created_at }}</td>
-                                                <td><a href="/order/{{ $reqs->inv }}">{{ $reqs->inv }}</a></td>
-                                                <td>{{ $reqs->status }}</td>
-                                                <td>{{ $reqs->shipname }}</td>
-                                                <td>{{ $reqs->fishingarea }}</td>
-                                                <td>{{ $reqs->member }}</td>
-                                                <td>{{ $reqs->start }}</td>
-                                                <td>{{ $reqs->portstart }}</td>
-                                                <td>{{ $reqs->periode }}</td>
+                                                    <td>{{ $reqs->created_at }}</td>
+                                                    <td>
+                                                        @can('admin')
+                                                            <a href="/admin/order/{{ $reqs->inv }}">{{ $reqs->inv }}</a>
+                                                        @endcan <a href="/order/{{ $reqs->inv }}">{{ $reqs->inv }}</a>
+                                                    </td>
+                                                    <td>{{ $reqs->status }}</td>
+                                                    <td>{{ $reqs->shipname }}</td>
+                                                    <td>{{ $reqs->fishingarea }}</td>
+                                                    <td>{{ $reqs->member }}</td>
+                                                    <td>{{ $reqs->start }}</td>
+                                                    <td>{{ $reqs->portstart }}</td>
+                                                    <td>{{ $reqs->periode }}</td>
                                                 </tr>
                                             @endforeach
 
@@ -156,11 +160,11 @@
                                                 <td scope="row">{{ $index + 1 }}</td>
                                                 <td>{{ $fix->created_at }}</td>
                                                 <td><a href="/order/{{ $fix->inv }}">{{ $fix->inv }}</a></td>
-                                                
+
                                                 <td>{{ $fix->status }}</td>
                                                 <td>{{ $fix->shipname }}</td>
-                                                
-                                                
+
+
                                                 <td>{{ $fix->fishingarea }}</td>
                                                 <td>{{ $fix->member }}</td>
                                                 <td>{{ $fix->start }}</td>
@@ -183,7 +187,7 @@
                                             <th>Request No.</th>
                                             <th>Status</th>
                                             <th>Vessel Name</th>
-                                            
+
                                             <th>Fishing Area</th>
                                             <th>Number of crew</th>
                                             <th>Estimated Date of Embarkation</th>

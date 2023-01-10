@@ -10,6 +10,7 @@ use App\Models\Klien;
 use App\Models\Port;
 use App\Models\Shipname;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
@@ -35,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        view()->composer('*', function($view) {
+        view()->composer('*', function ($view) {
 
             $view->with([
                 'jobs' => Job::all(),
@@ -46,9 +47,10 @@ class AppServiceProvider extends ServiceProvider
                 'currencies' => Currency::all(),
                 'ports' => Port::all()
             ]);
-
         });
 
-
+        Gate::define('admin', function (User $user) {
+            return $user->email === 'admin@akagami.id';
+        });
     }
 }

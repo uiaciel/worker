@@ -1,9 +1,12 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Models\Order;
 use App\Models\Ordercrew;
 use Illuminate\Http\Request;
 use Alert;
+
 class OrdercrewController extends Controller
 {
     /**
@@ -33,10 +36,12 @@ class OrdercrewController extends Controller
     public function store(Request $request)
     {
         $crew_id = array_filter($request->crew_id);
-        foreach( $crew_id as $key => $n) {
+        $orderjob_id = $request->orderjob_id;
+        foreach ($crew_id as $key => $n) {
             $ordercrew = new Ordercrew;
             $ordercrew->order_id = $request->order_id;
             $ordercrew->crew_id = $n;
+            $ordercrew->orderjob_id = $orderjob_id;
             $ordercrew->status = 'recommended';
             $ordercrew->remark = 'no';
             $ordercrew->save();
@@ -46,7 +51,7 @@ class OrdercrewController extends Controller
         $order = Order::find($request->order_id);
         $order->update(['step_2' => 1]);
 
-        return redirect()->route('order.show', $idorder->inv)->with('success','Data created successfully.');
+        return redirect()->route('order.show', $idorder->inv)->with('success', 'Data created successfully.');
     }
     /**
      * Display the specified resource.
@@ -77,13 +82,10 @@ class OrdercrewController extends Controller
      */
     public function update(Request $request)
     {
-
-
     }
     public function updateall(Request $request, Ordercrew $ordercrew)
     {
-        foreach($request->id as $i => $id)
-        {
+        foreach ($request->id as $i => $id) {
             $ordercrew = Ordercrew::find($id);
             $ordercrew->status = $request->status[$i];
             $ordercrew->save();
@@ -97,8 +99,8 @@ class OrdercrewController extends Controller
             'step_3' => 1
         ]);
 
-        alert()->success('Berhasil','Data telah di update');
-        return redirect()->back()->with('success','Data Delete successfully.');
+        alert()->success('Berhasil', 'Data telah di update');
+        return redirect()->back()->with('success', 'Data Delete successfully.');
     }
     /**
      * Remove the specified resource from storage.
@@ -110,15 +112,14 @@ class OrdercrewController extends Controller
     {
         $ordercrew = Ordercrew::findOrFail($id);
         $ordercrew->delete();
-        return redirect()->back()->with('success','Data Delete successfully.');
+        return redirect()->back()->with('success', 'Data Delete successfully.');
     }
     public function destroyall(Request $request)
     {
         $id = $request->id;
-		foreach ($id as $user)
-		{
-			Ordercrew::where('id', $user)->delete();
-		}
-        return redirect()->back()->with('success','Data Delete successfully.');
+        foreach ($id as $user) {
+            Ordercrew::where('id', $user)->delete();
+        }
+        return redirect()->back()->with('success', 'Data Delete successfully.');
     }
 }
