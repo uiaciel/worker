@@ -87,7 +87,7 @@
                     <div class="tab-content">
                         <div id="profiles" class="tab-pane fade active show">
                             <form onsubmit="return confirm('Are you sure?');" action="{{ route('crew.update', $crew->id) }}"
-                                method="POST">
+                                enctype="multipart/form-data" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">
@@ -185,14 +185,14 @@
                                                     Status</label>
                                                 <div class="col-sm-8">
                                                     <div class="input-group mb-0">
-                                                        <select class="form-select" name="kappa">
+                                                        <select class="form-select" name="marital">
                                                             <!--<option value="{{ $crew->marital }}">{{ $crew->marital }}</option>-->
                                                             <option value="Married">Married</option>
                                                             <option value="Single">Single</option>
                                                         </select>
                                                         <label
                                                             style="margin-left: 8px;margin-right: 13px;">子供<br>Child</label>
-                                                        <input type="text" class="form-control" name="marital"
+                                                        <input type="text" class="form-control" name="child"
                                                             value="0">
                                                         <span class="input-group-text">人</span>
                                                     </div>
@@ -205,23 +205,22 @@
                                                 <label class="col-sm-5">発給日<br>Issued Date</label>
                                                 <div class="col-sm-7">
                                                     <input type="text" class="form-control date"
-                                                        placeholder="yyyy/mm/dd" id="txtDate" name="passport_issued"
+                                                        placeholder="yyyy/mm/dd" id="txtDate"
                                                         value="{{ $crew->passport_issued }}">
                                                 </div>
                                                 <label for="" class="col-sm-5">発給地<br>Issued Place</label>
                                                 <div class="col-sm-7">
-                                                    <input type="text" class="form-control" name="passport_place"
+                                                    <input type="text" class="form-control"
                                                         value="{{ $crew->passport_place }}">
                                                 </div>
                                                 <label for="" class="col-sm-5">有効期限<br>Valid Until</label>
                                                 <div class="col-sm-7">
                                                     <input type="text" class="form-control date"
-                                                        placeholder="yyyy/mm/dd" name="passport_valid"
-                                                        value="{{ $crew->passport_valid }}">
+                                                        placeholder="yyyy/mm/dd" value="{{ $crew->passport_valid }}">
                                                 </div>
                                                 <label class="col-sm-5 fs-6">船員手帳<br>Seaman Book</label>
                                                 <div class="col-sm-7">
-                                                    <select class="form-select" name="seamanbook_id">
+                                                    <select class="form-select">
                                                         @foreach ($docs->where('type', 'Seaman Book') as $seaman)
                                                             <option value="{{ $seaman->id }}">{{ $seaman->no }}
                                                             </option>
@@ -231,19 +230,17 @@
                                                 <label class="col-sm-5">発給日<br>Issued Date</label>
                                                 <div class="col-sm-7">
                                                     <input type="text" class="form-control date"
-                                                        placeholder="yyyy/mm/dd" name="seamanbook_issued"
-                                                        value="{{ $crew->seamanbook_issued }}">
+                                                        placeholder="yyyy/mm/dd" value="{{ $crew->seamanbook_issued }}">
                                                 </div>
                                                 <label for="" class="col-sm-5">発給地<br>Issued Place</label>
                                                 <div class="col-sm-7">
-                                                    <input type="text" class="form-control" name="seamanbook_place"
+                                                    <input type="text" class="form-control"
                                                         value="{{ $crew->seamanbook_place }}">
                                                 </div>
                                                 <label for="" class="col-sm-5">有効期限<br>Valid Until</label>
                                                 <div class="col-sm-7">
                                                     <input type="text" class="form-control date"
-                                                        placeholder="yyyy/mm/dd" name="seamanbook_valid"
-                                                        value="{{ $crew->seamanbook_valid }}">
+                                                        placeholder="yyyy/mm/dd" value="{{ $crew->seamanbook_valid }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -262,6 +259,7 @@
                                                 <div class="col-sm-7">
                                                     <div class="input-group mb-0">
                                                         <select class="form-control-inline" id="inputGroupSelect02"
+                                                            name="currencysalary"
                                                             style="margin-right: 1px;width: 40px;border: 1px solid hwb(234deg 0% 45%);border-radius: 0.375rem;">
                                                             <option value="{{ $crew->currencysalary }}">
                                                                 {{ $crew->currencysalary }}</option>
@@ -303,24 +301,19 @@
                                                 <label for="" class="col-sm-5">職種<br>Job</label>
                                                 <div class="col-sm-7">
                                                     <select class="form-select" name="job_id">
-                                                        <option value="">{{ $crew->job->code }}</option>
+                                                        <option value="{{ $crew->job->id }}">{{ $crew->job->code }}
+                                                            ({{ $crew->job->name }})
+                                                        </option>
                                                         @foreach ($jobs as $job)
                                                             <option value="{{ $job->id }}">{{ $job->code }}
                                                                 ({{ $job->name }})
                                                             </option>
                                                         @endforeach
-                                                        {{-- <option value="DECK">DECK</option>
-                                                        <option value="ENGINE">ENGINE</option>
-                                                        <option value="ASSISTANT ICE MASTER">ASSISTANT ICE MASTER</option>
-                                                        <option value="ICE MASTER">ICE MASTER</option>
-                                                        <option value="ASSISTANT COOK">ASSISTANT COOK</option>
-                                                        <option value="CHIEF COOK">CHIEF COOK</option>
-                                                        <option value="BOSUN">BOSUN</option>
-                                                        <option value="QUARTER MASTER">QUARTER MASTER</option> --}}
+
                                                     </select>
                                                 </div><label for="" class="col-sm-5">足のサイズ<br>Shoes Size</label>
                                                 <div class="col-sm-7">
-                                                    <!--<input type="text" class="form-control"  name="shoes" value="{{ $crew->shoes }}">-->
+
                                                     <select class="form-select" name="shoes">
                                                         <option value="{{ $crew->shoes }}">{{ $crew->shoes }}</option>
                                                         <option value="S">S</option>
@@ -331,7 +324,7 @@
                                                     </select>
                                                 </div><label for="" class="col-sm-5">手袋<br>Glove Size</label>
                                                 <div class="col-sm-7">
-                                                    <!--<input type="text" class="form-control"  name="glove" value="{{ $crew->glove }}">-->
+
                                                     <select class="form-select" name="glove">
                                                         <option value="{{ $crew->glove }}">{{ $crew->glove }}</option>
                                                         <option value="S">S</option>
@@ -342,7 +335,7 @@
                                                     </select>
                                                 </div><label for="" class="col-sm-5">カッパ<br>Kappa Size</label>
                                                 <div class="col-sm-7">
-                                                    <!--<input type="text" class="form-control"  name="kappa" value="{{ $crew->kappa }}">-->
+
                                                     <select class="form-select" name="kappa">
                                                         <option value="{{ $crew->kappa }}">{{ $crew->kappa }}</option>
                                                         <option value="S">S</option>
@@ -355,12 +348,13 @@
                                             </div>
                                         </div>
                                         <div class="col-2">
-                                            <img src="/img/foto-4x6.png" alt="..." class="img-thumbnail"
+                                            <img id="imgPreview" src="/storage/{{ $crew->photo }}"
+                                                src="/img/foto-4x6.png" alt="..." class="img-thumbnail"
                                                 style="width: 200px;">
                                             <div class="mt-2"
                                                 style="position: absolute;margin-top: -20px !important;width: 180px;margin-left: 10px;">
-                                                <input class="form-control form-control-sm" id="formFileSm"
-                                                    name="photo" type="file">
+                                                <input class="form-control form-control-sm" name="photo" id="images"
+                                                    type="file">
                                             </div>
                                         </div>
                                     </div>
@@ -372,32 +366,29 @@
                                                 <label class="col-sm-4">入国査証<br>Entry Visa</label>
                                                 <div class="col-sm-8">
                                                     <input type="text" class="form-control date"
-                                                        placeholder="yyyy/mm/dd" name="visa_issued"
-                                                        value="{{ $crew->visa_valid }}">
+                                                        placeholder="yyyy/mm/dd" value="{{ $crew->visa_valid }}">
 
                                                 </div>
                                                 <label class="col-sm-4">入国査証番号<br>Entry Visa No.</label>
                                                 <div class="col-sm-8">
-                                                    {{-- <input type="text" class="form-control" name="visa_id" --}}
-                                                    {{-- value="{{ $crew->visa_id }}"> --}}
-                                                    <select class="form-select" name="job_id">
+
+                                                    <select class="form-select">
                                                         @foreach ($jobs as $job)
                                                             <option value="{{ $job->id }}">{{ $job->code }}
                                                             </option>
                                                         @endforeach
                                                     </select>
+
                                                 </div>
                                                 <label class="col-sm-4">発給日<br>Issued Date</label>
                                                 <div class="col-sm-8">
                                                     <input type="text" class="form-control date"
-                                                        placeholder="yyyy/mm/dd" name="visa_issued"
-                                                        value="{{ $crew->visa_valid }}">
+                                                        placeholder="yyyy/mm/dd" value="{{ $crew->visa_valid }}">
                                                 </div>
                                                 <label class="col-sm-4">有効期限<br>Valid Until</label>
                                                 <div class="col-sm-8">
                                                     <input type="text" class="form-control date"
-                                                        placeholder="yyyy/mm/dd" name="visa_valid"
-                                                        value="{{ $crew->visa_valid }}">
+                                                        placeholder="yyyy/mm/dd" value="{{ $crew->visa_valid }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -406,7 +397,7 @@
                                                 <label for="" class="col-sm-5"
                                                     style=" font-size: smaller; ">オレンジブック<br>Orange Book</label>
                                                 <div class="col-sm-7">
-                                                    <select class="form-select" name="orangebook_id">
+                                                    <select class="form-select">
                                                         @foreach ($docs->where('type', 'Orange Book') as $orange)
                                                             <option value="{{ $orange->id }}">{{ $orange->no }}
                                                             </option>
@@ -416,19 +407,17 @@
                                                 <label class="col-sm-5">発給日<br>Issued Date</label>
                                                 <div class="col-sm-7">
                                                     <input type="text" class="form-control date"
-                                                        placeholder="yyyy/mm/dd" name="orangebook_issued"
-                                                        value="{{ $crew->orangebook_issued }}">
+                                                        placeholder="yyyy/mm/dd" value="{{ $crew->orangebook_issued }}">
                                                 </div>
                                                 <label for="" class="col-sm-5">発給地<br>Issued Place</label>
                                                 <div class="col-sm-7">
-                                                    <input type="text" class="form-control" name="orangebook_place"
+                                                    <input type="text" class="form-control"
                                                         value="{{ $crew->orangebook_place }}">
                                                 </div>
                                                 <label for="" class="col-sm-5">有効期限<br>Valid Until</label>
                                                 <div class="col-sm-7">
                                                     <input type="text" class="form-control date"
-                                                        placeholder="yyyy/mm/dd" name="orangebook_valid"
-                                                        value="{{ $crew->orangebook_valid }}">
+                                                        placeholder="yyyy/mm/dd" value="{{ $crew->orangebook_valid }}">
                                                 </div>
                                             </div>
                                         </div>

@@ -55,11 +55,12 @@ class CrewController extends Controller
         if ($request->file('photo')) {
             $file = $request->file('photo');
             $nama = time() . '-' . $file->getClientOriginalName();
-            $path = $file->storeAs('photo', $nama, ['disk' => 'public']);
+            $path = $file->storeAs(storage_path('photo'), $nama);
             $image = $path;
         }
 
-        Crew::update(['photo' => $image]);
+        Crew::insert(['photo' => $image]);
+        // Crew::update(['photo' => $image]);
 
         return redirect()->route('crew.index')
             ->with('success', 'Crew created successfully.');
@@ -112,6 +113,15 @@ class CrewController extends Controller
     public function update(Request $request, Crew $crew)
     {
         $crew->update($request->all());
+
+        if ($request->hasfile('photo')) {
+            $nama = time() . '-' . $request->file('photo')->getClientOriginalName();
+            $path = $request->file('photo')->storeAs('photo', $nama, ['disk' => 'public']);
+            $image = $path;
+        }
+
+        $crew->update(['photo' => $image]);
+
         toast('Berhasil di update', 'success');
         return redirect()->back()
             ->with('success', 'Crew updated successfully');
