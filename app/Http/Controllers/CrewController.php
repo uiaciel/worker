@@ -34,7 +34,7 @@ class CrewController extends Controller
      */
     public function create()
     {
-        return view('crew.create2');
+        return view('crew.create');
     }
     /**
      * Store a newly created resource in storage.

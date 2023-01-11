@@ -1,326 +1,345 @@
-@extends('layouts.main')
+@extends('layouts.main-nav')
 @section('content')
-<div class="bg-primary pt-10 pb-21"></div>
-<div class="container-fluid mt-n22 px-6">
-<div class="row">
-    <div class="col-lg-12 col-md-12 col-12">
-      <!-- Page header -->
-      <div>
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="mb-2 mb-lg-0">
-            <h3 class="mb-0  text-white">Create Crew</h3>
-          </div>
-          <div>
-            {{-- <a href="{{route('order.create')}}" class="btn btn-white">Create New Project</a> --}}
-          </div>
-        </div>
-      </div>
-    </div>
-</div>
-<!-- row  -->
-<div class="row mt-6">
-    <div class="col-md-12 col-12">
-      <!-- card  -->
-      <div class="card">
-        <!-- card header  -->
-        <div class="card-header bg-white  py-4">
-          <h4 class="mb-0">Add Crew</h4>
-          @if (session('status'))
-                <div class="alert alert-success">
-                    {{ session('status') }}
+    <div class="bg-primary pt-10 pb-21"></div>
+    <div class="container-fluid mt-n22 px-6">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+                <!-- Page header -->
+                <div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="mb-2 mb-lg-0">
+                            <h3 class="mb-0  text-white">Create Crew</h3>
+                        </div>
+                        <div>
+                            {{-- <a href="{{route('order.create')}}" class="btn btn-white">Create New Project</a> --}}
+                        </div>
+                    </div>
                 </div>
-            @endif
+            </div>
         </div>
-        <!-- card body  -->
-        <div class="card-body">
-                        
-          <form action="{{ route('crew.store') }}" method="POST" >
-              @csrf
-             
-                <div class="mb-3 row">
-                  <label for="subid" class="col-sm-3 col-form-label">ID</label>
-                  <div class="col-sm-9">
-                    <input type="text" name="subid" class="form-control" >
-                  </div>
+        <!-- row  -->
+        <div class="row mt-6">
+            <div class="col-md-12 col-12">
+                <!-- card  -->
+                <div class="card">
+                    <!-- card header  -->
+                    <div class="card-header bg-white  py-4">
+                        <h4 class="mb-0">Add Crew</h4>
+                        @if (session('status'))
+                            <div class="alert alert-success">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+                    </div>
+                    <!-- card body  -->
+                    <div class="card-body">
+
+                        <form action="{{ route('crew.store') }}" method="POST">
+                            @csrf
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="form-group row mb-0">
+                                        <label for="" class="col-sm-4">船員ID番号<br>Crew ID No.</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="subid">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group row mb-0">
+                                        <label for="" class="col-sm-5">旅券番号<br>Passport No.</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-5">
+                                    <div class="form-group row mb-0">
+                                        <label for="" class="col-sm-3" style="font-size: 13px;">特記<br>Special
+                                            Remark</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="specialmark">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="form-group row mb-0">
+                                        <label class="col-sm-4">名前<br>Name</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="name">
+                                        </div>
+                                        <label for="" class="col-sm-4">出生地<br>Birth Place</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="place">
+                                        </div>
+                                        <label for="" class="col-sm-4">生年月日<br>Birth Date</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control date" name="birth">
+                                        </div>
+                                        <label class="col-sm-4">年齢<br>Age</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" disabled>
+                                        </div>
+                                        <label for="" class="col-sm-4">宗教<br>Religion</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-select" name="religion">
+
+                                                <option value="Islam">Islam</option>
+                                                <option value="Protestant">Protestant</option>
+                                                <option value="Catholic">Catholic</option>
+                                                <option value="Hinduism">Hinduism</option>
+                                                <option value="Buddhism">Buddhism</option>
+                                                <option value="Khonghucu">Khonghucu</option>
+                                            </select>
+                                        </div>
+
+                                        <label class="col-sm-4">身長/体重<br>Height/Weight</label>
+                                        <div class="col-sm-8">
+                                            <div class="input-group mb-0">
+                                                <input type="number" class="form-control" name="height">
+                                                <span class="input-group-text fs-5">cm</span>
+                                                <input type="number" class="form-control" name="weight">
+                                                <span class="input-group-text fs-5">kg</span>
+                                            </div>
+
+
+                                        </div>
+                                        <label class="col-sm-4 fs-6">未婚・既婚<br>Marital
+                                            Status</label>
+                                        <div class="col-sm-8">
+                                            <div class="input-group mb-0">
+                                                <select class="form-select" name="marital">
+
+                                                    <option value="Married">Married</option>
+                                                    <option value="Single">Single</option>
+                                                </select>
+                                                <label style="margin-left: 8px;margin-right: 13px;">子供<br>Child</label>
+                                                <input type="text" class="form-control" name="child" value="0">
+                                                <span class="input-group-text">人</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group row mb-0">
+                                        <label class="col-sm-5">発給日<br>Issued Date</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control date" disabled>
+                                        </div>
+                                        <label for="" class="col-sm-5">発給地<br>Issued Place</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" disabled>
+                                        </div>
+                                        <label for="" class="col-sm-5">有効期限<br>Valid Until</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control date" disabled>
+                                        </div>
+                                        <label class="col-sm-5 fs-6">船員手帳<br>Seaman Book</label>
+                                        <div class="col-sm-7">
+                                            <select class="form-select" disabled>
+
+                                            </select>
+                                        </div>
+                                        <label class="col-sm-5">発給日<br>Issued Date</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control date" disabled>
+                                        </div>
+                                        <label for="" class="col-sm-5">発給地<br>Issued Place</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" disabled>
+                                        </div>
+                                        <label for="" class="col-sm-5">有効期限<br>Valid Until</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control date" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group row mb-0">
+                                        <label class="col-sm-5">最終経歴<br>Last Vessel</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" placeholder="ambil dari data">
+                                        </div>
+                                        <label for="" class="col-sm-5">下船日<br>Sign-Off</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" name="signoff"
+                                                placeholder="ambil dari data">
+                                        </div><label for="" class="col-sm-5">新基本給<br>New Salary</label>
+                                        <div class="col-sm-7">
+                                            <div class="input-group mb-0">
+                                                <select class="form-control-inline" id="inputGroupSelect02"
+                                                    name="currencysalary"
+                                                    style="margin-right: 1px;width: 40px;border: 1px solid hwb(234deg 0% 45%);border-radius: 0.375rem;">
+
+                                                    <option value="Rp">Rp (Indonesian Rupiah)</option>
+                                                    <option value="RM">RM (Malaysian Ringgit)</option>
+                                                    <option value="B$">B$ (Brunei Dollar)</option>
+                                                    <option value="S$">S$ (Singapore Dollar)</option>
+                                                    <option value="₱">₱ (Philippine Peso)</option>
+                                                    <option value="฿">฿ (Thai Baht)</option>
+                                                    <option value="៛">៛ (Cambodian Riel)</option>
+                                                    <option value="₫">₫ (Vietnamese Dong)</option>
+                                                    <option value="₭">₭ (Lao Kip)</option>
+                                                    <option value="Ks">Ks (Myanmar Kyat)</option>
+                                                    <option value="৳">৳ (Bangladeshi Taka)</option>
+                                                    <option value="₹">₹ (Indian Rupee)</option>
+                                                    <option value="Rs">Rs (Pakistani & Sri Lankan Rupee)
+                                                    </option>
+                                                    <option value="SAR">SAR (Saudi Riyal)</option>
+                                                    <option value="AED">AED (UAE Dirham)</option>
+                                                    <option value="BD">BD (Bahrain Dinar)</option>
+                                                    <option value="QR">QR (Qatari Riyal)</option>
+                                                    <option value="¥">¥ (Japanese Yen & Chinese Yuan)</option>
+                                                    <option value="₩">₩ (Korean Won)</option>
+                                                    <option value="₽">₽ (Russian Ruble)</option>
+                                                    <option value="₴">₴ (Ukrainian Hrynia)</option>
+                                                    <option value="US$">US$ (US Dollar)</option>
+                                                    <option value="CA$">CA$ (Canadian Dollar)</option>
+                                                    <option value="AU$">AU$ (Australian Dollar)</option>
+                                                    <option value="NZ$">NZ$ (New Zealand Dollar)</option>
+                                                    <option value="HK$">HK$ (Hong Kong Dollar)</option>
+                                                    <option value="€">€ (Euro)</option>
+                                                    <option value="Fr">Fr (Swiss Franc)</option>
+                                                    <option value="£">£ (British Pound Sterling)</option>
+                                                </select>
+                                                <input type="text" class="form-control" name="salary">
+                                            </div>
+                                        </div>
+                                        <label for="" class="col-sm-5">職種<br>Job</label>
+                                        <div class="col-sm-7">
+                                            <select class="form-select" name="job_id">
+
+                                                @foreach ($jobs as $job)
+                                                    <option value="{{ $job->id }}">{{ $job->code }}
+                                                        ({{ $job->name }})
+                                                    </option>
+                                                @endforeach
+
+                                            </select>
+                                        </div><label for="" class="col-sm-5">足のサイズ<br>Shoes Size</label>
+                                        <div class="col-sm-7">
+
+                                            <select class="form-select" name="shoes">
+
+                                                <option value="S">S</option>
+                                                <option value="M">M</option>
+                                                <option value="L">L</option>
+                                                <option value="XL">XL</option>
+                                                <option value="XXL">XXL</option>
+                                            </select>
+                                        </div><label for="" class="col-sm-5">手袋<br>Glove Size</label>
+                                        <div class="col-sm-7">
+
+                                            <select class="form-select" name="glove">
+
+                                                <option value="S">S</option>
+                                                <option value="M">M</option>
+                                                <option value="L">L</option>
+                                                <option value="XL">XL</option>
+                                                <option value="XXL">XXL</option>
+                                            </select>
+                                        </div><label for="" class="col-sm-5">カッパ<br>Kappa Size</label>
+                                        <div class="col-sm-7">
+
+                                            <select class="form-select" name="kappa">
+
+                                                <option value="S">S</option>
+                                                <option value="M">M</option>
+                                                <option value="L">L</option>
+                                                <option value="XL">XL</option>
+                                                <option value="XXL">XXL</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <img id="imgPreview" src="/img/foto-4x6.png" alt="..." class="img-thumbnail"
+                                        style="width: 200px;">
+                                    <div class="mt-2"
+                                        style="position: absolute;margin-top: -20px !important;width: 180px;margin-left: 10px;">
+                                        <input class="form-control form-control-sm" name="photo" id="images"
+                                            type="file">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    {{-- marital status --}}
+
+                                    <div class="form-group row mb-0">
+                                        <label class="col-sm-4">入国査証<br>Entry Visa</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control date" disabled>
+
+                                        </div>
+                                        <label class="col-sm-4">入国査証番号<br>Entry Visa No.</label>
+                                        <div class="col-sm-8">
+
+                                            <input type="text" class="form-control" disabled>
+
+                                        </div>
+                                        <label class="col-sm-4">発給日<br>Issued Date</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control date" disabled>
+                                        </div>
+                                        <label class="col-sm-4">有効期限<br>Valid Until</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control date" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group row">
+                                        <label for="" class="col-sm-5"
+                                            style=" font-size: smaller; ">オレンジブック<br>Orange Book</label>
+                                        <div class="col-sm-7">
+                                            <select class="form-select" disabled>
+
+                                            </select>
+                                        </div>
+                                        <label class="col-sm-5">発給日<br>Issued Date</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control date" disabled>
+                                        </div>
+                                        <label for="" class="col-sm-5">発給地<br>Issued Place</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" disabled>
+                                        </div>
+                                        <label for="" class="col-sm-5">有効期限<br>Valid Until</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control date" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-5">
+                                    <div class="form-group row mb-0">
+                                        <label for="" class="col-sm-3">備考<br>Remark</label>
+                                        <div class="col-sm-9">
+                                            <textarea class="form-control" name="remark" rows="3"></textarea>
+                                        </div>
+                                        <label for="" class="col-sm-3">免状等<br>License</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="license">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-grid gap-2 mt-6">
+
+                                <button class="btn btn-primary" type="submit">Submit</button>
+                            </div>
+
+                        </form>
+
+                    </div>
+
                 </div>
-                <div class="mb-3 row">
-                    <label for="name" class="col-sm-3 col-form-label">Name</label>
-                    <div class="col-sm-9">
-                      <input type="text" name="name" class="form-control" >
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="place" class="col-sm-3 col-form-label">Place of Birth</label>
-                    <div class="col-sm-9">
-                      <input type="text" name="place" class="form-control" >
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="birth" class="col-sm-3 col-form-label">Date Birth</label>
-                    <div class="col-sm-9">
-                      <input type="date" name="birth" class="form-control" >
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="religion" class="col-sm-3 col-form-label">Religion</label>
-                    <div class="col-sm-9">
-                      
-                      <select class="form-select" name="religion">
-                      
-                      <option value="Islam">Islam</option>
-                      <option value="Protestan">Protestan</option>
-                      <option value="Katolik">Katolik</option>
-                      <option value="Hindu">Hindu</option>
-                      <option value="Buddha">Buddha</option>
-                      <option value="Khonghucu">Khonghucu</option>
-                    </select>
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="height" class="col-sm-3 col-form-label">Height (cm)</label>
-                    <div class="col-sm-9">
-                      <input type="number" name="height" class="form-control" >
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="weight" class="col-sm-3 col-form-label">Weight (cm)</label>
-                    <div class="col-sm-9">
-                      <input type="number" name="weight" class="form-control" >
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="marital" class="col-sm-3 col-form-label">Marital</label>
-                    <div class="col-sm-9">
-                       <select class="form-select" name="marital">
-                      
-                      <option value="Single">Single</option>
-                      <option value="Married">Married</option>
-                      
-                    </select>
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="specialmark" class="col-sm-3 col-form-label">Special Mark</label>
-                    <div class="col-sm-9">
-                      <input type="text" name="specialmark" class="form-control" >
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="status" class="col-sm-3 col-form-label">Status</label>
-                    <div class="col-sm-9">
-                      <input type="text" name="status" class="form-control" >
-                    </div>
-                  </div>
-                  {{-- status misalnya avaliable, on board --}}
-                  <div class="mb-3 row">
-                    <label for="nationaly" class="col-sm-3 col-form-label">Nationality</label>
-                    <div class="col-sm-9">
-                      <select class="form-select" name="nationaly">
-                      
-                      <option value="Indonesian">Indonesian</option>
-                      
-                    </select>
-                    </div>
-                  </div>
-                  
-                  <div class="mb-3 row">
-                    <label for="photo" class="col-sm-3 col-form-label">Upload Photo</label>
-                    <div class="col-sm-9">
-                        <div class="input-group">
-                            <input type="file" name="photo" class="form-control" id="inputGroupFile02">
-                          </div>
-                    </div>
-                  </div>
-                  <hr>
-                  <h4>Crew Document ID</h4>
-                  <div class="mb-3 row">
-                    <label for="visa_id" class="col-sm-3 col-form-label">Visa ID</label>
-                    <div class="col-sm-9">
-                      <input type="text" name="visa_id" class="form-control" >
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="visa_issued" class="col-sm-3 col-form-label">Visa Issued</label>
-                    <div class="col-sm-9">
-                      <input type="date" name="visa_issued" class="form-control" >
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="visa_place" class="col-sm-3 col-form-label">Visa Place</label>
-                    <div class="col-sm-9">
-                      <input type="text" name="visa_place" class="form-control" >
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="visa_valid" class="col-sm-3 col-form-label">Visa Valid</label>
-                    <div class="col-sm-9">
-                      <input type="date" name="visa_valid" class="form-control" >
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="passport_id" class="col-sm-3 col-form-label">Passport ID</label>
-                    <div class="col-sm-9">
-                      <input type="text" name="passport_id" class="form-control" >
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="passport_issued" class="col-sm-3 col-form-label">Passport issued</label>
-                    <div class="col-sm-9">
-                      <input type="date" name="passport_issued" class="form-control" >
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="passport_place" class="col-sm-3 col-form-label">Passport Place</label>
-                    <div class="col-sm-9">
-                      <input type="text" name="passport_place" class="form-control" >
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="passport_valid" class="col-sm-3 col-form-label">Passport Valid</label>
-                    <div class="col-sm-9">
-                      <input type="date" name="passport_valid" class="form-control" >
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="orangebook_id" class="col-sm-3 col-form-label">Orangebook ID</label>
-                    <div class="col-sm-9">
-                      <input type="text" name="orangebook_id" class="form-control" >
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="orangebook_issued" class="col-sm-3 col-form-label">Orangebook issued</label>
-                    <div class="col-sm-9">
-                      <input type="date" name="orangebook_issued" class="form-control" >
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="orangebook_place" class="col-sm-3 col-form-label">Orangebook Place</label>
-                    <div class="col-sm-9">
-                      <input type="text" name="orangebook_place" class="form-control" >
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="orangebook_valid" class="col-sm-3 col-form-label">Orangebook Valid</label>
-                    <div class="col-sm-9">
-                      <input type="date" name="orangebook_valid" class="form-control" >
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="seamanbook_id" class="col-sm-3 col-form-label">Seamanbook ID</label>
-                    <div class="col-sm-9">
-                      <input type="text" name="seamanbook_id" class="form-control" >
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="seamanbook_issued" class="col-sm-3 col-form-label">Seamanbook issued</label>
-                    <div class="col-sm-9">
-                      <input type="date" name="seamanbook_issued" class="form-control" >
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="seamanbook_place" class="col-sm-3 col-form-label">Seamanbook Place</label>
-                    <div class="col-sm-9">
-                      <input type="text" name="seamanbook_place" class="form-control" >
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="seamanbook_valid" class="col-sm-3 col-form-label">Seamanbook Valid</label>
-                    <div class="col-sm-9">
-                      <input type="date" name="seamanbook_valid" class="form-control" >
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="signoff" class="col-sm-3 col-form-label">Sign off</label>
-                    <div class="col-sm-9">
-                      <input type="text" name="signoff" class="form-control" >
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="salary" class="col-sm-3 col-form-label">Salary</label>
-                    <div class="col-sm-9">
-                      <input type="text" name="salary" class="form-control" >
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="job" class="col-sm-3 col-form-label">Job</label>
-                    <div class="col-sm-9">
-                      <select class="form-select" name="job_id">
-                        @foreach ($jobs as $job )
-                        <option value="{{$job->id}}">{{$job->name}}</option>
-                        @endforeach
-                      {{-- <option value="DECK">DECK</option>
-                      <option value="ENGINE">ENGINE</option>
-                      <option value="ASSISTANT ICE MASTER">ASSISTANT ICE MASTER</option>
-                      <option value="ICE MASTER">ICE MASTER</option>
-                      <option value="ASSISTANT COOK">ASSISTANT COOK</option>
-                      <option value="CHIEF COOK">CHIEF COOK</option>
-                      <option value="BOSUN">BOSUN</option>
-                      <option value="QUARTER MASTER">QUARTER MASTER</option> --}}
-                    </select>
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="shoes" class="col-sm-3 col-form-label">Shoes</label>
-                    <div class="col-sm-9">
-                      <select class="form-select" name="shoes">
-                      <option value="S">S</option>
-                      <option value="M">M</option>
-                      <option value="L">L</option>
-                      <option value="XL">XL</option>
-                      <option value="XXL">XXL</option>
-                      
-                    </select>
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="glove" class="col-sm-3 col-form-label">Glove</label>
-                    <div class="col-sm-9">
-                       <select class="form-select" name="glove">
-                      <option value="S">S</option>
-                      <option value="M">M</option>
-                      <option value="L">L</option>
-                      <option value="XL">XL</option>
-                      <option value="XXL">XXL</option>
-                      
-                    </select>
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="kappa" class="col-sm-3 col-form-label">Kappa</label>
-                    <div class="col-sm-9">
-                       <select class="form-select" name="kappa">
-                      <option value="S">S</option>
-                      <option value="M">M</option>
-                      <option value="L">L</option>
-                      <option value="XL">XL</option>
-                      <option value="XXL">XXL</option>
-                      
-                    </select>
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="remark" class="col-sm-3 col-form-label">Remark</label>
-                    <div class="col-sm-9">
-                      <input type="text" name="remark" class="form-control" >
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="license" class="col-sm-3 col-form-label">License</label>
-                    <div class="col-sm-9">
-                      <input type="text" name="license" class="form-control" >
-                    </div>
-                  </div>
-                
-                
-                <button class="btn btn-primary btn-md" type="submit"> Submit</button>
-                
-            </form>
-            
+            </div>
         </div>
-     
-      </div>
+        <!-- row  -->
     </div>
-  </div>
-  <!-- row  -->
-</div>
 @endsection
