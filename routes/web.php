@@ -71,6 +71,7 @@ Route::post('/ordercrew/update', [OrdercrewController::class, 'updateall'])->nam
 Route::get('/crews/export', [App\Http\Controllers\CrewController::class, 'downloadxls']);
 Route::post('/ordercrew/deleteall', [OrdercrewController::class, 'destroyall']);
 Route::get('/cetakcrew/{id}', [OrderController::class, 'pdfcrew']);
+Route::get('/crew/doc/{crewid}/{id}', [CrewController::class, 'document']);
 
 Auth::routes();
 

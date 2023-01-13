@@ -106,13 +106,13 @@
                                             <div class="form-group row mb-0">
                                                 <label for="" class="col-sm-5">旅券番号<br>Passport No.</label>
                                                 <div class="col-sm-7">
-                                                    <select class="form-select" name="passport_id">
+
+                                                    <select class="form-select" name="passport_id" id="passport">
                                                         @foreach ($docs->where('type', 'Passport') as $passport)
                                                             <option value="{{ $passport->id }}">{{ $passport->no }}
                                                             </option>
                                                         @endforeach
                                                     </select>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -204,23 +204,22 @@
                                             <div class="form-group row mb-0">
                                                 <label class="col-sm-5">発給日<br>Issued Date</label>
                                                 <div class="col-sm-7">
-                                                    <input type="text" class="form-control date"
-                                                        placeholder="yyyy/mm/dd" id="txtDate"
-                                                        value="{{ $crew->passport_issued }}">
+                                                    <input type="text" class="form-control date" id="passport_issued"
+                                                        placeholder="yyyy/mm/dd" value="{{ $crew->passport_issued }}">
                                                 </div>
                                                 <label for="" class="col-sm-5">発給地<br>Issued Place</label>
                                                 <div class="col-sm-7">
-                                                    <input type="text" class="form-control"
+                                                    <input type="text" class="form-control" id="passport_place"
                                                         value="{{ $crew->passport_place }}">
                                                 </div>
                                                 <label for="" class="col-sm-5">有効期限<br>Valid Until</label>
                                                 <div class="col-sm-7">
-                                                    <input type="text" class="form-control date"
+                                                    <input type="text" class="form-control date" id="passport_valid"
                                                         placeholder="yyyy/mm/dd" value="{{ $crew->passport_valid }}">
                                                 </div>
                                                 <label class="col-sm-5 fs-6">船員手帳<br>Seaman Book</label>
                                                 <div class="col-sm-7">
-                                                    <select class="form-select">
+                                                    <select class="form-select" id="seaman">
                                                         @foreach ($docs->where('type', 'Seaman Book') as $seaman)
                                                             <option value="{{ $seaman->id }}">{{ $seaman->no }}
                                                             </option>
@@ -229,17 +228,17 @@
                                                 </div>
                                                 <label class="col-sm-5">発給日<br>Issued Date</label>
                                                 <div class="col-sm-7">
-                                                    <input type="text" class="form-control date"
+                                                    <input type="text" class="form-control date" id="seaman_issued"
                                                         placeholder="yyyy/mm/dd" value="{{ $crew->seamanbook_issued }}">
                                                 </div>
                                                 <label for="" class="col-sm-5">発給地<br>Issued Place</label>
                                                 <div class="col-sm-7">
-                                                    <input type="text" class="form-control"
+                                                    <input type="text" class="form-control" id="seaman_entry"
                                                         value="{{ $crew->seamanbook_place }}">
                                                 </div>
                                                 <label for="" class="col-sm-5">有効期限<br>Valid Until</label>
                                                 <div class="col-sm-7">
-                                                    <input type="text" class="form-control date"
+                                                    <input type="text" class="form-control date" id="seaman_valid"
                                                         placeholder="yyyy/mm/dd" value="{{ $crew->seamanbook_valid }}">
                                                 </div>
                                             </div>
@@ -365,16 +364,15 @@
                                             <div class="form-group row mb-0">
                                                 <label class="col-sm-4">入国査証<br>Entry Visa</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control date"
-                                                        placeholder="yyyy/mm/dd" value="{{ $crew->visa_valid }}">
+                                                    <input type="text" class="form-control" id="vissa_entry">
 
                                                 </div>
                                                 <label class="col-sm-4">入国査証番号<br>Entry Visa No.</label>
                                                 <div class="col-sm-8">
 
-                                                    <select class="form-select">
-                                                        @foreach ($jobs as $job)
-                                                            <option value="{{ $job->id }}">{{ $job->code }}
+                                                    <select class="form-select" id="vissa">
+                                                        @foreach ($docs->where('type', 'Entry Visa') as $vissa)
+                                                            <option value="{{ $vissa->id }}">{{ $vissa->no }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -382,13 +380,13 @@
                                                 </div>
                                                 <label class="col-sm-4">発給日<br>Issued Date</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control date"
-                                                        placeholder="yyyy/mm/dd" value="{{ $crew->visa_valid }}">
+                                                    <input type="text" class="form-control date" id="vissa_issued"
+                                                        placeholder="yyyy/mm/dd">
                                                 </div>
                                                 <label class="col-sm-4">有効期限<br>Valid Until</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control date"
-                                                        placeholder="yyyy/mm/dd" value="{{ $crew->visa_valid }}">
+                                                    <input type="text" class="form-control date" id="vissa_valid"
+                                                        placeholder="yyyy/mm/dd">
                                                 </div>
                                             </div>
                                         </div>
@@ -397,7 +395,7 @@
                                                 <label for="" class="col-sm-5"
                                                     style=" font-size: smaller; ">オレンジブック<br>Orange Book</label>
                                                 <div class="col-sm-7">
-                                                    <select class="form-select">
+                                                    <select class="form-select" id="orange">
                                                         @foreach ($docs->where('type', 'Orange Book') as $orange)
                                                             <option value="{{ $orange->id }}">{{ $orange->no }}
                                                             </option>
@@ -406,17 +404,17 @@
                                                 </div>
                                                 <label class="col-sm-5">発給日<br>Issued Date</label>
                                                 <div class="col-sm-7">
-                                                    <input type="text" class="form-control date"
+                                                    <input type="text" class="form-control date" id="orange_issued"
                                                         placeholder="yyyy/mm/dd" value="{{ $crew->orangebook_issued }}">
                                                 </div>
                                                 <label for="" class="col-sm-5">発給地<br>Issued Place</label>
                                                 <div class="col-sm-7">
-                                                    <input type="text" class="form-control"
+                                                    <input type="text" class="form-control" id="orange_entry"
                                                         value="{{ $crew->orangebook_place }}">
                                                 </div>
                                                 <label for="" class="col-sm-5">有効期限<br>Valid Until</label>
                                                 <div class="col-sm-7">
-                                                    <input type="text" class="form-control date"
+                                                    <input type="text" class="form-control date" id="orange_valid"
                                                         placeholder="yyyy/mm/dd" value="{{ $crew->orangebook_valid }}">
                                                 </div>
                                             </div>
@@ -1008,6 +1006,192 @@
                 tags: true,
                 theme: "bootstrap"
             });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+
+            var passportid = $("#passport").val();
+
+            $.ajax({
+                url: 'http://localhost:8000/crew/doc/' + '{{ $crew->subid }}' + '/' +
+                    passportid,
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    console.log(data);
+
+                    var mydata = data;
+                    $.each(data, function(key, value) {
+                        $('#passport_issued').val(mydata[key].issued);
+                        $('#passport_place').val(mydata[key].place);
+                        $('#passport_valid').val(mydata[key].valid);
+                    });
+
+                }
+            });
+
+            $("#passport").change(function() {
+                var passportid = $(this).children('option:selected').val();
+
+                $.ajax({
+                    url: 'http://localhost:8000/crew/doc/' + '{{ $crew->subid }}' + '/' +
+                        passportid,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        console.log(data);
+
+                        var mydata = data;
+                        $.each(data, function(key, value) {
+                            $('#passport_issued').val(mydata[key].issued);
+                            $('#passport_place').val(mydata[key].place);
+                            $('#passport_valid').val(mydata[key].valid);
+                        });
+
+
+                    }
+                });
+
+
+            });
+
+            var vissaid = $("#vissa").val();
+
+            $.ajax({
+                url: 'http://localhost:8000/crew/doc/' + '{{ $crew->subid }}' + '/' +
+                    vissaid,
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    console.log(data);
+
+                    var mydata = data;
+                    $.each(data, function(key, value) {
+                        $('#vissa_issued').val(mydata[key].issued);
+                        $('#vissa_entry').val(mydata[key].country);
+                        $('#vissa_valid').val(mydata[key].valid);
+                    });
+
+                }
+            });
+
+            $("#vissa").change(function() {
+                var vissaid = $("#vissa").val();
+
+                $.ajax({
+                    url: 'http://localhost:8000/crew/doc/' + '{{ $crew->subid }}' + '/' +
+                        vissaid,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        console.log(data);
+
+                        var mydata = data;
+                        $.each(data, function(key, value) {
+                            $('#vissa_issued').val(mydata[key].issued);
+                            $('#vissa_entry').val(mydata[key].country);
+                            $('#vissa_valid').val(mydata[key].valid);
+                        });
+
+                    }
+                });
+
+
+            });
+
+            var Seamanid = $("#seaman").val();
+
+            $.ajax({
+                url: 'http://localhost:8000/crew/doc/' + '{{ $crew->subid }}' + '/' +
+                    Seamanid,
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    console.log(data);
+
+                    var mydata = data;
+                    $.each(data, function(key, value) {
+                        $('#seaman_issued').val(mydata[key].issued);
+                        $('#seaman_entry').val(mydata[key].place);
+                        $('#seaman_valid').val(mydata[key].valid);
+                    });
+
+                }
+            });
+
+            $("#vissa").change(function() {
+                var Seamanid = $("#seaman").val();
+
+                $.ajax({
+                    url: 'http://localhost:8000/crew/doc/' + '{{ $crew->subid }}' + '/' +
+                        Seamanid,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        console.log(data);
+
+                        var mydata = data;
+                        $.each(data, function(key, value) {
+                            $('#seaman_issued').val(mydata[key].issued);
+                            $('#seaman_entry').val(mydata[key].place);
+                            $('#seaman_valid').val(mydata[key].valid);
+                        });
+
+                    }
+                });
+
+
+            });
+
+            var Orangeid = $("#orange").val();
+
+            $.ajax({
+                url: 'http://localhost:8000/crew/doc/' + '{{ $crew->subid }}' + '/' +
+                    Orangeid,
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    console.log(data);
+
+                    var mydata = data;
+                    $.each(data, function(key, value) {
+                        $('#orange_issued').val(mydata[key].issued);
+                        $('#orange_entry').val(mydata[key].place);
+                        $('#orange_valid').val(mydata[key].valid);
+                    });
+
+                }
+            });
+
+            $("#vissa").change(function() {
+                var Orangeid = $("#orange").val();
+
+                $.ajax({
+                    url: 'http://localhost:8000/crew/doc/' + '{{ $crew->subid }}' + '/' +
+                        Orangeid,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        console.log(data);
+
+                        var mydata = data;
+                        $.each(data, function(key, value) {
+                            $('#orange_issued').val(mydata[key].issued);
+                            $('#orange_entry').val(mydata[key].place);
+                            $('#orange_valid').val(mydata[key].valid);
+                        });
+
+                    }
+                });
+
+
+            });
+
+
+
+
+
         });
     </script>
 @endsection

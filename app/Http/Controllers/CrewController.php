@@ -92,6 +92,17 @@ class CrewController extends Controller
         ]);
     }
 
+    public function document($crewid, $id)
+    {
+        $crew = Crew::where('subid', $crewid)->first();
+        $document = Document::where('crew_id', $crew->id)->where('id', $id)->get();
+        $medical = Medical::where('crew_id', $crew->id)->get();
+        $contract = Contract::where('crew_id', $crew->id)->get();
+
+
+        return response()->json($document);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
