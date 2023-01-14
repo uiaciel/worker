@@ -577,9 +577,9 @@ class CrewSeeder extends Seeder
                 'job_id' => $faker->randomElement([1, 2, 3, 4]),
                 'currencysalary' => 'Rp',
                 'salary' => $faker->numberBetween(2000, 3000),
-                'shoes' => $faker->randomElement('EU40/JP25.5', 'EU44/JP28.5'),
-                'glove' => $faker->randomElement(['S', 'M', 'L', 'XL', 'XXL']),
-                'kappa' => $faker->randomElement(['S', 'M', 'L', 'XL', 'XXL']),
+                'shoes' => $faker->randomElement(['EU40/JP25.5', 'EU44/JP28.5']),
+                'glove' => $faker->randomElement(['S', 'M', 'L', 'XL', 'XXL', 'XXXL']),
+                'kappa' => $faker->randomElement(['S', 'M', 'L', 'XL', 'XXL', 'XXXL']),
                 'remark' => $faker->sentence(),
                 'license' => $faker->sentence(),
 
