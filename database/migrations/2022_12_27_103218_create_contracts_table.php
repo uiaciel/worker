@@ -18,6 +18,7 @@ class CreateContractsTable extends Migration
             $table->bigInteger('crew_id')->unsigned();
             $table->foreign('crew_id')->references('id')->on('crews');
             $table->string('pdf');
+            $table->string('type');
             $table->string('no');
             $table->string('vessel_name');
             $table->date('embarkation');

@@ -23,9 +23,11 @@
             height: 13rem;
         }
     </style>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
     <script src="/tinymce/tinymce.min.js"></script>
     <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
     <script type="text/javascript">
         tinymce.init({
             selector: '#mytextarea',
@@ -493,6 +495,38 @@
     </script>
     <!-- Theme JS -->
     <script src="/assets/js/main.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#alltable').DataTable({
+
+                initComplete: function() {
+                    this.api()
+                        .columns()
+                        .every(function() {
+                            var column = this;
+                            var select = $('<select><option value="">FILTER</option></select>')
+                                .appendTo($(column.footer()).empty())
+                                .on('change', function() {
+                                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+                                    column.search(val ? '^' + val + '$' : '', true, false)
+                                        .draw();
+                                });
+
+                            column
+                                .data()
+                                .unique()
+                                .sort()
+                                .each(function(d, j) {
+                                    select.append('<option value="' + d + '">' + d +
+                                        '</option>');
+                                });
+                        });
+                },
+
+            });
+        });
+    </script>
 </body>
 
 </html>

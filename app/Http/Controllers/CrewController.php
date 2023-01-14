@@ -8,6 +8,7 @@ use App\Models\Crew;
 use App\Models\Experience;
 use Maatwebsite\Excel\Facades\Excel;
 use Alert;
+use App\Models\Certificate;
 use App\Models\Contract;
 use App\Models\Document;
 use App\Models\Medical;
@@ -78,6 +79,7 @@ class CrewController extends Controller
         $tahunlama = Experience::where('crew_id', $crew->id)->OrderBy('signon', 'asc')->pluck('signon')->first();
 
         $document = Document::where('crew_id', $crew->id)->get();
+        $certificate = Certificate::where('crew_id', $crew->id)->get();
         $medical = Medical::where('crew_id', $crew->id)->get();
         $contract = Contract::where('crew_id', $crew->id)->get();
 
@@ -87,7 +89,8 @@ class CrewController extends Controller
             'tahun' => $tahunlama,
             'docs' => $document,
             'medicals' => $medical,
-            'contracts' => $contract
+            'contracts' => $contract,
+            'certificates' => $certificate
 
         ]);
     }
@@ -98,6 +101,7 @@ class CrewController extends Controller
         $document = Document::where('crew_id', $crew->id)->where('id', $id)->get();
         $medical = Medical::where('crew_id', $crew->id)->get();
         $contract = Contract::where('crew_id', $crew->id)->get();
+
 
 
         return response()->json($document);

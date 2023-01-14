@@ -25,6 +25,7 @@ class ContractController extends Controller
         $contract = new Contract;
         $contract->crew_id = $request->crew_id;
         $contract->no = $request->no;
+        $contract->type = $request->type;
         $contract->vessel_name = $request->vessel_name;
         $contract->embarkation = $request->embarkation;
 

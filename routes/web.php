@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\CrewController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderjobController;
@@ -55,6 +56,7 @@ Route::resource('/job', JobController::class);
 Route::resource('/doc', DocumentController::class);
 Route::resource('/contact', ContactController::class);
 Route::resource('/contract', ContractController::class);
+Route::resource('/certificate', CertificateController::class);
 Route::resource('/medical', MedicalController::class);
 Route::resource('/port', PortController::class);
 Route::resource('/national', NationalController::class);

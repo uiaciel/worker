@@ -18,37 +18,41 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td scope="row"></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                        @foreach ($certificates->where('category', 'Education') as $education)
+                            <tr>
+                                <td scope="row"></td>
+                                <td>{{ $education->type }}</td>
+                                <td>{{ $education->no }}</td>
+                                <td>{{ $education->issued }}</td>
+                                <td>{{ $education->place }}</td>
 
-                            <td>
-                                <div class="input-group mb-3">
+                                <td>
                                     <div class="input-group mb-3">
-                                        <a href="" class="btn btn-sm btn-outline-primary"
-                                            target="_blank">View</a>
+                                        <div class="input-group mb-3">
+                                            <a class="btn btn-sm btn-outline-primary" target="_blank">View</a>
 
-                                        <form method="POST">
+                                            <form method="POST"
+                                                action="{{ route('certificate.destroy', $education->id) }}">
 
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-sm btn-outline-danger" type="submit"
-                                                id="button-addon2">Delete</button>
-                                        </form>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-sm btn-outline-danger" type="submit"
+                                                    id="button-addon2">Delete</button>
+                                            </form>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
+                        @endforeach
 
                     </tbody>
                 </table>
             </div>
             <div class="col-md-4">
-                <form>
-                    <input value="{{ $crew->id }}" name="crew_id" hidden>
+                <form action="{{ route('certificate.store') }}" enctype="multipart/form-data" method="POST">
+                    @csrf
+                    <input name="crew_id" value="{{ $crew->id }}" hidden>
+                    <input value="Education" name="category" hidden>
 
                     <div class="mb-3 row">
                         <label for="phone" class="col-sm-4 col-form-label form-label">証明書伍
@@ -89,7 +93,7 @@
                                       form-label">証明書号
                             <br />Certificate No.</label>
                         <div class="col-md-8 col-12">
-                            <input type="text" class="form-control">
+                            <input type="text" name="no" class="form-control">
                         </div>
                     </div>
                     <!-- row -->
@@ -100,7 +104,7 @@
                             <br />Issued Date</label>
                         <div class="col-md-8 col-12">
 
-                            <input type="text" class="form-control date" name="date" placeholder="yyyy/mm/dd">
+                            <input type="text" class="form-control date" name="issued" placeholder="yyyy/mm/dd">
                         </div>
                     </div>
 
@@ -111,7 +115,7 @@
                             <br />Issued Place</label>
                         <div class="col-md-8 col-12">
 
-                            <input type="text" class="form-control">
+                            <input type="text" name="place" class="form-control">
                         </div>
                     </div>
 
@@ -124,6 +128,7 @@
             </div>
         </div>
         <div class="row mb-5">
+            <h4>能力証明書 (Certificate of Competence)</h4>
             <div class="col-md-8">
                 <table class="table table-bordered border-dark">
                     <thead class="table-dark">
@@ -138,38 +143,43 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td scope="row"></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <div class="input-group mb-3">
+                        @foreach ($certificates->where('category', 'Competence') as $competence)
+                            <tr>
+                                <td scope="row"></td>
+                                <td>{{ $competence->type }}</td>
+                                <td>{{ $competence->no }}</td>
+                                <td>{{ $competence->issued }}</td>
+                                <td>{{ $competence->place }}</td>
+                                <td>{{ $competence->valid }}</td>
+                                <td>
                                     <div class="input-group mb-3">
-                                        <a class="btn btn-sm btn-outline-primary" target="_blank">View</a>
+                                        <div class="input-group mb-3">
+                                            <a class="btn btn-sm btn-outline-primary" target="_blank">View</a>
 
-                                        <form method="POST">
+                                            <form method="POST"
+                                                action="{{ route('certificate.destroy', $competence->id) }}">
 
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-sm btn-outline-danger" type="submit"
-                                                id="button-addon2">Delete</button>
-                                        </form>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-sm btn-outline-danger" type="submit"
+                                                    id="button-addon2">Delete</button>
+                                            </form>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
+                        @endforeach
 
                     </tbody>
                 </table>
             </div>
             <div class="col-md-4">
                 <hr>
-                <h4>能力証明書 (Certificate of Competence)</h4>
-                <form>
-                    <input value="{{ $crew->id }}" name="crew_id" hidden>
+
+                <form action="{{ route('certificate.store') }}" enctype="multipart/form-data" method="POST">
+                    @csrf
+                    <input name="crew_id" value="{{ $crew->id }}" hidden>
+                    <input value="Competence" name="category" hidden>
 
                     <div class="mb-3 row">
                         <label for="phone" class="col-sm-4 col-form-label form-label">証明書伍
@@ -232,7 +242,7 @@
                                       form-label">証明書号
                             <br />Certificate No.</label>
                         <div class="col-md-8 col-12">
-                            <input type="text" class="form-control">
+                            <input type="text" name="no" class="form-control">
                         </div>
                     </div>
                     <!-- row -->
@@ -243,7 +253,7 @@
                             <br />Issued Date</label>
                         <div class="col-md-8 col-12">
 
-                            <input type="text" class="form-control date" name="date" placeholder="yyyy/mm/dd">
+                            <input type="text" class="form-control date" name="issued" placeholder="yyyy/mm/dd">
                         </div>
                     </div>
 
@@ -254,7 +264,7 @@
                             <br />Issued Place</label>
                         <div class="col-md-8 col-12">
 
-                            <input type="text" class="form-control">
+                            <input type="text" name="place" class="form-control">
                         </div>
                     </div>
 
@@ -265,7 +275,7 @@
                             <br />Valid Until</label>
                         <div class="col-md-8 col-12">
 
-                            <input type="text" class="form-control date" name="date" placeholder="yyyy/mm/dd">
+                            <input type="text" class="form-control date" name="valid" placeholder="yyyy/mm/dd">
                         </div>
                     </div>
 
@@ -280,7 +290,7 @@
         </div>
 
         <div class="row mb-5">
-
+            <h4>技能証明書 (Certificate of Proficiency)</h4>
             <div class="col-md-8">
                 <table class="table table-bordered border-dark">
                     <thead class="table-dark">
@@ -295,29 +305,33 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td scope="row"></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <div class="input-group mb-3">
+                        @foreach ($certificates->where('category', 'Proficiency') as $proficiency)
+                            <tr>
+                                <td scope="row"></td>
+                                <td>{{ $proficiency->type }}</td>
+                                <td>{{ $proficiency->no }}</td>
+                                <td>{{ $proficiency->issued }}</td>
+                                <td>{{ $proficiency->place }}</td>
+                                <td>{{ $proficiency->valid }}</td>
+                                <td>
                                     <div class="input-group mb-3">
-                                        <a class="btn btn-sm btn-outline-primary" target="_blank">View</a>
+                                        <div class="input-group mb-3">
+                                            <a class="btn btn-sm btn-outline-primary" target="_blank">View</a>
 
-                                        <form method="POST">
+                                            <form method="POST"
+                                                action="{{ route('certificate.destroy', $proficiency->id) }}">
 
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-sm btn-outline-danger" type="submit"
-                                                id="button-addon2">Delete</button>
-                                        </form>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-sm btn-outline-danger" type="submit"
+                                                    id="button-addon2">Delete</button>
+                                            </form>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
+                        @endforeach
+
 
                     </tbody>
                 </table>
@@ -326,9 +340,11 @@
 
             <div class="col-md-4">
                 <hr>
-                <h4>技能証明書 (Certificate of Proficiency)</h4>
-                <form>
+
+                <form action="{{ route('certificate.store') }}" enctype="multipart/form-data" method="POST">
+                    @csrf
                     <input value="{{ $crew->id }}" name="crew_id" hidden>
+                    <input value="Proficiency" name="category" hidden>
 
                     <div class="mb-3 row">
                         <label for="phone" class="col-sm-4 col-form-label form-label">証明書伍
@@ -393,7 +409,7 @@
                             No.
                         </label>
                         <div class="col-md-8 col-12">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="no">
                         </div>
                     </div>
                     <!-- row -->
@@ -404,7 +420,7 @@
                             <br />Issued Date</label>
                         <div class="col-md-8 col-12">
 
-                            <input type="text" class="form-control date" name="date" placeholder="yyyy/mm/dd">
+                            <input type="text" class="form-control date" name="issued" placeholder="yyyy/mm/dd">
                         </div>
                     </div>
 
@@ -426,7 +442,7 @@
                             <br />Valid Until</label>
                         <div class="col-md-8 col-12">
 
-                            <input type="text" class="form-control date" name="date" placeholder="yyyy/mm/dd">
+                            <input type="text" class="form-control date" name="valid" placeholder="yyyy/mm/dd">
                         </div>
                     </div>
 

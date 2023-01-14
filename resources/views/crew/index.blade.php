@@ -63,7 +63,7 @@
                     <div class="card-body">
                         <div class="tab-content">
                             <div id="all" class="tab-pane fade show active">
-                                <table class="table table-striped">
+                                <table class="table table-striped" id="alltable">
                                     <thead class="table-dark">
                                         <tr>
                                             <th>No.</th>
@@ -78,7 +78,7 @@
                                     <tbody>
                                         @foreach ($crew as $index => $crews)
                                             <tr>
-                                                <td scope="row">{{ $index + 1 }}</td>
+                                                <td>{{ $index + 1 }}</td>
                                                 <td><a href="/crew/{{ $crews->subid }}">{{ $crews->subid }}</a></td>
 
                                                 <td>{{ $crews->name }}</td>
@@ -99,15 +99,19 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-                                        <tr>
-                                            <td scope="row"></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
+
                                     </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Crew ID</th>
+                                            <th>Name</th>
+                                            <th>D.O.B</th>
+                                            <th>Job</th>
+                                            <th>Passport No.</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </tfoot>
                                 </table>
                             </div>
                             <div id="onboard" class="tab-pane fade">
@@ -235,8 +239,7 @@
                                                             class="btn btn-sm btn-outline-primary" target="_blank">View</a>
 
                                                         <a href="/print/crew/{{ $unstandby->subid }}"
-                                                            class="btn btn-sm btn-outline-success"
-                                                            target="_blank">Print</a>
+                                                            class="btn btn-sm btn-outline-success" target="_blank">Print</a>
                                                     </div>
 
                                                 </td>

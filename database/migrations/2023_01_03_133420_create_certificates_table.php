@@ -20,10 +20,10 @@ class CreateCertificatesTable extends Migration
             $table->string('category');
             $table->string('type');
             $table->string('path');
-            $table->string('no');
-            $table->string('place');
-            $table->date('issued');
-            $table->date('valid');
+            $table->string('no')->nullable();;
+            $table->string('place')->nullable();;
+            $table->date('issued')->nullable();;
+            $table->date('valid')->nullable();;
             $table->string('status')->nullable();
             $table->timestamps();
         });
