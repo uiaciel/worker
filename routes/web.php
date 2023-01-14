@@ -38,8 +38,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/papers', function () {
+    return view('papers');
+});
+
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
 Route::get('/orderprint/{id}', [OrderController::class, 'printcrew']);
 
 Route::resource('/crew', CrewController::class);

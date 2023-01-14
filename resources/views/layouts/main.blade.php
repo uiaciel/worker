@@ -163,6 +163,34 @@
                             </ul>
                         </div>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse"
+                            data-bs-target="#navPapers" aria-expanded="false" aria-controls="navPapers">
+                            <i data-feather="layers" class="nav-icon icon-xs me-2">
+                            </i> Papers
+                        </a>
+                        <div id="navPapers" class="collapse " data-bs-parent="#sideNavbar">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link has-arrow" href="/papers">
+                                        Crew Profiles
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="/papers">
+                                        Crew Contracts
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link " href="/papers">
+                                        Crew List
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
                     <!-- Nav item -->
                     @can('admin')
                         <li class="nav-item">

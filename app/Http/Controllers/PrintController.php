@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Certificate;
 use App\Models\Crew;
 use App\Models\Klien;
 use App\Models\Company;
+use App\Models\Contact;
+use App\Models\Document;
 use App\Models\Order;
 use App\Models\Ordercrew;
 use App\Models\User;
 use App\Models\Orderjob;
 use App\Models\Experience;
-
+use App\Models\Medical;
 use Illuminate\Http\Request;
 
 class PrintController extends Controller
@@ -48,7 +51,7 @@ class PrintController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id) 
     {
         $order = Order::where('inv', $id)->first();
         $orderjob = Orderjob::where('order_id', $order->id)->get();
@@ -80,6 +83,14 @@ class PrintController extends Controller
     public function klien($id)
     {
         $crew = Crew::where('subid', $id)->first();
+        $exp = Experience::where('crew_id', $crew->id)->OrderBy('signoff', 'asc')->get();
+        $tahunlama = Experience::where('crew_id', $crew->id)->OrderBy('signon', 'asc')->pluck('signon')->first();
+        $lastvessel = Experience::with('shipname')->where('crew_id', $crew->id)->OrderBy('signon', 'asc')->pluck('vesselsname')->first();
+        $document = Document::where('crew_id', $crew->id)->get();
+        $certificate = Certificate::where('crew_id', $crew->id)->get();
+        $medical = Medical::where('crew_id', $crew->id)->get();
+        $contract = Contact::where('crew_id', $crew->id)->get();
+
         $exp = Experience::where('crew_id', $crew->id)->OrderBy('signoff', 'desc')->get();
         $usr = User::All();
         $kliens = Klien::All();
@@ -93,6 +104,11 @@ class PrintController extends Controller
             'kliens' => $kliens,
             'companys' => $companys,
             'tahun' => $tahunlama,
+            'lastvessel' => $lastvessel,
+            'docs' => $document,
+            'medicals' => $medical,
+            'contracts' => $contract,
+            'certificates' => $certificate
 
         ]);
     }

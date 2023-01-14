@@ -944,11 +944,12 @@ Special Notes:
                                     <thead>
                                         <tr>
                                             <th>No.</th>
+                                            <th>Crew ID</th>
                                             <th>Name</th>
-                                            <th>EXPERIENCE</th>
-                                            <th>Age</th>
-                                            <th>REMARKS</th>
-                                            <th>APPROVAL</th>
+                                            <th>D.O.B</th>
+                                            <th>Job</th>
+                                            <th>Passport No.</th>
+                                            <th>Approval</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -961,20 +962,22 @@ Special Notes:
                                         @foreach ($ordercrew as $index => $ordercrx)
                                             <tr @if ($ordercrx->status == 'ACC') class="bg-primary text-white" @endif>
                                                 <td>{{ $index + 1 }}</td>
+                                                <td>{{ $ordercrx->crew->subid }}
+                                                </td>
                                                 <td><input value="{{ $ordercrx->id }}" name="id[]"
                                                         hidden>{{ $ordercrx->crew->name }}</td>
+                                                <td>{{ $ordercrx->crew->birth }}
+                                                </td>
                                                 <td>{{ $ordercrx->crew->job->name }}</td>
-                                                <td>{{ \Carbon\Carbon::parse($ordercrx->crew->birth)->diff(\Carbon\Carbon::now())->y }}
-                                                </td>
-                                                <td>{{ $ordercrx->remark }}</td>
-                                                </td>
+                                                <td>122211221</td>
+
                                                 <td class="bg-primary">
                                                     <select name="status[]" class="form-control">
                                                         @if ($ordercrx->status == 'ACC')
-                                                            <option value="ACC">APPROVE</option>
-                                                            <option value="RECOMMENDATION">NO ACC</option>
+                                                            <option value="ACC">Approved</option>
+                                                            <option value="RECOMMENDATION">Disapproved</option>
                                                         @else
-                                                            <option value="RECOMMENDATION">NO ACC</option>
+                                                            <option value="RECOMMENDATION">Disapproved</option>
                                                             <option value="ACC">APPROVE</option>
                                                         @endif
                                                     </select>
