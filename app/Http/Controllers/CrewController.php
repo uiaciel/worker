@@ -77,7 +77,7 @@ class CrewController extends Controller
         $crew = Crew::where('subid', $id)->first();
         $exp = Experience::where('crew_id', $crew->id)->OrderBy('signoff', 'asc')->get();
         $tahunlama = Experience::where('crew_id', $crew->id)->OrderBy('signon', 'asc')->pluck('signon')->first();
-
+        $lastvessel = Experience::with('shipname')->where('crew_id', $crew->id)->OrderBy('signon', 'asc')->pluck('vesselsname')->first();
         $document = Document::where('crew_id', $crew->id)->get();
         $certificate = Certificate::where('crew_id', $crew->id)->get();
         $medical = Medical::where('crew_id', $crew->id)->get();
@@ -87,6 +87,7 @@ class CrewController extends Controller
             'crew' => $crew,
             'exp' => $exp,
             'tahun' => $tahunlama,
+            'lastvessel' => $lastvessel,
             'docs' => $document,
             'medicals' => $medical,
             'contracts' => $contract,
@@ -99,11 +100,7 @@ class CrewController extends Controller
     {
         $crew = Crew::where('subid', $crewid)->first();
         $document = Document::where('crew_id', $crew->id)->where('id', $id)->get();
-        $medical = Medical::where('crew_id', $crew->id)->get();
-        $contract = Contract::where('crew_id', $crew->id)->get();
-
-
-
+        
         return response()->json($document);
     }
 

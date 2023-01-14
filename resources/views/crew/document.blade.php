@@ -20,7 +20,7 @@
                     <tbody>
                         @foreach ($docs->whereNotIn('type', 'Entry Visa') as $indexx => $doc)
                             <tr>
-                                <th scope="row">{{ $indexx + 1 }}</th>
+                                <th scope="row">{{ $loop->iteration }}</th>
 
                                 <td>{{ $doc->type }}</td>
                                 <td>{{ $doc->no }}</td>
@@ -159,7 +159,7 @@
                         <thead class="table-dark text-white">
                             <tr>
                                 <th scope="col">No.</th>
-                                <th scope="col">Country</th>
+                                <th scope="col">Entry Visa</th>
                                 <th scope="col">Document No.</th>
                                 <th scope="col">Issued Date</th>
                                 <th scope="col">Issued Place</th>
@@ -170,7 +170,7 @@
                         <tbody>
                             @foreach ($docs->Where('type', 'Entry Visa') as $index => $doc)
                                 <tr>
-                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $doc->country }}</td>
                                     <td>{{ $doc->no }}</td>
                                     <td>{{ $doc->issued }}</td>
@@ -242,7 +242,7 @@
                                     <br />(Entry Visa)
                                 </label>
                                 <div class="col-md-8 col-12">
-                                    <select class="form-select" id="location" name="type">
+                                    <select class="form-select" id="location" name="country">
                                         <option selected>==Select==</option>
                                         <option value="Australia">Australia</option>
                                         <option value="New Zealand">New Zealand</option>

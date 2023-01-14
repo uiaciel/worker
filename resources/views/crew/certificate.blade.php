@@ -20,7 +20,7 @@
                     <tbody>
                         @foreach ($certificates->where('category', 'Education') as $education)
                             <tr>
-                                <td scope="row"></td>
+                                <td scope="row">{{ $loop->iteration }}</td>
                                 <td>{{ $education->type }}</td>
                                 <td>{{ $education->no }}</td>
                                 <td>{{ $education->issued }}</td>
@@ -145,7 +145,7 @@
                     <tbody>
                         @foreach ($certificates->where('category', 'Competence') as $competence)
                             <tr>
-                                <td scope="row"></td>
+                                <td scope="row">{{ $loop->iteration }}</td>
                                 <td>{{ $competence->type }}</td>
                                 <td>{{ $competence->no }}</td>
                                 <td>{{ $competence->issued }}</td>
@@ -307,7 +307,7 @@
                     <tbody>
                         @foreach ($certificates->where('category', 'Proficiency') as $proficiency)
                             <tr>
-                                <td scope="row"></td>
+                                <td scope="row">{{ $loop->iteration }}</td>
                                 <td>{{ $proficiency->type }}</td>
                                 <td>{{ $proficiency->no }}</td>
                                 <td>{{ $proficiency->issued }}</td>

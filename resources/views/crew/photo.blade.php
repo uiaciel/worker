@@ -2,48 +2,7 @@
     <div class="card-body">
         <h3>船員の写真 (Crew Photos)</h3>
         <div class="row">
-            <div class="col-md-6">
-                <input name="crew_id" value="{{ $crew->id }}" hidden>
 
-
-                <div class="mb-3 row">
-                    <label for="phone" class="col-sm-4 col-form-label form-label">写真伍 (JPG)<br />
-                        Photo File (JPG)</label>
-                    <div class="col-md-8 col-12">
-                        <input type="file" class="form-control-file" name="file" id="path" placeholder=""
-                            aria-describedby="fileHelpId">
-                    </div>
-                </div>
-                <!-- row -->
-
-                <div class="mb-3 row">
-                    <label for="phone" class="col-sm-4 col-form-label form-label">写真方<br>
-                        Photo Type</label>
-                    <div class="col-md-8 col-12">
-                        <select class="form-control">
-                            <option>--SELECT--</option>
-                            <option>Photo 3x4</option>
-                            <option>Photo 4x6</option>
-
-                        </select>
-                    </div>
-                </div>
-
-                <div class="mb-3 row">
-                    <label for="phone" class="col-sm-4 col-form-label form-label">写真日 <br />
-                        Photo Date</label>
-                    <div class="col-md-8 col-12">
-                        <input type="text" class="form-control date" placeholder="yyyy/mm/dd"
-                            aria-describedby="fileHelpId">
-                    </div>
-                </div>
-
-                <div class="d-grid gap-2">
-
-                    <button class="btn btn-primary" type="submit">Upload</button>
-                </div>
-
-            </div>
             <div class="col-md-6">
                 <table class="table table-bordered border-dark">
                     <thead class="table-dark text-white">
@@ -99,6 +58,49 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="col-md-6">
+                <input name="crew_id" value="{{ $crew->id }}" hidden>
+
+
+                <div class="mb-3 row">
+                    <label for="phone" class="col-sm-4 col-form-label form-label">写真伍 (JPG)<br />
+                        Photo File (JPG)</label>
+                    <div class="col-md-8 col-12">
+                        <input type="file" class="form-control-file" name="file" id="path" placeholder=""
+                            aria-describedby="fileHelpId">
+                    </div>
+                </div>
+                <!-- row -->
+
+                <div class="mb-3 row">
+                    <label for="phone" class="col-sm-4 col-form-label form-label">写真方<br>
+                        Photo Type</label>
+                    <div class="col-md-8 col-12">
+                        <select class="form-control">
+                            <option>--SELECT--</option>
+                            <option>Photo 3x4</option>
+                            <option>Photo 3.5x4.5</option>
+                            <option>Photo 4x6</option>
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="phone" class="col-sm-4 col-form-label form-label">写真日 <br />
+                        Photo Date</label>
+                    <div class="col-md-8 col-12">
+                        <input type="text" class="form-control date" placeholder="yyyy/mm/dd"
+                            aria-describedby="fileHelpId">
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2">
+
+                    <button class="btn btn-primary" type="submit">Upload</button>
+                </div>
+
             </div>
         </div>
     </div>

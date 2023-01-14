@@ -97,8 +97,14 @@
                                             <div class="form-group row mb-0">
                                                 <label for="" class="col-sm-4">船員ID番号<br>Crew ID No.</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" name="subid"
-                                                        value="{{ $crew->subid }}">
+                                                    <div class="input-group mb-0">
+                                                        <input type="text" class="form-control" name="subid"
+                                                            value="{{ $crew->subid }}">
+                                                        <span class="input-group-text fs-5">{{ $crew->status }}</span>
+
+                                                    </div>
+
+
                                                 </div>
                                             </div>
                                         </div>
@@ -135,6 +141,7 @@
                                                 <div class="col-sm-8">
                                                     <input type="text" class="form-control" name="name"
                                                         value="{{ $crew->name }}">
+
                                                 </div>
                                                 <label for="" class="col-sm-4">出生地<br>Birth Place</label>
                                                 <div class="col-sm-8">
@@ -248,7 +255,7 @@
                                                 <label class="col-sm-5">最終経歴<br>Last Vessel</label>
                                                 <div class="col-sm-7">
                                                     <input type="text" class="form-control"
-                                                        placeholder="ambil dari data">
+                                                        value="{{ $lastvessel }}">
                                                 </div>
                                                 <label for="" class="col-sm-5">下船日<br>Sign-Off</label>
                                                 <div class="col-sm-7">
@@ -315,11 +322,18 @@
 
                                                     <select class="form-select" name="shoes">
                                                         <option value="{{ $crew->shoes }}">{{ $crew->shoes }}</option>
-                                                        <option value="S">S</option>
-                                                        <option value="M">M</option>
-                                                        <option value="L">L</option>
-                                                        <option value="XL">XL</option>
-                                                        <option value="XXL">XXL</option>
+                                                        <option value="EU35/JP21.5">EU35/JP21.5</option>
+                                                        <option value="EU36/JP22.5">EU36/JP22.5</option>
+                                                        <option value="EU37/JP23">EU37/JP23</option>
+                                                        <option value="EU38/JP24">EU38/JP24</option>
+                                                        <option value="EU39/JP25">EU39/JP25</option>
+                                                        <option value="EU40/JP25.5">EU40/JP25.5</option>
+                                                        <option value="EU41/JP26">EU41/JP26</option>
+                                                        <option value="EU42/JP26.5">EU42/JP26.5</option>
+                                                        <option value="EU43/JP27.5">EU43/JP27.5</option>
+                                                        <option value="EU44/JP28.5">EU44/JP28.5</option>
+                                                        <option value="EU45/JP29.5">EU45/JP29.5</option>
+
                                                     </select>
                                                 </div><label for="" class="col-sm-5">手袋<br>Glove Size</label>
                                                 <div class="col-sm-7">
@@ -331,6 +345,7 @@
                                                         <option value="L">L</option>
                                                         <option value="XL">XL</option>
                                                         <option value="XXL">XXL</option>
+                                                        <option value="XXXL">XXXL</option>
                                                     </select>
                                                 </div><label for="" class="col-sm-5">カッパ<br>Kappa Size</label>
                                                 <div class="col-sm-7">
@@ -342,6 +357,7 @@
                                                         <option value="L">L</option>
                                                         <option value="XL">XL</option>
                                                         <option value="XXL">XXL</option>
+                                                        <option value="XXXL">XXXL</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -362,11 +378,6 @@
                                             {{-- marital status --}}
 
                                             <div class="form-group row mb-0">
-                                                <label class="col-sm-4">入国査証<br>Entry Visa</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="vissa_entry">
-
-                                                </div>
                                                 <label class="col-sm-4">入国査証番号<br>Entry Visa No.</label>
                                                 <div class="col-sm-8">
 
@@ -378,6 +389,12 @@
                                                     </select>
 
                                                 </div>
+                                                <label class="col-sm-4">入国査証<br>Entry Visa</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="vissa_entry">
+
+                                                </div>
+
                                                 <label class="col-sm-4">発給日<br>Issued Date</label>
                                                 <div class="col-sm-8">
                                                     <input type="text" class="form-control date" id="vissa_issued"
@@ -490,11 +507,16 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-                                    <button class="btn btn-primary btn-sm mt-3" type="button" data-bs-toggle="collapse"
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#expmodal">
+                                        Add Experience
+                                    </button>
+                                    {{-- <button class="btn btn-primary btn-sm mt-3" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseExample" aria-expanded="false"
                                         aria-controls="collapseExample">
                                         Add Experience
-                                    </button>
+                                    </button> --}}
                                 </div>
 
                             </div>
@@ -922,23 +944,8 @@
 
     </section>
     <!-- Modal -->
-    <div class="modal fade" id="expmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Experience to Crew ID {{ $crew->subid }}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
+    @include('crew.addexp')
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
     <style>
         table,
         th,

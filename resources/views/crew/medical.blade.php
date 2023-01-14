@@ -19,7 +19,7 @@
                         <tbody>
                             @foreach ($medicals as $index => $medical)
                                 <tr>
-                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $medical->type }}</td>
                                     <td>{{ $medical->date }}</td>
                                     <td>{{ $medical->description }}</td>

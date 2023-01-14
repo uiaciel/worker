@@ -54,6 +54,7 @@ class DocumentController extends Controller
         $document->path = '/file/' . $fileName;
 
         $document->place = $request->place;
+        $document->country = $request->country;
         $document->issued = $request->issued;
         $document->valid = $request->valid;
         $document->save();

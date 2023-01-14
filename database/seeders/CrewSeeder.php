@@ -577,7 +577,7 @@ class CrewSeeder extends Seeder
                 'job_id' => $faker->randomElement([1, 2, 3, 4]),
                 'currencysalary' => 'Rp',
                 'salary' => $faker->numberBetween(2000, 3000),
-                'shoes' => $faker->numberBetween(20, 32),
+                'shoes' => $faker->randomElement('EU40/JP25.5', 'EU44/JP28.5'),
                 'glove' => $faker->randomElement(['S', 'M', 'L', 'XL', 'XXL']),
                 'kappa' => $faker->randomElement(['S', 'M', 'L', 'XL', 'XXL']),
                 'remark' => $faker->sentence(),
@@ -594,7 +594,7 @@ class CrewSeeder extends Seeder
         $document->place = 'Jakarta';
         $document->issued = '2022/12/22';
         $document->valid = '2022/12/22';
-        $document->country = 'JAPAN';
+        $document->country = 'UK';
         $document->save();
 
         $document = new Document;

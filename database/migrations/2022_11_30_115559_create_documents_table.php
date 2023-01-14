@@ -21,6 +21,7 @@ class CreateDocumentsTable extends Migration
             $table->string('path');
             $table->string('no');
             $table->string('place');
+            
             $table->date('issued');
             $table->date('valid');
             $table->string('country')->nullable();

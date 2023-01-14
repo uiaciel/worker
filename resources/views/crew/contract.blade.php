@@ -20,7 +20,7 @@
                         <tbody>
                             @foreach ($contracts as $index => $contract)
                                 <tr>
-                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $contract->type }}</td>
                                     <td>{{ $contract->no }}</td>
                                     <td>{{ $contract->vessel_name }}</td>
