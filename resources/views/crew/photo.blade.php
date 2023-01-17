@@ -78,7 +78,7 @@
                         Photo Type</label>
                     <div class="col-md-8 col-12">
                         <select class="form-control">
-                            <option>--SELECT--</option>
+                            <option>==SELECT==</option>
                             <option>Photo 3x4</option>
                             <option>Photo 3.5x4.5</option>
                             <option>Photo 4x6</option>
@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="mb-3 row">
-                    <label for="phone" class="col-sm-4 col-form-label form-label">写真日 <br />
+                    <label for="phone" class="col-sm-4 col-form-label form-label">写真日<br />
                         Photo Date</label>
                     <div class="col-md-8 col-12">
                         <input type="text" class="form-control date" placeholder="yyyy/mm/dd"

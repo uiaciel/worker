@@ -4,7 +4,7 @@
         <div class="row">
 
             <div class="col-md-8">
-                <h3>Medicals List</h3>
+                <h3>Medical List</h3>
                 <div class="table-responsive">
                     <table class="table table-bordered border-dark">
                         <thead class="table-dark">
@@ -71,7 +71,7 @@
                             Type </label>
                         <div class="col-md-8 col-12">
                             <select class="form-select" id="location" name="type">
-                                <option selected="">==Select==</option>
+                                <option selected="">==SELECT==</option>
                                 <option value="Medical Check-Up (MCU)">Medical Check-Up (MCU)</option>
                                 <option value="Vaccine">Vaccine</option>
                                 <option value="Outpatien Care">Outpatient Care</option>

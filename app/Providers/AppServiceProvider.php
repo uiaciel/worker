@@ -7,6 +7,7 @@ use App\Models\Crew;
 use App\Models\Currency;
 use App\Models\Job;
 use App\Models\Klien;
+use App\Models\National;
 use App\Models\Port;
 use App\Models\Shipname;
 use App\Models\User;
@@ -45,7 +46,8 @@ class AppServiceProvider extends ServiceProvider
                 'crews' => Crew::all(),
                 'shipnames' => Shipname::all(),
                 'currencies' => Currency::all(),
-                'ports' => Port::all()
+                'ports' => Port::all(),
+                'nationals' => National::all()
             ]);
         });
 

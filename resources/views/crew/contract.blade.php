@@ -4,7 +4,7 @@
         <div class="row">
 
             <div class="col-md-8">
-                <h3>Contracts List</h3>
+                <h3>Contract List</h3>
                 <div class="table-responsive">
                     <table class="table table-bordered border-dark">
                         <thead class="table-dark">
@@ -70,7 +70,7 @@
                         </label>
                         <div class="col-md-8 col-12">
                             <select class="form-select" id="location" name="type">
-                                <option selected>==Select==</option>
+                                <option selected>==SELECT==</option>
                                 <option value="PKL">PKL</option>
                                 <option value="Memorandum">Memorandum</option>
 

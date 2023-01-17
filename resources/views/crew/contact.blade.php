@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <h4 class="mb-4">1緊急連絡先 (Emergency Contact 1):</h4>
+                <h4 class="mb-4">緊急連絡先1 (Emergency Contact 1):</h4>
                 <div class="row">
                     <label for="staticEmail" class="col-sm-4 col-form-label">名前<br>Name</label>
                     <div class="col-sm-8">
@@ -54,7 +54,7 @@
                     <label for="staticEmail" class="col-sm-4 col-form-label">関係<br>Relationship</label>
                     <div class="col-sm-8">
                         <select class="form-select" name="">
-                            <option>--SELECT--</option>
+                            <option>==SELECT==</option>
                             <option>Wife</option>
                             <option>Son</option>
                             <option>Daughter</option>
@@ -97,7 +97,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <h4 class="mb-4">2緊急連絡先 (Emergency Contact 2):</h4>
+                <h4 class="mb-4">緊急連絡先2 (Emergency Contact 2):</h4>
                 <div class="row">
                     <label for="staticEmail" class="col-sm-4 col-form-label">名前<br>Name</label>
                     <div class="col-sm-8">
@@ -108,7 +108,7 @@
                     <label for="staticEmail" class="col-sm-4 col-form-label">関係<br>Relationship</label>
                     <div class="col-sm-8">
                         <select class="form-select" name="">
-                            <option>--SELECT--</option>
+                            <option>==SELECT==</option>
                             <option>Wife</option>
                             <option>Son</option>
                             <option>Daughter</option>
@@ -231,7 +231,7 @@
                                     <br /> ID Type</label>
                                 <div class="col-md-8 col-12">
                                     <select class="form-select" id="location" name="type">
-                                        <option selected="">==Select==</option>
+                                        <option selected="">==SELECT==</option>
                                         <option value='National ID (KTP)'>National ID (KTP)</option>
                                         <option value='National ID (KK)'>Family ID (KK)</option>
                                     </select>

@@ -194,17 +194,22 @@
             </div>
             <hr>
             <div class="row ">
-                <div class="col-1 p-1 ms-2">
-                    <label for="" class="ms-1"><small>船名<br>Vesselname</small></label>
+                <div class="col-1 p-1 ms-2" style="
+    width: 6%;
+">
+                    <label for="" class="ms-1"><small>船名<br>Vessel Name</small></label>
 
                 </div>
-                <div class="col-1 me-2 p-1">
+                <div class="col-2 me-2 p-1">
+
                     <input type="text" class="form-control" name="subid" value=""
-                        placeholder="83 SHOSHIN MARU">
+                        placeholder="SHOSHIN MARU 83">
 
                 </div>
-                <div class="col-2">
-                    <small>に対するインドネシア人船員候補者<br>Crew Particular For</small>
+                <div class="col-2 p-1" style="
+    width: 11%;
+">
+                    <small>に対する船員候補者<br>Crew Particular For</small>
                 </div>
 
                 <div class="col-1 p-1 me-3">
@@ -215,7 +220,7 @@
                         placeholder="yyyy/mm/dd">
                 </div>
                 <div class="col-1 me-3 p-1">
-                    <label class="">下船予定日<br><small>Estimated Sign-Off</small>
+                    <label class="">下船予定日<br><small>Estimated Sign Off</small>
                     </label>
                 </div>
                 <div class="col-1 me-3 p-1">
@@ -227,7 +232,8 @@
                     <label class="p-1">派遣港<br><small>Embarkation Port</small>
                     </label>
                 </div>
-                <div class="col-2 p-1">
+                <div class="col-1 p-1" style="
+                width: 16.5%;">
                     <select class="form-select">
                         @foreach ($ports as $port)
                             <option value="{{ $port->name }}">{{ $port->name }}</option>
@@ -245,7 +251,7 @@
             <div class="row">
                 <div class="col-4">
                     <div class="form-group row mb-0">
-                        <label for="" class="col-sm-4">船員ID番号<br>Crew ID No.</label>
+                        <label for="" class="col-sm-4">船員ID<br>Crew ID</label>
                         <div class="col-sm-8">
                             <div class="input-group mb-0">
                                 <input type="text" class="form-control" name="subid"
@@ -291,33 +297,65 @@
                             <input type="text" class="form-control" name="name" value="{{ $crew->name }}">
 
                         </div>
+                        <label class="col-sm-4">国籍<br>Nationality</label>
+                        <div class="col-sm-8">
+                            <select class="form-select" name="nationaly">
+                                <option value="{{ $crew->nationaly }}">{{ $crew->nationaly }}
+                                </option>
+                                @foreach ($nationals as $national)
+                                    <option value="{{ $national->name }}">{{ $national->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+
+
+                        </div>
                         <label for="" class="col-sm-4">出生地<br>Birth Place</label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" name="place" value="{{ $crew->place }}">
                         </div>
                         <label for="" class="col-sm-4">生年月日<br>Birth Date</label>
+
+
                         <div class="col-sm-8">
-                            <input type="text" class="form-control date" placeholder="yyyy/mm/dd" name="birth"
-                                value="{{ $crew->birth }}">
+                            <div class="input-group mb-0">
+                                <input type="text" class="form-control date" name="birth"
+                                    value="{{ $crew->birth }}">
+                                <label style="margin-left: 14px;margin-right: 7px;width: 16%;"
+                                    class="fs-5">年齢<br>Age</label>
+
+                                <span class="input-group-text"
+                                    style="
+    width: 27%;
+">{{ \Carbon\Carbon::parse($crew->birth)->diff(\Carbon\Carbon::now())->y }}
+                                    歳</span>
+                            </div>
+
                         </div>
-                        <label class="col-sm-4">年齢<br>Age</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control"
-                                value="{{ \Carbon\Carbon::parse($crew->birth)->diff(\Carbon\Carbon::now())->y }}"
-                                disabled>
-                        </div>
+
                         <label for="" class="col-sm-4">宗教<br>Religion</label>
                         <div class="col-sm-8">
                             <!--<input type="text" class="form-control" name="religion" value="{{ $crew->religion }}">-->
                             <select class="form-select" name="religion">
                                 <option value="{{ $crew->religion }}">{{ $crew->religion }}
                                 </option>
+                                <option value="Zoroaster">Zoroaster</option>
+                                <option value="Judaism">Judaism</option>
+                                <option value="Orthodoxy Christianity">Orthodoxy Christianity
+                                </option>
+                                <option value="Catholic Christianity">Catholic Christianity
+                                </option>
+                                <option value="Protestant Christianity">Protestant Christianity
+                                </option>
                                 <option value="Islam">Islam</option>
-                                <option value="Protestant">Protestant</option>
-                                <option value="Catholic">Catholic</option>
+                                <option value="Baha'i">Baha'i</option>
                                 <option value="Hinduism">Hinduism</option>
+                                <option value="Jainism">Jainism</option>
                                 <option value="Buddhism">Buddhism</option>
-                                <option value="Khonghucu">Khonghucu</option>
+                                <option value="Sikhism">Sikhism</option>
+                                <option value="Taoism">Taoism</option>
+                                <option value="Confucianism">Confucianism</option>
+                                <option value="Shinto">Shinto</option>
                             </select>
                         </div>
 
@@ -407,9 +445,18 @@
                         </div><label for="" class="col-sm-5">新基本給<br>New Salary</label>
                         <div class="col-sm-7">
                             <div class="input-group mb-0">
-                                <select class="form-select" name="currencysalary">
-                                    <option value="{{ $crew->currencysalary }}">
+                                <select class="form-select" name="currencysalary"
+                                    style="
+    width: 10%;
+    padding: 0 0px 0 13px;
+">
+
+
+                                    <option value="{{ $crew->currencysalary }}" style="
+    width: 60%;
+">
                                         {{ $crew->currencysalary }}</option>
+
                                     <option value="Rp">Rp (Indonesian Rupiah)</option>
                                     <option value="RM">RM (Malaysian Ringgit)</option>
                                     <option value="B$">B$ (Brunei Dollar)</option>
@@ -422,13 +469,13 @@
                                     <option value="Ks">Ks (Myanmar Kyat)</option>
                                     <option value="৳">৳ (Bangladeshi Taka)</option>
                                     <option value="₹">₹ (Indian Rupee)</option>
-                                    <option value="Rs">Rs (Pakistani & Sri Lankan Rupee)
+                                    <option value="Rs">Rs (Pakistani &amp; Sri Lankan Rupee)
                                     </option>
                                     <option value="SAR">SAR (Saudi Riyal)</option>
                                     <option value="AED">AED (UAE Dirham)</option>
                                     <option value="BD">BD (Bahrain Dinar)</option>
                                     <option value="QR">QR (Qatari Riyal)</option>
-                                    <option value="¥">¥ (Japanese Yen & Chinese Yuan)</option>
+                                    <option value="¥">¥ (Japanese Yen &amp; Chinese Yuan)</option>
                                     <option value="₩">₩ (Korean Won)</option>
                                     <option value="₽">₽ (Russian Ruble)</option>
                                     <option value="₴">₴ (Ukrainian Hrynia)</option>
@@ -441,9 +488,12 @@
                                     <option value="Fr">Fr (Swiss Franc)</option>
                                     <option value="£">£ (British Pound Sterling)</option>
                                 </select>
-                                <input type="text" class="form-control" name="salary"
-                                    value="{{ $crew->salary }}">
+                                <input type="text" class="form-control" name="salary" value="2602"
+                                    style="
+    width: 53%;
+">
                             </div>
+
                         </div>
                         <label for="" class="col-sm-5">職種<br>Job</label>
                         <div class="col-sm-7">
@@ -639,7 +689,11 @@
                     </tbody>
                 </table>
             </div>
+
+            
         </div>
+        
+
         <!--pages-->
     </div>
     <style>

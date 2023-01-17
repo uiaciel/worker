@@ -3,7 +3,7 @@
 
         <div class="row">
             <div class="col-md-8">
-                <h3>Documents List</h3>
+                <h3>Document List</h3>
 
                 <table class="table table-bordered border-dark">
                     <thead class="table-dark">
@@ -80,7 +80,7 @@
                                     Type </label>
                                 <div class="col-md-8 col-12">
                                     <select class="form-select" id="location" name="type">
-                                        <option selected>==Select==</option>
+                                        <option selected>==SELECT==</option>
                                         <option value="Passport">Passport</option>
                                         <option value="Seaman Book">Seaman Book</option>
                                         <option value="Orange Book">Orange Book</option>
@@ -229,7 +229,7 @@
                                     Type </label>
                                 <div class="col-md-8 col-12">
                                     <select class="form-select" id="location" name="type">
-                                        <option selected>==Select==</option>
+                                        <option selected>==SELECT==</option>
                                         <option value="Entry Visa">Entry Visa</option>
 
                                     </select>
@@ -243,10 +243,9 @@
                                 </label>
                                 <div class="col-md-8 col-12">
                                     <select class="form-select" id="location" name="country">
-                                        <option selected>==Select==</option>
+                                        <option selected>==SELECT==</option>
                                         <option value="Australia">Australia</option>
                                         <option value="New Zealand">New Zealand</option>
-
                                         <option value="Schengen">Schengen</option>
                                         <option value="UK">UK</option>
                                         <option value="USA">USA</option>

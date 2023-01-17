@@ -119,7 +119,7 @@
                         <li class="nav-item">
                             <a class="nav-link has-arrow " href="/national">
                                 <i data-feather="clipboard" class="nav-icon icon-xs me-2">
-                                </i> Nationality
+                                </i> Nationalities
                             </a>
                         </li>
 

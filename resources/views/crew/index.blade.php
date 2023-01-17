@@ -70,6 +70,7 @@
                                             <th>Crew ID</th>
                                             <th>Name</th>
                                             <th>D.O.B</th>
+                                            <th>Age</th>
                                             <th>Job</th>
                                             <th>Passport No.</th>
                                             <th>Action</th>
@@ -80,10 +81,10 @@
                                             <tr>
                                                 <td>{{ $index + 1 }}</td>
                                                 <td><a href="/crew/{{ $crews->subid }}">{{ $crews->subid }}</a></td>
-
                                                 <td>{{ $crews->name }}</td>
-
                                                 <td>{{ $crews->birth }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($crews->birth)->diff(\Carbon\Carbon::now())->y }}
+                                                </td>
                                                 <td>{{ $crews->job->code }}</td>
                                                 <td>{{ $crews->passport_id }}</td>
                                                 <td>
@@ -107,6 +108,7 @@
                                             <th>Crew ID</th>
                                             <th>Name</th>
                                             <th>D.O.B</th>
+                                            <th>Age</th>
                                             <th>Job</th>
                                             <th>Passport No.</th>
                                             <th>Action</th>
@@ -122,6 +124,7 @@
                                             <th>Crew ID</th>
                                             <th>Name</th>
                                             <th>D.O.B</th>
+                                            <th>Age</th>
                                             <th>Job</th>
                                             <th>Passport No.</th>
                                             <th>Action</th>
@@ -136,6 +139,8 @@
                                                 <td>{{ $onboard->name }}</td>
 
                                                 <td>{{ $onboard->birth }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($onboard->birth)->diff(\Carbon\Carbon::now())->y }}
+                                                </td>
                                                 <td>{{ $onboard->job->code }}</td>
                                                 <td>{{ $onboard->passport_id }}</td>
                                                 <td>
@@ -169,6 +174,7 @@
                                             <th>Crew ID</th>
                                             <th>Name</th>
                                             <th>D.O.B</th>
+                                            <th>Age</th>
                                             <th>Job</th>
                                             <th>Passport No.</th>
                                             <th>Action</th>
@@ -183,6 +189,8 @@
                                                 <td>{{ $standby->name }}</td>
 
                                                 <td>{{ $standby->birth }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($standby->birth)->diff(\Carbon\Carbon::now())->y }}
+                                                </td>
                                                 <td>{{ $standby->job->code }}</td>
                                                 <td>{{ $standby->passport_id }}</td>
                                                 <td>
@@ -216,6 +224,7 @@
                                             <th>Crew ID</th>
                                             <th>Name</th>
                                             <th>D.O.B</th>
+                                            <th>Age</th>
                                             <th>Job</th>
                                             <th>Passport No.</th>
                                             <th>Action</th>
@@ -231,6 +240,8 @@
                                                 <td>{{ $unstandby->name }}</td>
 
                                                 <td>{{ $unstandby->birth }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($unstandby->birth)->diff(\Carbon\Carbon::now())->y }}
+                                                </td>
                                                 <td>{{ $unstandby->job->code }}</td>
                                                 <td>{{ $unstandby->passport_id }}</td>
                                                 <td>

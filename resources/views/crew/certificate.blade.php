@@ -71,7 +71,7 @@
                             <br />Certificate Type</label>
                         <div class="col-md-8 col-12">
                             <select class="form-select" id="location" name="type">
-                                <option selected="">==Select==</option>
+                                <option selected="">==SELECT==</option>
                                 <option>SD/MI</option>
                                 <option>SMP/MTs</option>
                                 <option>SMA/MA/STM/SMK</option>
@@ -197,16 +197,16 @@
                             Type</label>
                         <div class="col-md-8 col-12">
                             <select class="form-select" id="location" name="type">
-                                <option selected="">==Select==</option>
-                                <option value='Rating Forming Deck'>Rating Forming Deck</option>
-                                <option value='Rating Able Deck'>Rating Able Deck</option>
+                                <option selected="">==SELECT==</option>
+                                <option value='RFP-NW'>RFP-NW (Ratings Forming Part of a Navigational Watch)</option>
+                                <option value='RAS-D'>RAS-D (Ratings as Able Seafarer Deck)</option>
                                 <option value='ANT-V'>ANT-V (Ahli Nautika Tingkat V)</option>
                                 <option value='ANT-IV'>ANT-IV (Ahli Nautika Tingkat IV)</option>
                                 <option value='ANT-III'>ANT-III (Ahli Nautika Tingkat III)</option>
                                 <option value='ANT-II'>ANT-II (Ahli Nautika Tingkat II)</option>
                                 <option value='ANT-I'>ANT-I (Ahli Nautika Tingkat I)</option>
-                                <option value='Rating Forming Engine'>Rating Forming Engine</option>
-                                <option value='Rating Able Engine'>Rating Able Engine</option>
+                                <option value='RFP-EW'>RFP-EW (Ratings Forming Part of an Engineering Watch)</option>
+                                <option value='RAS-E'>RAS-E (Ratings as Able Seafarer Engine)</option>
                                 <option value='ATT-V'>ATT-V (Ahli Teknika Tingkat V)</option>
                                 <option value='ATT-IV'>ATT-IV (Ahli Teknika Tingkat IV)</option>
                                 <option value='ATT-III'>ATT-III (Ahli Teknika Tingkat III)</option>
@@ -362,7 +362,7 @@
                             Type</label>
                         <div class="col-md-8 col-12">
                             <select class="form-select" id="location" name="type">
-                                <option selected="">==Select==</option>
+                                <option selected="">==SELECT==</option>
                                 <option value='BST'>BST (Basic Safety Training)</option>
                                 <option value='SCRB'>SCRB (Survival Craft & Rescue Boats)</option>
                                 <option value='FRB'>FRB (Fast Rescue Boat)</option>

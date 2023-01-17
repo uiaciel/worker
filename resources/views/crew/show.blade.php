@@ -95,7 +95,7 @@
                                     <div class="row">
                                         <div class="col-4">
                                             <div class="form-group row mb-0">
-                                                <label for="" class="col-sm-4">船員ID番号<br>Crew ID No.</label>
+                                                <label for="" class="col-sm-4">船員ID<br>Crew ID</label>
                                                 <div class="col-sm-8">
                                                     <div class="input-group mb-0">
                                                         <input type="text" class="form-control" name="subid"
@@ -143,6 +143,19 @@
                                                         value="{{ $crew->name }}">
 
                                                 </div>
+                                                <label class="col-sm-4">国籍<br>Nationality</label>
+                                                <div class="col-sm-8">
+                                                    <select class="form-select" name="nationaly">
+                                                        <option value="{{ $crew->nationaly }}">{{ $crew->nationaly }}
+                                                        </option>
+                                                        @foreach ($nationals as $national)
+                                                            <option value="{{ $national->name }}">{{ $national->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+
+
+                                                </div>
                                                 <label for="" class="col-sm-4">出生地<br>Birth Place</label>
                                                 <div class="col-sm-8">
                                                     <input type="text" class="form-control" name="place"
@@ -150,28 +163,44 @@
                                                 </div>
                                                 <label for="" class="col-sm-4">生年月日<br>Birth Date</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control date"
-                                                        placeholder="yyyy/mm/dd" name="birth"
-                                                        value="{{ $crew->birth }}">
+                                                    <div class="input-group mb-0">
+                                                        <input type="text" class="form-control date" name="birth"
+                                                            value="{{ $crew->birth }}">
+                                                        <label style="margin-left: 14px;margin-right: 7px;width: 16%;"
+                                                            class="fs-5">年齢<br>Age</label>
+
+                                                        <span class="input-group-text"
+                                                            style="
+                            width: 27%;
+                        ">{{ \Carbon\Carbon::parse($crew->birth)->diff(\Carbon\Carbon::now())->y }}
+                                                            歳</span>
+                                                    </div>
+
                                                 </div>
-                                                <label class="col-sm-4">年齢<br>Age</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control"
-                                                        value="{{ \Carbon\Carbon::parse($crew->birth)->diff(\Carbon\Carbon::now())->y }}"
-                                                        disabled>
-                                                </div>
+
                                                 <label for="" class="col-sm-4">宗教<br>Religion</label>
                                                 <div class="col-sm-8">
                                                     <!--<input type="text" class="form-control" name="religion" value="{{ $crew->religion }}">-->
                                                     <select class="form-select" name="religion">
                                                         <option value="{{ $crew->religion }}">{{ $crew->religion }}
                                                         </option>
+                                                        <option value="Zoroaster">Zoroaster</option>
+                                                        <option value="Judaism">Judaism</option>
+                                                        <option value="Orthodoxy Christianity">Orthodoxy Christianity
+                                                        </option>
+                                                        <option value="Catholic Christianity">Catholic Christianity
+                                                        </option>
+                                                        <option value="Protestant Christianity">Protestant Christianity
+                                                        </option>
                                                         <option value="Islam">Islam</option>
-                                                        <option value="Protestant">Protestant</option>
-                                                        <option value="Catholic">Catholic</option>
+                                                        <option value="Baha'i">Baha'i</option>
                                                         <option value="Hinduism">Hinduism</option>
+                                                        <option value="Jainism">Jainism</option>
                                                         <option value="Buddhism">Buddhism</option>
-                                                        <option value="Khonghucu">Khonghucu</option>
+                                                        <option value="Sikhism">Sikhism</option>
+                                                        <option value="Taoism">Taoism</option>
+                                                        <option value="Confucianism">Confucianism</option>
+                                                        <option value="Shinto">Shinto</option>
                                                     </select>
                                                 </div>
 

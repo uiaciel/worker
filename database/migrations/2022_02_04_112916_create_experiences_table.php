@@ -18,9 +18,9 @@ class CreateExperiencesTable extends Migration
             $table->bigInteger('crew_id')->unsigned();
             $table->foreign('crew_id')->references('id')->on('crews');
             $table->string('vesselsname');
-            $table->string('maru')->nullable();
+            $table->string('maru');
             $table->string('number');
-            $table->string('affiliation');
+            $table->string('affiliation')->nullable();
             $table->date('signon');
             $table->date('signoff');
             $table->integer('periode');
@@ -38,7 +38,7 @@ class CreateExperiencesTable extends Migration
             $table->string('fishingmaster');
             $table->string('coldarea');
             $table->string('disembark');
-            $table->string('grade');
+            $table->string('grade')->nullable();
             $table->timestamps();
         });
     }
