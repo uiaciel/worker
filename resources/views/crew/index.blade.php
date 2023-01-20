@@ -66,14 +66,14 @@
                                 <table class="table table-striped" id="alltable">
                                     <thead class="table-dark">
                                         <tr>
-                                            <th>No.</th>
-                                            <th>Crew ID</th>
-                                            <th>Name</th>
-                                            <th>D.O.B</th>
-                                            <th>Age</th>
-                                            <th>Job</th>
-                                            <th>Passport No.</th>
-                                            <th>Action</th>
+                                            <th>番号<br>No.</th>
+                                            <th>船員ID<br>Crew ID</th>
+                                            <th>名前<br>Name</th>
+                                            <th>生年月日<br>D.O.B</th>
+                                            <th>年齢<br>Age</th>
+                                            <th>職種<br>Job</th>
+                                            <th>旅券番号<br>Passport No.</th>
+                                            <th>作用<br>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -104,14 +104,14 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>No.</th>
-                                            <th>Crew ID</th>
-                                            <th>Name</th>
-                                            <th>D.O.B</th>
-                                            <th>Age</th>
-                                            <th>Job</th>
-                                            <th>Passport No.</th>
-                                            <th>Action</th>
+                                            <th>番号<br>No.</th>
+                                            <th>船員ID<br>Crew ID</th>
+                                            <th>名前<br>Name</th>
+                                            <th>生年月日<br>D.O.B</th>
+                                            <th>年齢<br>Age</th>
+                                            <th>職種<br>Job</th>
+                                            <th>旅券番号<br>Passport No.</th>
+                                            <th>作用<br>Action</th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -120,14 +120,14 @@
                                 <table class="table table-bordered">
                                     <thead class="table-dark">
                                         <tr>
-                                            <th>No.</th>
-                                            <th>Crew ID</th>
-                                            <th>Name</th>
-                                            <th>D.O.B</th>
-                                            <th>Age</th>
-                                            <th>Job</th>
-                                            <th>Passport No.</th>
-                                            <th>Action</th>
+                                            <th>番号<br>No.</th>
+                                            <th>船員ID<br>Crew ID</th>
+                                            <th>名前<br>Name</th>
+                                            <th>生年月日<br>D.O.B</th>
+                                            <th>年齢<br>Age</th>
+                                            <th>職種<br>Job</th>
+                                            <th>旅券番号<br>Passport No.</th>
+                                            <th>作用<br>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -170,14 +170,14 @@
                                 <table class="table table-bordered">
                                     <thead class="table-dark">
                                         <tr>
-                                            <th>No.</th>
-                                            <th>Crew ID</th>
-                                            <th>Name</th>
-                                            <th>D.O.B</th>
-                                            <th>Age</th>
-                                            <th>Job</th>
-                                            <th>Passport No.</th>
-                                            <th>Action</th>
+                                            <th>番号<br>No.</th>
+                                            <th>船員ID<br>Crew ID</th>
+                                            <th>名前<br>Name</th>
+                                            <th>生年月日<br>D.O.B</th>
+                                            <th>年齢<br>Age</th>
+                                            <th>職種<br>Job</th>
+                                            <th>旅券番号<br>Passport No.</th>
+                                            <th>作用<br>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -220,14 +220,14 @@
                                 <table class="table table-bordered">
                                     <thead class="table-dark">
                                         <tr>
-                                            <th>No.</th>
-                                            <th>Crew ID</th>
-                                            <th>Name</th>
-                                            <th>D.O.B</th>
-                                            <th>Age</th>
-                                            <th>Job</th>
-                                            <th>Passport No.</th>
-                                            <th>Action</th>
+                                            <th>番号<br>No.</th>
+                                            <th>船員ID<br>Crew ID</th>
+                                            <th>名前<br>Name</th>
+                                            <th>生年月日<br>D.O.B</th>
+                                            <th>年齢<br>Age</th>
+                                            <th>職種<br>Job</th>
+                                            <th>旅券番号<br>Passport No.</th>
+                                            <th>作用<br>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>

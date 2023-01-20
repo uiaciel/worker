@@ -57,7 +57,7 @@
 
                 <div class="card smooth-shadow-md">
                     <div class="card-body">
-                        <h4 class="card-title mb-3">船員書類 (Crew Documents)</h4>
+                        <h4 class="card-title mb-3">船員書類 | Crew Documents</h4>
                         <form action="{{ route('doc.store') }}" enctype="multipart/form-data" method="POST">
                             @csrf
                             <input name="crew_id" value="{{ $crew->id }}" hidden>
@@ -207,7 +207,7 @@
 
                 <div class="card smooth-shadow-md">
                     <div class="card-body">
-                        <h4 class="card-title">船員入国査証 (Crew Entry Visa)</h4>
+                        <h4 class="card-title">船員入国査証 | Crew Entry Visa</h4>
                         <form action="{{ route('doc.store') }}" enctype="multipart/form-data" method="POST">
                             @csrf
                             <input name="crew_id" value="{{ $crew->id }}" hidden>

@@ -1,6 +1,6 @@
 <div id="contract" class="tab-pane">
     <div class="card-body">
-        <h3>船員契約 (Crew Contracts)</h3>
+    
         <div class="row">
 
             <div class="col-md-8">
@@ -50,7 +50,12 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <form action="{{ route('contract.store') }}" enctype="multipart/form-data" method="POST">
+                <div class="card smooth-shadow-md">
+                    <div class="card-body">
+                        <h4 class="card-title">
+船員契約 | Crew Contracts
+                        </h4>
+                        <form action="{{ route('contract.store') }}" enctype="multipart/form-data" method="POST">
                     @csrf
                     <input name="crew_id" value="{{ $crew->id }}" hidden>
                     <div class="mb-3 row">
@@ -71,7 +76,7 @@
                         <div class="col-md-8 col-12">
                             <select class="form-select" id="location" name="type">
                                 <option selected>==SELECT==</option>
-                                <option value="PKL">PKL</option>
+                                <option value="PKL">Marine Employment Contract (PKL)</option>
                                 <option value="Memorandum">Memorandum</option>
 
 
@@ -117,6 +122,9 @@
                         <button class="btn btn-primary" type="submit">Upload</button>
                     </div>
                 </form>
+                    </div>
+                </div>
+                
             </div>
         </div>
 

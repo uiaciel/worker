@@ -227,7 +227,7 @@
                 </div>
                 <div class="col-5">
                     <div class="form-group row mb-0">
-                        <label for="" class="col-sm-3">特記<br>Special Mark</label>
+                        <label for="" class="col-sm-3">特記<br>Special Remark</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" name="specialmark"
                                 value="{{ $crew->specialmark }}">

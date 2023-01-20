@@ -153,7 +153,7 @@
                 name="subid" value="" placeholder="83 SHOSHIN MARU">
             <label for=""class="me-3">派遣日<br>Embarkation Date</label>
             <input type="text" class="form-control me-3" name="subid" value="" placeholder="1-Sep-12">
-            <label class="me-3">下船予定日<br>Estimated Sign-Off</label>
+            <label class="me-3">下船予定日<br>Estimated Sign Off</label>
             <input type="text" class="form-control me-3" name="subid" value="" placeholder="9-Jan-14">
             <label class="me-3 fs-6">に対するインドネシア人船員候補者<br>Crew Particular For</label>
             <label class="me-3">派遣港<br>Embarkation Port</label>
@@ -268,7 +268,7 @@
                 <div class="col-sm-7">
                     <input type="text" class="form-control">
                 </div>
-                <label for="" class="col-sm-5">下船日<br>Sign-Off</label>
+                <label for="" class="col-sm-5">下船日<br>Sign Off</label>
                 <div class="col-sm-7">
                     <input type="text" class="form-control" name="signoff" value="{{ $crew->signoff }}">
                 </div><label for="" class="col-sm-5">新基本給<br>New Salary</label>

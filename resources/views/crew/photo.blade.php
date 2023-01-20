@@ -1,14 +1,15 @@
 <div id="photo" class="tab-pane">
     <div class="card-body">
-        <h3>船員の写真 (Crew Photos)</h3>
         <div class="row">
 
             <div class="col-md-6">
+                <h4>Photo List</h4>
                 <table class="table table-bordered border-dark">
                     <thead class="table-dark text-white">
                         <tr>
                             <th>No.</th>
                             <th>Photo Type</th>
+                            <th>Photo Background</th>
                             <th>Photo Date</th>
                             <th>Action</th>
                         </tr>
@@ -17,6 +18,7 @@
                         <tr>
                             <td scope="row">1</td>
                             <td>Photo 3x4</td>
+                            <td></td>
                             <td></td>
                             <td>
                                 <div class="input-group mb-3">
@@ -39,6 +41,7 @@
                             <td scope="row">2</td>
                             <td>Photo 4x6</td>
                             <td></td>
+                            <td></td>
                             <td>
                                 <div class="input-group mb-3">
                                     <div class="input-group mb-3">
@@ -60,7 +63,13 @@
                 </table>
             </div>
             <div class="col-md-6">
-                <input name="crew_id" value="{{ $crew->id }}" hidden>
+                <div class="card smooth-shadow-md">
+                    <div class="card-body">
+                        <h4 class="card-title">
+船員の写真 | Crew Photos
+                        </h4>
+
+                        <input name="crew_id" value="{{ $crew->id }}" hidden>
 
 
                 <div class="mb-3 row">
@@ -79,10 +88,26 @@
                     <div class="col-md-8 col-12">
                         <select class="form-control">
                             <option>==SELECT==</option>
+                            <option>Photo 2x3</option>
                             <option>Photo 3x4</option>
                             <option>Photo 3.5x4.5</option>
                             <option>Photo 4x6</option>
+                        </select>
+                    </div>
+                </div>
 
+                <div class="mb-3 row">
+                    <label for="phone" class="col-sm-4 col-form-label form-label">写真の背景<br>
+                        Photo Background</label>
+                    <div class="col-md-8 col-12">
+                        <select class="form-control">
+                            <option>==SELECT==</option>
+                            <option>Black</option>
+                            <option>White</option>
+                            <option>Red</option>
+                            <option>Yellow</option>
+                            <option>Green</option>
+                            <option>Blue</option>
                         </select>
                     </div>
                 </div>
@@ -100,6 +125,10 @@
 
                     <button class="btn btn-primary" type="submit">Upload</button>
                 </div>
+
+                    </div>
+                </div>
+                
 
             </div>
         </div>

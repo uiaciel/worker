@@ -22,7 +22,7 @@
                             </option>
                         @endforeach
 
-                        <option>asdfsadf</option>
+                      
                     </select>
                 </div>
 
@@ -169,12 +169,7 @@
                                                         <label style="margin-left: 14px;margin-right: 7px;width: 16%;"
                                                             class="fs-5">年齢<br>Age</label>
 
-                                                        <span class="input-group-text"
-                                                            style="
-                            width: 27%;
-                        ">{{ \Carbon\Carbon::parse($crew->birth)->diff(\Carbon\Carbon::now())->y }}
-                                                            歳</span>
-                                                    </div>
+                                                        <span class="input-group-text" style=" width: 27%; ">{{ \Carbon\Carbon::parse($crew->birth)->diff(\Carbon\Carbon::now())->y }} 歳</span> </div>
 
                                                 </div>
 
@@ -209,10 +204,10 @@
                                                     <div class="input-group mb-0">
                                                         <input type="number" class="form-control" name="height"
                                                             value="{{ $crew->height }}">
-                                                        <span class="input-group-text fs-5">cm</span>
+                                                        <span class="input-group-text fs-5">Cm</span>
                                                         <input type="number" class="form-control" name="weight"
                                                             value="{{ $crew->weight }}">
-                                                        <span class="input-group-text fs-5">kg</span>
+                                                        <span class="input-group-text fs-5">Kg</span>
                                                     </div>
 
 
@@ -286,10 +281,10 @@
                                                     <input type="text" class="form-control"
                                                         value="{{ $lastvessel }}">
                                                 </div>
-                                                <label for="" class="col-sm-5">下船日<br>Sign-Off</label>
+                                                <label for="" class="col-sm-5">下船日<br>Sign Off</label>
                                                 <div class="col-sm-7">
                                                     <input type="text" class="form-control" name="signoff"
-                                                        value="{{ $crew->signoff }}" placeholder="ambil dari data">
+                                                        value="{{ $crew->signoff }}">
                                                 </div><label for="" class="col-sm-5">新基本給<br>New Salary</label>
                                                 <div class="col-sm-7">
                                                     <div class="input-group mb-0">
@@ -351,17 +346,17 @@
 
                                                     <select class="form-select" name="shoes">
                                                         <option value="{{ $crew->shoes }}">{{ $crew->shoes }}</option>
-                                                        <option value="EU35/JP21.5">EU35/JP21.5</option>
-                                                        <option value="EU36/JP22.5">EU36/JP22.5</option>
-                                                        <option value="EU37/JP23">EU37/JP23</option>
-                                                        <option value="EU38/JP24">EU38/JP24</option>
-                                                        <option value="EU39/JP25">EU39/JP25</option>
-                                                        <option value="EU40/JP25.5">EU40/JP25.5</option>
-                                                        <option value="EU41/JP26">EU41/JP26</option>
-                                                        <option value="EU42/JP26.5">EU42/JP26.5</option>
-                                                        <option value="EU43/JP27.5">EU43/JP27.5</option>
-                                                        <option value="EU44/JP28.5">EU44/JP28.5</option>
-                                                        <option value="EU45/JP29.5">EU45/JP29.5</option>
+                                                        <option value="EU35/JP21.5 Cm">EU35/JP21.5 Cm</option>
+                                                        <option value="EU36/JP22.5 Cm">EU36/JP22.5 Cm</option>
+                                                        <option value="EU37/JP23 Cm">EU37/JP23 Cm</option>
+                                                        <option value="EU38/JP24 Cm">EU38/JP24 Cm</option>
+                                                        <option value="EU39/JP25 Cm">EU39/JP25 Cm</option>
+                                                        <option value="EU40/JP25.5 Cm">EU40/JP25.5 Cm</option>
+                                                        <option value="EU41/JP26 Cm">EU41/JP26 Cm</option>
+                                                        <option value="EU42/JP26.5 Cm">EU42/JP26.5 Cm</option>
+                                                        <option value="EU43/JP27.5 Cm">EU43/JP27.5 Cm</option>
+                                                        <option value="EU44/JP28.5 Cm">EU44/JP28.5 Cm</option>
+                                                        <option value="EU45/JP29.5 Cm">EU45/JP29.5 Cm</option>
 
                                                     </select>
                                                 </div><label for="" class="col-sm-5">手袋<br>Glove Size</label>

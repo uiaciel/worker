@@ -8,7 +8,7 @@
                 <div>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="mb-2 mb-lg-0">
-                            <h3 class="mb-0  text-white">Create Crew</h3>
+                            <h3 class="mb-0  text-white">Add New Crew</h3>
                         </div>
                         <div>
                             {{-- <a href="{{route('order.create')}}" class="btn btn-white">Create New Project</a> --}}
@@ -24,7 +24,7 @@
                 <div class="card">
                     <!-- card header  -->
                     <div class="card-header bg-white  py-4">
-                        <h4 class="mb-0">Add Crew</h4>
+                        <h4 class="mb-0">Crew Profiles</h4>
                         @if (session('status'))
                             <div class="alert alert-success">
                                 {{ session('status') }}
@@ -40,7 +40,7 @@
                             <div class="row">
                                 <div class="col-4">
                                     <div class="form-group row mb-0">
-                                        <label for="" class="col-sm-4">船員ID番号<br>Crew ID No.</label>
+                                        <label for="" class="col-sm-4">船員ID<br>Crew ID</label>
                                         <div class="col-sm-8">
                                             <input type="text" class="form-control" name="subid">
                                         </div>
@@ -71,28 +71,53 @@
                                         <div class="col-sm-8">
                                             <input type="text" class="form-control" name="name">
                                         </div>
-                                        <label for="" class="col-sm-4">出生地<br>Birth Place</label>
+                                        <label class="col-sm-4">国籍<br>Nationality</label>
+                                                <div class="col-sm-8">
+                                                    <select class="form-select" name="nationaly">
+                                                        
+                                                        @foreach ($nationals as $national)
+                                                            <option value="{{ $national->name }}">{{ $national->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+
+
+                                                </div>
+                                        <label for="" class="col-sm-4">生年月日<br>Birth Place</label>
                                         <div class="col-sm-8">
                                             <input type="text" class="form-control" name="place">
                                         </div>
                                         <label for="" class="col-sm-4">生年月日<br>Birth Date</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control date" name="birth">
-                                        </div>
-                                        <label class="col-sm-4">年齢<br>Age</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control" disabled>
-                                        </div>
+                                                <div class="col-sm-8">
+                                                    
+                                                    <div class="input-group mb-0">
+                                                        <input type="text" class="form-control date" name="birth">
+                                                        <label style="margin-left: 14px;margin-right: 7px;width: 16%;"
+                                                            class="fs-5">年齢<br>Age</label>
+
+                                                        <span class="input-group-text" style=" width: 27%; ">___歳</span> </div>
+
+                                                </div>
                                         <label for="" class="col-sm-4">宗教<br>Religion</label>
                                         <div class="col-sm-8">
                                             <select class="form-select" name="religion">
-
+                                                <option value="Zoroaster">Zoroaster</option>
+                                                <option value="Judaism">Judaism</option>
+                                                <option value="Orthodoxy Christianity">Orthodoxy Christianity
+                                                </option>
+                                                <option value="Catholic Christianity">Catholic Christianity
+                                                </option>
+                                                <option value="Protestant Christianity">Protestant Christianity
+                                                </option>
                                                 <option value="Islam">Islam</option>
-                                                <option value="Protestant">Protestant</option>
-                                                <option value="Catholic">Catholic</option>
+                                                <option value="Baha'i">Baha'i</option>
                                                 <option value="Hinduism">Hinduism</option>
+                                                <option value="Jainism">Jainism</option>
                                                 <option value="Buddhism">Buddhism</option>
-                                                <option value="Khonghucu">Khonghucu</option>
+                                                <option value="Sikhism">Sikhism</option>
+                                                <option value="Taoism">Taoism</option>
+                                                <option value="Confucianism">Confucianism</option>
+                                                <option value="Shinto">Shinto</option>
                                             </select>
                                         </div>
 
@@ -100,9 +125,9 @@
                                         <div class="col-sm-8">
                                             <div class="input-group mb-0">
                                                 <input type="number" class="form-control" name="height">
-                                                <span class="input-group-text fs-5">cm</span>
+                                                <span class="input-group-text fs-5">Cm</span>
                                                 <input type="number" class="form-control" name="weight">
-                                                <span class="input-group-text fs-5">kg</span>
+                                                <span class="input-group-text fs-5">Kg</span>
                                             </div>
 
 
@@ -112,9 +137,8 @@
                                         <div class="col-sm-8">
                                             <div class="input-group mb-0">
                                                 <select class="form-select" name="marital">
-
-                                                    <option value="Married">Married</option>
                                                     <option value="Single">Single</option>
+                                                    <option value="Married">Married</option>
                                                 </select>
                                                 <label style="margin-left: 8px;margin-right: 13px;">子供<br>Child</label>
                                                 <input type="text" class="form-control" name="child" value="0">
@@ -162,12 +186,12 @@
                                     <div class="form-group row mb-0">
                                         <label class="col-sm-5">最終経歴<br>Last Vessel</label>
                                         <div class="col-sm-7">
-                                            <input type="text" class="form-control" placeholder="ambil dari data">
+                                            <input type="text" class="form-control" placeholder="from Experience" disabled>
                                         </div>
-                                        <label for="" class="col-sm-5">下船日<br>Sign-Off</label>
+                                        <label for="" class="col-sm-5">下船日<br>Sign Off</label>
                                         <div class="col-sm-7">
                                             <input type="text" class="form-control" name="signoff"
-                                                placeholder="ambil dari data">
+                                                placeholder="from Experience" disabled>
                                         </div><label for="" class="col-sm-5">新基本給<br>New Salary</label>
                                         <div class="col-sm-7">
                                             <div class="input-group mb-0">
@@ -224,34 +248,39 @@
                                         <div class="col-sm-7">
 
                                             <select class="form-select" name="shoes">
-
-                                                <option value="S">S</option>
-                                                <option value="M">M</option>
-                                                <option value="L">L</option>
-                                                <option value="XL">XL</option>
-                                                <option value="XXL">XXL</option>
+                                                <option value="EU35/JP21.5 Cm">EU35/JP21.5 Cm</option>
+                                                <option value="EU36/JP22.5 Cm">EU36/JP22.5 Cm</option>
+                                                <option value="EU37/JP23 Cm">EU37/JP23 Cm</option>
+                                                <option value="EU38/JP24 Cm">EU38/JP24 Cm</option>
+                                                <option value="EU39/JP25 Cm">EU39/JP25 Cm</option>
+                                                <option value="EU40/JP25.5 Cm">EU40/JP25.5 Cm</option>
+                                                <option value="EU41/JP26 Cm">EU41/JP26 Cm</option>
+                                                <option value="EU42/JP26.5 Cm">EU42/JP26.5 Cm</option>
+                                                <option value="EU43/JP27.5 Cm">EU43/JP27.5 Cm</option>
+                                                <option value="EU44/JP28.5 Cm">EU44/JP28.5 Cm</option>
+                                                <option value="EU45/JP29.5 Cm">EU45/JP29.5 Cm</option>
                                             </select>
                                         </div><label for="" class="col-sm-5">手袋<br>Glove Size</label>
                                         <div class="col-sm-7">
 
                                             <select class="form-select" name="glove">
-
                                                 <option value="S">S</option>
                                                 <option value="M">M</option>
                                                 <option value="L">L</option>
                                                 <option value="XL">XL</option>
                                                 <option value="XXL">XXL</option>
+                                                <option value="XXXL">XXXL</option>
                                             </select>
                                         </div><label for="" class="col-sm-5">カッパ<br>Kappa Size</label>
                                         <div class="col-sm-7">
 
                                             <select class="form-select" name="kappa">
-
                                                 <option value="S">S</option>
                                                 <option value="M">M</option>
                                                 <option value="L">L</option>
                                                 <option value="XL">XL</option>
                                                 <option value="XXL">XXL</option>
+                                                <option value="XXXL">XXXL</option>
                                             </select>
                                         </div>
                                     </div>
