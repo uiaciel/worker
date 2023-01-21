@@ -98,7 +98,7 @@
                         <li class="nav-item">
                             <a class="nav-link has-arrow " href="/shipname">
                                 <i data-feather="clipboard" class="nav-icon icon-xs me-2">
-                                </i> Ship Names
+                                </i> Vessel Names
                             </a>
                         </li>
 
@@ -525,36 +525,19 @@
     <script src="/assets/js/main.js"></script>
     <script>
         $(document).ready(function() {
-            $('#alltable').DataTable({
+            datat = $('.datatable').DataTable({
 
-                initComplete: function() {
-                    this.api()
-                        .columns()
-                        .every(function() {
-                            var column = this;
-                            var select = $('<select><option value="">FILTER</option></select>')
-                                .appendTo($(column.footer()).empty())
-                                .on('change', function() {
-                                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                "dom": 'lrtip'
 
-                                    column.search(val ? '^' + val + '$' : '', true, false)
-                                        .draw();
-                                });
-
-                            column
-                                .data()
-                                .unique()
-                                .sort()
-                                .each(function(d, j) {
-                                    select.append('<option value="' + d + '">' + d +
-                                        '</option>');
-                                });
-                        });
-                },
-
+                
             });
+
+            $('#caridata').keyup(function(){
+                datat.search($(this).val()).draw() ;
+})
         });
     </script>
+   
 </body>
 
 </html>

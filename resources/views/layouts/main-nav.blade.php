@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="/css/themes.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paper-css/0.3.0/paper.css">
 
-    <title>PT AKBAR ANGKASA TARUNA - Internal System</title>
+    <title>PT. ANGKASA AKBAR TARUNA - Internal System</title>
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
 

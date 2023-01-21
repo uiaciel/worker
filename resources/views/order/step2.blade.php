@@ -605,7 +605,6 @@
                                                         <div class="modal-body">
 
                                                             <div class="row">
-                                                                <div class="col-md-4">
                                                                     <input value="{{ $order->id }}" name="order_id"
                                                                         hidden>
                                                                     <input value="{{ $reqjob->id }}" name="orderjob_id"
@@ -631,8 +630,6 @@
                                                                             <option value="40+">40+</option>
                                                                         </select>
                                                                     </div>
-                                                                </div>
-                                                                <div class="col-md-4">
                                                                     <div class="mb-3">
                                                                         <label for="exampleInputPassword1"
                                                                             class="form-label">EXP</label>
@@ -671,8 +668,7 @@
                                                                             <option value="18">18</option>
                                                                         </select>
                                                                     </div>
-                                                                </div>
-                                                                <div class="col-md-4">
+                                                                
                                                                     <div class="mb-3">
                                                                         <label for="remark"
                                                                             class="form-label">REMARKS</label>
@@ -685,7 +681,7 @@
                                                                             <option value="RECOMMEND">RECOMMEND</option>
                                                                         </select>
                                                                     </div>
-                                                                </div>
+                                                                
                                                             </div>
                                                             @if ($reqjob->remark == 'NEW')
                                                             @else
@@ -723,7 +719,6 @@
                                         </div>
 
                                     @empty
-                                        <h3>Tidak ada data</h3>
                                     @endforelse
                                 </tbody>
                                 <tfoot class="font-weight-bold small">
@@ -796,7 +791,7 @@ Special Notes:
                             <input value="{{ $order->id }}" name="order_id" hidden>
 
                             <div class="row">
-                                <div class="col-md-4">
+    
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">JOB</label>
                                         <select class="form-control" name="job">
@@ -819,8 +814,8 @@ Special Notes:
                                     </div>
 
 
-                                </div>
-                                <div class="col-md-4">
+                                
+                                
                                     <div class="mb-3">
                                         <label for="exampleInputPassword1" class="form-label">EXP</label>
                                         <select class="form-control" name="exp" id="">
@@ -853,8 +848,8 @@ Special Notes:
                                             <option value="18">18</option>
                                         </select>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
+                                
+                                
                                     <div class="mb-3">
                                         <label for="remark" class="form-label">REMARKS</label>
                                         <select class="form-control" name="remark">
@@ -866,7 +861,7 @@ Special Notes:
                                         </select>
                                     </div>
 
-                                </div>
+                                
 
 
 

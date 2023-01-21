@@ -510,7 +510,7 @@
                                         <tbody>
                                             @foreach ($exp as $exp)
                                                 <tr>
-                                                    <td>{{ $exp->shipname->name }}</td>
+                                                    <td style=" font-size: 0.4rem; ">{{ $exp->shipname->name }} {{ $exp->maru }} {{ $exp->number }}</td>
                                                     <td>{{ $exp->affiliation }}</td>
                                                     <td>{{ $exp->signon }}</td>
                                                     <td>{{ $exp->signoff }}</td>

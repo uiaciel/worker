@@ -8,7 +8,7 @@
       <div>
         <div class="d-flex justify-content-between align-items-center">
           <div class="mb-2 mb-lg-0">
-            <h3 class="mb-0  text-white">Ship Names</h3>
+            <h3 class="mb-0  text-white">Vessel Names</h3>
           </div>
           <div>
            
@@ -21,7 +21,7 @@
         <div class="col-4">
             <div class="card">
                 <div class="card-header bg-dark">
-                    <h5 class="text-white">Add Ship Name</h5>
+                    <h5 class="text-white">Add Vessel Name</h5>
                 </div>
                 <div class="card-body">
                   
@@ -29,7 +29,7 @@
                         @csrf
                         <div class="mb-3">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Ship Name</label>
+                                <label for="exampleInputEmail1">Vessel Name</label>
                                 <input type="text" name="name" class="form-control" id="exampleInputEmail1">
                               </div>
                         </div>
@@ -42,7 +42,7 @@
         <div class="col-8">
             <div class="card">
                 <div class="card-header bg-dark text-white">
-                    <h5 class="text-white">Ship Name List</h5>
+                    <h5 class="text-white">Vessel Name List</h5>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">

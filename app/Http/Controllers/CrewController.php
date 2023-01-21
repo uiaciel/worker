@@ -15,11 +15,7 @@ use App\Models\Medical;
 
 class CrewController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         $crew = Crew::All();
@@ -28,11 +24,16 @@ class CrewController extends Controller
             'crew' => $crew
         ]);
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function filter($job)
+    {
+        $crew = Crew::where('job_id', $job)->get();
+
+        return view('crew.byjob', [
+            'crew' => $crew
+        ]);
+    }
+    
     public function create()
     {
         return view('crew.create');
@@ -152,4 +153,7 @@ class CrewController extends Controller
     {
         // return Excel::download(new CrewExport, 'crew.xlsx');
     }
+
+
+    
 }

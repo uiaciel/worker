@@ -11,7 +11,6 @@
                             <h3 class="mb-0  text-white">Crew Database</h3>
                         </div>
                         <div>
-                            
                             <a href="{{ route('crew.create') }}" class="btn btn-white">Add New Crew</a>
                         </div>
                     </div>
@@ -22,8 +21,6 @@
         <div class="row mt-6">
             <div class="col-md-12 col-12">
                 <!-- card  -->
-
-                
                 <div class="card">
                     <!-- card header  -->
                     <div class="card-header bg-white  py-4">
@@ -64,49 +61,9 @@
 
                     </div>
                     <div class="card-body">
-
-                        <div class="row card-header bg-white py-4">
-                            
-                            <div class="col-md-6">
-                                <form action="">
-                                <div class="input-group mb-3">
-                                    
-
-                                    
-                                    <select class="form-select" name="carijob" >
-                                      <option selected>== SELECT JOB ==</option>
-                                      
-                                      @foreach ($jobs as $job )
-                                      <option value="1">{{$job->name}}</option>
-                                      @endforeach
-                                     
-                                    </select>
-
-                                    <select class="form-select" name="cariage">
-                                        <option selected>== SELECT AGE ==</option>
-                                        <option value="1">18-30</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select>
-
-                                    <button class="btn btn-outline-danger" type="submit">SORT</button>
-                                
-                                  </div>
-                                </form>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="input-group mb-3">
-                                    <label class="input-group-text" for="inputGroupSelect01">Search</label>
-                                <input type="text" class="form-control" id="caridata">
-                            </div>
-                        </div>
-                            
-                        </div>
-
                         <div class="tab-content">
                             <div id="all" class="tab-pane fade show active">
-                                <table  id="" class="table table-striped datatable">
+                                <table class="table table-striped" id="alltable">
                                     <thead class="table-dark">
                                         <tr>
                                             <th>番号<br>No.</th>
@@ -145,12 +102,23 @@
                                         @endforeach
 
                                     </tbody>
-                                    
+                                    <tfoot>
+                                        <tr>
+                                            <th>番号<br>No.</th>
+                                            <th>船員ID<br>Crew ID</th>
+                                            <th>名前<br>Name</th>
+                                            <th>生年月日<br>D.O.B</th>
+                                            <th>年齢<br>Age</th>
+                                            <th>職種<br>Job</th>
+                                            <th>旅券番号<br>Passport No.</th>
+                                            <th>作用<br>Action</th>
+                                        </tr>
+                                    </tfoot>
                                 </table>
                             </div>
                             <div id="onboard" class="tab-pane fade">
-                                <table  id="" class="table table-striped datatable">
-                                    <thead class="table-dark" >
+                                <table class="table table-bordered">
+                                    <thead class="table-dark">
                                         <tr>
                                             <th>番号<br>No.</th>
                                             <th>船員ID<br>Crew ID</th>
@@ -187,12 +155,19 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-                                        
+                                        <tr>
+                                            <td scope="row"></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <div id="standby" class="tab-pane fade">
-                                <table id="" class="table table-striped datatable" >
+                                <table class="table table-bordered">
                                     <thead class="table-dark">
                                         <tr>
                                             <th>番号<br>No.</th>
@@ -230,12 +205,19 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-                                        
+                                        <tr>
+                                            <td scope="row"></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <div id="unstandby" class="tab-pane fade">
-                                <table id="" class="table table-bordered datatable">
+                                <table class="table table-bordered">
                                     <thead class="table-dark">
                                         <tr>
                                             <th>番号<br>No.</th>
@@ -274,7 +256,14 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-                                        
+                                        <tr>
+                                            <td scope="row"></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -283,7 +272,17 @@
 
 
                     </div>
-                    
+                    <div class="card-header bg-white  py-4">
+                        <div class="d-flex justify-content-between">
+
+                            <h4 class="mb-0">Crew List</h4>
+                            <button class="btn btn-sm btn-primary">Sort by Job</button>
+                        </div>
+                    </div>
+                    <!-- card body  -->
+                    <div class="card-body">
+
+                    </div>
 
                 </div>
             </div>
@@ -291,6 +290,4 @@
 
     </div>
     </div>
-
-    
 @endsection

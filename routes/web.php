@@ -80,6 +80,7 @@ Route::get('/crews/export', [App\Http\Controllers\CrewController::class, 'downlo
 Route::post('/ordercrew/deleteall', [OrdercrewController::class, 'destroyall']);
 Route::get('/cetakcrew/{id}', [OrderController::class, 'pdfcrew']);
 Route::get('/crew/doc/{crewid}/{id}', [CrewController::class, 'document']);
+Route::get('/crew/job/{job}', [CrewController::class, 'filter'])->name('crew.filter');
 
 Auth::routes();
 

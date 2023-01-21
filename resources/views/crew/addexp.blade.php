@@ -44,7 +44,7 @@
                             <div class="mb-3">
                                 <label for="crew_id" class="form-label">所属 | Affiliation</label>
                                 <select class="form-select" name="affiliation">
-                                    <option>--SELECT--</option>
+                                    <option value="" selected>--SELECT--</option>
                                     <option value="AM">AM (Aomori)</option>
                                     <option value="CB">CB (Chiba)</option>
                                     <option value="FS">FS (Fukushima)</option>
