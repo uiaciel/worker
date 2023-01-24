@@ -529,15 +529,15 @@
 
                 "dom": 'lrtip'
 
-                
+
             });
 
-            $('#caridata').keyup(function(){
-                datat.search($(this).val()).draw() ;
-})
+            $('#caridata').keyup(function() {
+                datat.search($(this).val()).draw();
+            })
         });
     </script>
-   
+
 </body>
 
 </html>

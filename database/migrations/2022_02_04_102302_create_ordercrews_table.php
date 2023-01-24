@@ -18,7 +18,7 @@ class CreateOrdercrewsTable extends Migration
             $table->bigInteger('order_id')->unsigned();
             $table->foreign('order_id')->references('id')->on('orders');
             $table->bigInteger('orderjob_id')->unsigned();
-            $table->foreign('orderjob_id')->references('id')->on('orders');
+            $table->foreign('orderjob_id')->references('id')->on('orderjobs');
             $table->bigInteger('crew_id')->unsigned();
             $table->foreign('crew_id')->references('id')->on('crews');
             $table->string('status');

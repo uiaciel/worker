@@ -79,7 +79,9 @@
                                                     <td>
                                                         @can('admin')
                                                             <a href="/admin/order/{{ $reqs->inv }}">{{ $reqs->inv }}</a>
-                                                        @endcan <a href="/order/{{ $reqs->inv }}">{{ $reqs->inv }}</a>
+                                                        @else
+                                                            <a href="/order/{{ $reqs->inv }}">{{ $reqs->inv }}</a>
+                                                        @endcan
                                                     </td>
                                                     <td>{{ $reqs->status }}</td>
                                                     <td>{{ $reqs->shipname }}</td>

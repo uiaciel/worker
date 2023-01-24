@@ -37,9 +37,11 @@ class OrdercrewController extends Controller
     {
         $crew_id = array_filter($request->crew_id);
         $orderjob_id = $request->orderjob_id;
-        foreach ($crew_id as $key => $n) {
+        $orderid = $request->order_id;
+
+        foreach ($crew_id as $n) {
             $ordercrew = new Ordercrew;
-            $ordercrew->order_id = $request->order_id;
+            $ordercrew->order_id = $orderid;
             $ordercrew->crew_id = $n;
             $ordercrew->orderjob_id = $orderjob_id;
             $ordercrew->status = 'recommended';
