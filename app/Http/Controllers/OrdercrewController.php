@@ -38,14 +38,15 @@ class OrdercrewController extends Controller
         $crew_id = array_filter($request->crew_id);
         $orderjob_id = $request->orderjob_id;
         $orderid = $request->order_id;
+        $remark = $request->remark;
 
         foreach ($crew_id as $n) {
             $ordercrew = new Ordercrew;
             $ordercrew->order_id = $orderid;
             $ordercrew->crew_id = $n;
             $ordercrew->orderjob_id = $orderjob_id;
-            $ordercrew->status = 'recommended';
-            $ordercrew->remark = 'no';
+            $ordercrew->status = 'RECOMMENDATION';
+            $ordercrew->remark = $remark;
             $ordercrew->save();
         }
 

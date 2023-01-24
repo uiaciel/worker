@@ -29,7 +29,7 @@
                                     <td>
                                         <div class="mb-3">
                                             <select class="form-select form-select-lg" name="job[]" id="">
-                                                <option>--SELECT--</option>
+                                                <option value="" selected disabled>--SELECT--</option>
                                                 @foreach ($jobs as $job)
                                                     <option value="{{ $job->id }}" data="{{ $job->id }}">
                                                         {{ $job->name }}</option>
@@ -40,7 +40,7 @@
                                     <td>
                                         <div class="mb-3">
                                             <select class="form-select form-select-lg" name="age[]" id="">
-                                                <option>--SELECT--</option>
+                                                <option value="" selected disabled>--SELECT--</option>
                                                 <option value="18-30">18-30</option>
                                                 <option value="18-30">31-40</option>
                                                 <option value="40+">40+</option>
@@ -50,7 +50,7 @@
                                     <td>
                                         <div class="mb-3">
                                             <select class="form-select form-select-lg" name="exp[]" id="">
-                                                <option>--SELECT--</option>
+                                                <option value="" selected disabled>--SELECT--</option>
                                                 <option value="YES">YES</option>
                                                 <option value="NO">NO</option>
                                             </select>
@@ -59,7 +59,7 @@
                                     <td>
                                         <div class="mb-3">
                                             <select class="form-select form-select-lg" name="number[]" id="">
-                                                <option>--SELECT--</option>
+                                                <option value="" selected disabled>--SELECT--</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
@@ -84,7 +84,7 @@
                                     <td>
                                         <div class="mb-3">
                                             <select class="form-select form-select-lg" name="remark[]" id="">
-                                                <option>--SELECT--</option>
+                                                <option value="" selected disabled>--SELECT--</option>
                                                 <option value="NEW">NEW</option>
                                                 <option value="FIXED">FIXED</option>
                                                 <option value="REJOIN">REJOIN</option>
@@ -98,7 +98,7 @@
                                     <td>
                                         <div class="mb-3">
                                             <select class="form-select form-select-lg" name="job[]" id="">
-                                                <option>--SELECT--</option>
+                                                <option value="" selected disabled>--SELECT--</option>
                                                 @foreach ($jobs as $job)
                                                     <option value="{{ $job->id }}" data="{{ $job->id }}">
                                                         {{ $job->name }}</option>
@@ -109,7 +109,7 @@
                                     <td>
                                         <div class="mb-3">
                                             <select class="form-select form-select-lg" name="age[]" id="">
-                                                <option>--SELECT--</option>
+                                                <option value="" selected disabled>--SELECT--</option>
                                                 <option value="18-30">18-30</option>
                                                 <option value="18-30">31-40</option>
                                                 <option value="40+">40+</option>
@@ -119,7 +119,7 @@
                                     <td>
                                         <div class="mb-3">
                                             <select class="form-select form-select-lg" name="exp[]" id="">
-                                                <option>--SELECT--</option>
+                                                <option value="" selected disabled>--SELECT--</option>
                                                 <option value="YES">YES</option>
                                                 <option value="NO">NO</option>
                                             </select>
@@ -129,7 +129,7 @@
                                         <div class="mb-3">
                                             <select class="form-select form-select-lg" name="number[]"
                                                 id="">
-                                                <option>--SELECT--</option>
+                                                <option value="" selected disabled>--SELECT--</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
@@ -155,7 +155,7 @@
                                         <div class="mb-3">
                                             <select class="form-select form-select-lg" name="remark[]"
                                                 id="">
-                                                <option>--SELECT--</option>
+                                                <option value="" selected disabled>--SELECT--</option>
                                                 <option value="NEW">NEW</option>
                                                 <option value="FIXED">FIXED</option>
                                                 <option value="REJOIN">REJOIN</option>
@@ -169,7 +169,7 @@
                                     <td>
                                         <div class="mb-3">
                                             <select class="form-select form-select-lg" name="job[]" id="">
-                                                <option>--SELECT--</option>
+                                                <option value="" selected disabled>--SELECT--</option>
                                                 @foreach ($jobs as $job)
                                                     <option value="{{ $job->id }}" data="{{ $job->id }}">
                                                         {{ $job->name }}</option>
@@ -180,7 +180,7 @@
                                     <td>
                                         <div class="mb-3">
                                             <select class="form-select form-select-lg" name="age[]" id="">
-                                                <option>--SELECT--</option>
+                                                <option value="" selected disabled>--SELECT--</option>
                                                 <option value="18-30">18-30</option>
                                                 <option value="18-30">31-40</option>
                                                 <option value="40+">40+</option>
@@ -190,7 +190,7 @@
                                     <td>
                                         <div class="mb-3">
                                             <select class="form-select form-select-lg" name="exp[]" id="">
-                                                <option>--SELECT--</option>
+                                                <option value="" selected disabled>--SELECT--</option>
                                                 <option value="YES">YES</option>
                                                 <option value="NO">NO</option>
                                             </select>
@@ -200,7 +200,7 @@
                                         <div class="mb-3">
                                             <select class="form-select form-select-lg" name="number[]"
                                                 id="">
-                                                <option>--SELECT--</option>
+                                                <option value="" selected disabled>--SELECT--</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
@@ -226,7 +226,7 @@
                                         <div class="mb-3">
                                             <select class="form-select form-select-lg" name="remark[]"
                                                 id="">
-                                                <option>--SELECT--</option>
+                                                <option value="" selected disabled>--SELECT--</option>
                                                 <option value="NEW">NEW</option>
                                                 <option value="FIXED">FIXED</option>
                                                 <option value="REJOIN">REJOIN</option>

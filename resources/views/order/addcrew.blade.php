@@ -12,7 +12,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <input value="{{ $order->id }}" name="order_id" hidden>
-                        <input value="{{ $reqjob->id }}" name="orderjob_id">
+                        <input value="{{ $reqjob->id }}" name="orderjob_id" hidden>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">JOB</label>
                             <input class="form-control" value="{{ $reqjob->job->id }}" readonly>
@@ -63,7 +63,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="remark" class="form-label">REMARKS</label>
-                            <select class="form-control">
+                            <select class="form-control" name="remark">
                                 <option value="{{ $reqjob->remark }}">
                                     {{ $reqjob->remark }}</option>
                                 <option value="NEW">NEW</option>
@@ -74,6 +74,21 @@
                         </div>
                     </div>
                     @if ($reqjob->remark == 'NEW')
+                        @can('admin')
+                            <div class="mb-3" id="formselect">
+                                <label for="remark" class="form-label">SELECT
+                                    CREWS</label>
+                                <select class="form-control select2" multiple name="crew_id[]">
+                                    @foreach ($crews->where('job_id', $reqjob->job->id) as $op)
+                                        <option value="{{ $op->id }}">
+                                            {{ $op->subid }} -
+                                            {{ $op->name }} - {{ $op->birth }}
+                                            - {{ $op->job->name }} - No Passport
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        @endcan
                     @else
                         <div class="mb-3" id="formselect">
                             <label for="remark" class="form-label">SELECT

@@ -92,155 +92,21 @@
                                                             <button class="btn btn-sm btn-outline-danger" type="submit"
                                                                 id="button-addon2">Delete</button>
                                                         </form>
-                                                        @if ($reqjob->remark !== 'NEW')
-                                                            <button class="btn btn-sm btn-outline-primary cekdata"
-                                                                type="button" data-bs-toggle="modal"
-                                                                data-bs-target="#com{{ $reqjob->id }}"
-                                                                id="creww">Select Crew(s)</button>
-                                                        @endif
+
+                                                        <button class="btn btn-sm btn-outline-primary cekdata"
+                                                            type="button" data-bs-toggle="modal"
+                                                            data-bs-target="#com{{ $reqjob->id }}" id="creww">Select
+                                                            Crew(s)</button>
+
                                                     </div>
 
 
                                                 </td>
                                             </tr>
-                                            <div class="modal fade" id="com{{ $reqjob->id }}" style="z-index: 1051;"
-                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-lg">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">SELECT CREWS
-                                                                {{ $reqjob->job->name }}</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                aria-label="Close"></button>
-                                                        </div>
-                                                        <form action="{{ route('ordercrew.store') }}"
-                                                            enctype="multipart/form-data" method="POST">
-                                                            @csrf
-                                                            <div class="modal-body">
 
-                                                                <div class="row">
-                                                                    <div class="col-md-4">
-                                                                        <input value="{{ $order->id }}" name="order_id"
-                                                                            hidden>
-                                                                        <input value="{{ $reqjob->id }}"
-                                                                            name="orderjob_id" hidden>
-                                                                        <div class="mb-3">
-                                                                            <label for="exampleInputEmail1"
-                                                                                class="form-label">JOB</label>
-                                                                            <input class="form-control"
-                                                                                value="{{ $reqjob->job->name }}" readonly>
-
-
-                                                                        </div>
-                                                                        <div class="mb-3">
-                                                                            <label for="exampleInputPassword1"
-                                                                                class="form-label">AGE</label>
-                                                                            <select class="form-control" name="age"
-                                                                                id="">
-                                                                                <option value="{{ $reqjob->age }}">
-                                                                                    {{ $reqjob->age }}</option>
-
-                                                                                <option value="18-30">18-30</option>
-                                                                                <option value="18-30">31-40</option>
-                                                                                <option value="40+">40+</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-4">
-                                                                        <div class="mb-3">
-                                                                            <label for="exampleInputPassword1"
-                                                                                class="form-label">EXP</label>
-                                                                            <select class="form-control" name="exp"
-                                                                                id="">
-                                                                                <option value="{{ $reqjob->exp }}">
-                                                                                    {{ $reqjob->exp }}</option>
-                                                                                <option value="YES">YES</option>
-                                                                                <option value="NO">NO</option>
-                                                                            </select>
-                                                                        </div>
-                                                                        <div class="mb-3">
-                                                                            <label for="exampleInputPassword1"
-                                                                                class="form-label">NUMBER</label>
-                                                                            <select class="form-control" name="number"
-                                                                                id="">
-                                                                                <option value="{{ $reqjob->number }}">
-                                                                                    {{ $reqjob->number }}</option>
-                                                                                <option value="1">1</option>
-                                                                                <option value="2">2</option>
-                                                                                <option value="3">3</option>
-                                                                                <option value="4">4</option>
-                                                                                <option value="5">5</option>
-                                                                                <option value="6">6</option>
-                                                                                <option value="7">7</option>
-                                                                                <option value="8">8</option>
-                                                                                <option value="9">9</option>
-                                                                                <option value="10">10</option>
-                                                                                <option value="11">11</option>
-                                                                                <option value="12">12</option>
-                                                                                <option value="13">13</option>
-                                                                                <option value="14">14</option>
-                                                                                <option value="15">15</option>
-                                                                                <option value="16">16</option>
-                                                                                <option value="17">17</option>
-                                                                                <option value="18">18</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-4">
-                                                                        <div class="mb-3">
-                                                                            <label for="remark"
-                                                                                class="form-label">REMARKS</label>
-                                                                            <select class="form-control" name="remark">
-                                                                                <option value="{{ $reqjob->remark }}">
-                                                                                    {{ $reqjob->remark }}</option>
-                                                                                <option value="NEW">NEW</option>
-                                                                                <option value="FIXED">FIXED</option>
-                                                                                <option value="REJOIN">REJOIN</option>
-                                                                                <option value="RECOMMEND">RECOMMEND
-                                                                                </option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                @if ($reqjob->remark == 'NEW')
-                                                                @else
-                                                                    <div class="mb-3" id="formselect">
-
-                                                                        <label for="remark" class="form-label">SELECT
-                                                                            CREWS</label>
-                                                                        <select class="form-control select2" multiple
-                                                                            name="crew_id[]">
-
-                                                                            @foreach ($crews->where('job_id', $reqjob->job->id) as $op)
-                                                                                <option value="{{ $op->id }}">
-                                                                                    {{ $op->subid }} -
-                                                                                    {{ $op->name }} -
-                                                                                    {{ $op->birth }}
-                                                                                    - {{ $op->job->name }} - No Passport
-                                                                                </option>
-                                                                            @endforeach
-                                                                        </select>
-                                                                    </div>
-                                                                @endif
-
-
-
-
-
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal">Cancel</button>
-                                                                <button type="submit"
-                                                                    class="btn btn-primary">Update</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            @include('order.addcrew')
 
                                         @empty
-                                            <h3>Tidak ada data</h3>
                                         @endforelse
                                     </tbody>
                                     <tfoot class="font-weight-bold small">
@@ -272,10 +138,34 @@
                                     </div>
                                 </div>
                             </div>
+                            <!--table responsive end-->
                             <div class="form-group">
-                                <label for="">Notes</label>
-                                <textarea class="form-control" rows="5" disabled></textarea>
+                                <label>Notes</label>
+                                <div class="border border-primary">
+
+                                    <ul class="numberList">
+                                        @foreach ($orderjob as $oj)
+                                            <li>
+                                                <strong>{{ $oj->number }} - {{ $oj->job->name }}</strong>
+                                                <ol class="bulletList">
+                                                    @foreach ($oj->ordercrew as $namacrew)
+                                                        <li>{{ $namacrew->crew->subid }} - {{ $namacrew->crew->name }}
+                                                            {{ $namacrew->crew->birth }} -
+                                                            {{ $namacrew->crew->job->name }} -
+                                                            NO
+                                                            PASSPORT</li>
+                                                    @endforeach
+
+                                                </ol>
+                                            </li>
+                                        @endforeach
+
+                                    </ul>
+
+                                </div>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -291,97 +181,21 @@
                                     <h4 class="mb-0">Request Response </h4>
                                 </div>
                                 <div>
-                                    <a href="" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#datacrewnya">Add Crews</a>
+                                    {{-- <a href="" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#datacrewnya">Add Crews</a> --}}
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="modal fade" id="datacrewnya" tabindex="-1" aria-labelledby="datacrewnyaLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog modal-xl">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#datacrew"
-                                            role="button" aria-expanded="false" aria-controls="datacrew">
-                                            Data Crews
-                                        </a>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <h4>Crew terpilih</h4>
-                                        <form method="POST" action="{{ route('ordercrew.store') }}">
-                                            @csrf
-                                            <input value="{{ $order->id }}" name="order_id" hidden>
 
-                                            <table id="destinationtable" class="table table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th>ID</th>
-                                                        <th>Name</th>
-                                                        <th>Url</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                            <button type="submit" class="btn btn-primary btn-round btn-md mr-2"><span
-                                                    class="btn-label">
-                                                    <i class="fa fa-pencil"></i>
-                                                </span>Update</button>
-                                        </form>
-                                        <div class="collapse" id="datacrew">
-                                            <div class="card card-body">
-                                                <h3>Data Semua Crew :</h3>
-                                                <table id="sourcetable" class="table table-bordered mb-0">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>ID</th>
-                                                            <th>Name</th>
-                                                            <th>Url</th>
-                                                            <th>action</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach ($crew as $index => $kru)
-                                                            <tr id="sour{{ $kru->id }}">
-                                                                <td><input class="form-check-input" type="checkbox">
-                                                                    {{ ++$index }}</td>
-                                                                <td>{{ $kru->name }}</td>
-                                                                <td>{{ $kru->job->name }}<input
-                                                                        value="{{ $kru->id }}" name="crew_id[]"
-                                                                        hidden></td>
-                                                                <td>{{ \Carbon\Carbon::parse($kru->birth)->diff(\Carbon\Carbon::now())->y }}
-                                                                    tahun</td>
-                                                            </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <form method="post" action="{{ url('/ordercrew/deleteall') }}">
                             @csrf
-                            <input class="btn btn-success" type="submit" name="submit" id="btndelete"
+                            <input class="btn btn-success mb-3" type="submit" name="submit" id="btndelete"
                                 value="Delete All Users" style="display: none" />
 
-                            @foreach ($orderjob as $dataorder)
-                                <h5>{{ $dataorder->job->name }}</h5>
-                                <ul>
-                                    <li>{{ $dataorder->ordercrew }}</li>
-                                </ul>
-                            @endforeach
-
                             <table class="table table-bordered">
-                                <thead>
+                                <thead class="table-dark">
                                     <tr>
                                         <th>
                                             <div class="custom-control custom-checkbox"><input type="checkbox"
@@ -428,7 +242,12 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <h3>Air Ticket(s) Provided by : {{ $order->airticketby }}</h3>
+                            <h3>Air Ticket(s) Provided by : @if ($order->airticketby == $order->client->id)
+                                    {{ $order->client->nama }}
+                                @else
+                                    {{ $order->company->nama }}
+                                @endif
+                            </h3>
                         </form>
                     </div>
                 </div>

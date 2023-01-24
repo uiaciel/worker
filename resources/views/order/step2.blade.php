@@ -716,7 +716,7 @@
                                 action="{{ route('ordercrewall.update') }}">
                                 @csrf
                                 <table class="table table-bordered">
-                                    <thead>
+                                    <thead class="table-dark">
                                         <tr>
                                             <th>No.</th>
                                             <th>Crew ID</th>
@@ -724,6 +724,7 @@
                                             <th>D.O.B</th>
                                             <th>Job</th>
                                             <th>Passport No.</th>
+                                            <th>Remark</th>
                                             <th>Approval</th>
                                         </tr>
                                     </thead>
@@ -745,7 +746,7 @@
                                                 </td>
                                                 <td>{{ $ordercrx->crew->job->name }}</td>
                                                 <td>122211221</td>
-
+                                                <td>{{ $ordercrx->remark }}</td>
                                                 <td class="bg-primary">
                                                     <select name="status[]" class="form-control">
                                                         @if ($ordercrx->status == 'ACC')
