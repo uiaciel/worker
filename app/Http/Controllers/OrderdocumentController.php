@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Orderdocument;
 use Illuminate\Http\Request;
 
@@ -36,6 +37,11 @@ class OrderdocumentController extends Controller
 
         $document->path = '/file/' . $fileName;
         $document->save();
+
+        Order::where('id', $request->order_id)->update([
+            'step_6' => 1
+        ]);
+
 
         toast('Orderdocument created successfully.', 'success');
         return redirect()->back();

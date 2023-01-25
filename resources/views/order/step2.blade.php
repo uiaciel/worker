@@ -1025,10 +1025,9 @@
                             </div>
                         </div>
                         <div class="card-header bg-white  py-4">
-                            <h4 class="mb-0">Form Upload Documents
-                            </h4>
-                            <button type="button" class="btn btn-primary btn-round" style="width:150px;"
-                                data-bs-toggle="modal" data-bs-target="#formdocument">
+
+                            <button type="button" class="btn btn-primary btn-round" data-bs-toggle="modal"
+                                data-bs-target="#formdocument">
                                 Upload Document
                             </button>
                         </div>
@@ -1132,28 +1131,24 @@
                                 </thead>
 
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>ID123</td>
-                                        <td>AKBAR</td>
-                                        <td><a name="" id="" href="#" role="button">124577495</a>
-                                        </td>
-                                        <td><a name="" id="" href="#" role="button">14257754</a>
-                                        </td>
-                                        <td><a name="" id="" href="#" role="button">14257754</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>ID123</td>
-                                        <td>SURYA</td>
-                                        <td><a name="" id="" href="#" role="button">124577495</a>
-                                        </td>
-                                        <td><a name="" id="" href="#" role="button">14257754</a>
-                                        </td>
-                                        <td><a name="" id="" href="#" role="button">14257754</a>
-                                        </td>
-                                    </tr>
+                                    @foreach ($ordercrew->where('status', 'ACC') as $crewnya)
+                                        <tr>
+                                            <td>1</td>
+                                            <td>{{ $crewnya->crew->subid }}</td>
+                                            <td>{{ $crewnya->crew->name }}</td>
+                                            <td><a name="" id="" href="#" role="button">NO
+                                                    PASSPORT</a>
+                                            </td>
+                                            <td><a name="" id="" href="#" role="button">SEAMAN
+                                                    BOOK NO</a>
+                                            </td>
+                                            <td><a name="" id="" href="#" role="button">Contracts
+                                                    No.</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
+
                                     <tr>
 
                                         <td colspan="3"></td>
@@ -1239,49 +1234,25 @@
                                 </thead>
 
                                 <tbody>
+                                    @foreach ($ordercrew->where('status', 'ACC') as $crewimigration)
+                                        <tr>
 
-                                    <tr>
+                                            <td>1</td>
+                                            <td><input value="3" name="id[]"
+                                                    hidden="">{{ $crewimigration->crew->name }}</td>
+                                            <td>{{ $crewimigration->crew->birth }}</td>
+                                            <td>{{ $crewimigration->crew->job->name }}</td>
+                                            <td>NO PASSPORT</td>
 
-                                        <td>1</td>
-                                        <td><input value="3" name="id[]" hidden="">Adiarja</td>
-                                        <td>1982-10-27</td>
-                                        <td>ASSISTANT COOK</td>
-                                        <td>P64ip</td>
+                                            <td>
+                                                <span class="badge bg-success">PASSED!</span>
 
-                                        <td>
-                                            <span class="badge bg-success">PASSED!</span>
+                                            </td>
+                                            <td>17 Nov 2022, 13:00</td>
+                                        </tr>
+                                    @endforeach
 
-                                        </td>
-                                        <td>17 Nov 2022, 13:00</td>
-                                    </tr>
-                                    <tr>
 
-                                        <td>2</td>
-                                        <td><input value="4" name="id[]" hidden="">Taufik</td>
-                                        <td>1998-05-10</td>
-                                        <td>CC</td>
-                                        <td>P85ad</td>
-
-                                        <td>
-                                            <span class="badge bg-success">PASSED!</span>
-
-                                        </td>
-                                        <td>17 Nov 2022, 13:00</td>
-                                    </tr>
-                                    <tr>
-
-                                        <td>3</td>
-                                        <td><input value="5" name="id[]" hidden="">Sakti</td>
-                                        <td>1989-03-23</td>
-                                        <td>AC</td>
-                                        <td>P53ei</td>
-
-                                        <td>
-                                            <span class="badge bg-success">PASSED!</span>
-
-                                        </td>
-                                        <td>17 Nov 2022, 13:00</td>
-                                    </tr>
 
                                 </tbody>
 
