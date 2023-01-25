@@ -33,12 +33,12 @@
                     <!-- card header  -->
                     <div class="card-header">
                         <div class="d-flex">
-                            <!-- img -->
+
                             <div>
                                 <img src="../assets/images/avatar/avatar-9.jpg" class="rounded-circle avatar-md"
                                     alt="">
                             </div>
-                            <!-- content -->
+
                             <div class="ms-3 ">
                                 <h5 class="mb-1">{{ $order->client->nama }}</h5>
                                 <p class="mb-0 fs-5 text-muted">
@@ -651,7 +651,7 @@
                         </div>
                     </div>
                 </div>
-                </form>
+
             </div>
         </div>
         <!-- row  -->
@@ -969,7 +969,7 @@
 
                                     <button class="btn btn-primary mb-4" type="submit">Update</button>
                                 </div>
-                                {{-- </form> --}}
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -1037,10 +1037,11 @@
                             <div class="row">
 
                                 <div class="table-responsive mt-2">
-                                    <table class="table table-primary">
-                                        <thead>
+                                    <table class="table table-hover table-bordered">
+                                        <thead class="table-dark">
                                             <tr>
                                                 <th scope="col">No</th>
+                                                <th scope="col">Type</th>
                                                 <th scope="col">File</th>
                                                 <th scope="col">Action</th>
                                             </tr>
@@ -1048,7 +1049,8 @@
                                         <tbody>
                                             @foreach ($orderdocuments as $orderdocument)
                                                 <tr class="">
-                                                    <td scope="row">1</td>
+                                                    <td scope="row">{{ $loop->iteration }}</td>
+                                                    <td>{{ $orderdocument->type }}</td>
                                                     <td>{{ $orderdocument->path }}</td>
                                                     <td><button type="button"
                                                             class="btn btn-sm btn-primary">Download</button></td>
@@ -1058,7 +1060,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                @include('order.formdocument')
+
 
 
 
@@ -1176,6 +1178,7 @@
                     </div>
 
                 </div>
+            </div>
         @endif
 
         @if ($order->step_6 == 1)
@@ -1332,5 +1335,6 @@
 
     </div>
 
+    @include('order.formdocument')
 
 @endsection

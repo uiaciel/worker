@@ -35,6 +35,7 @@ class OrderdocumentController extends Controller
         $request->file->move(public_path('file'), $fileName);
 
         $document->path = '/file/' . $fileName;
+        $document->save();
 
         toast('Orderdocument created successfully.', 'success');
         return redirect()->back();
