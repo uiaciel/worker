@@ -24,7 +24,6 @@ class DocumentController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -35,13 +34,7 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
-        // $table->bigInteger('crew_id')->unsigned();
-        //     $table->foreign('crew_id')->references('id')->on('crews');
-        //     $table->string('type');
-        //     $table->string('path');
-        //     $table->string('no');
-        //     $table->date('issued');
-        //     $table->date('valid');
+
 
         $document = new Document;
         $document->crew_id = $request->crew_id;

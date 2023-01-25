@@ -20,6 +20,7 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\MedicalController;
 use App\Http\Controllers\NationalController;
+use App\Http\Controllers\OrderdocumentController;
 use App\Http\Controllers\PortController;
 use App\Http\Controllers\ReController;
 use Illuminate\Support\Facades\Auth;
@@ -67,6 +68,7 @@ Route::resource('/medical', MedicalController::class);
 Route::resource('/port', PortController::class);
 Route::resource('/national', NationalController::class);
 Route::resource('/currency', CurrencyController::class);
+Route::resource('/orderdocument', OrderdocumentController::class);
 
 Route::get('/order/{inv}/step2', [OrderController::class, 'step2'])->name('order.step2');
 Route::get('/admin/order/{inv}', [OrderController::class, 'adminview'])->name('order.adminview');

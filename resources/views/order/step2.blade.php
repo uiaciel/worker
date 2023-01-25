@@ -994,6 +994,7 @@
                                     <h5 class="mb-1">{{ $order->company->nama }}</h5>
                                     <p class="mb-0 fs-5 text-muted">2 minutes ago</p>
                                 </div>
+
                             </div>
                         </div>
                         <div class="card-header bg-white  py-4">
@@ -1017,10 +1018,7 @@
                                     </div>
                                     <div>
                                         {{-- <a href="/print/{{$order->inv}}" class="btn btn-primary" style="width:150px;" target="_blank">Print</a> --}}
-                                        {{-- <button type="button" class="btn btn-primary btn-round" style="width:150px;" data-bs-toggle="modal"
-                                      data-bs-target="#exampleModal">
-                                      Add Request
-                                  </button> --}}
+
                                         {{-- <button type="submit" class="btn btn-primary btn-md" style="width:150px;">Update</button> --}}
                                     </div>
                                 </div>
@@ -1029,29 +1027,45 @@
                         <div class="card-header bg-white  py-4">
                             <h4 class="mb-0">Form Upload Documents
                             </h4>
+                            <button type="button" class="btn btn-primary btn-round" style="width:150px;"
+                                data-bs-toggle="modal" data-bs-target="#formdocument">
+                                Upload Document
+                            </button>
                         </div>
                         <!-- card body -->
                         <div class="card-body">
-                            <div class="mb-3 row">
-                                @if ($ticket->status == 'client')
-                                    <label for="inputPassword" class="col-sm-2 col-form-label">Air Ticket(s)</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" type="file" id="formFileMultiple" multiple>
-                                    </div>
-                                @endif
-                                <label for="inputPassword" class="col-sm-2 col-form-label">Guarantee Letter</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="file" id="formFileMultiple" multiple>
+                            <div class="row">
+
+                                <div class="table-responsive mt-2">
+                                    <table class="table table-primary">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">No</th>
+                                                <th scope="col">File</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($orderdocuments as $orderdocument)
+                                                <tr class="">
+                                                    <td scope="row">1</td>
+                                                    <td>{{ $orderdocument->path }}</td>
+                                                    <td><button type="button"
+                                                            class="btn btn-sm btn-primary">Download</button></td>
+                                                </tr>
+                                            @endforeach
+
+                                        </tbody>
+                                    </table>
                                 </div>
+                                @include('order.formdocument')
+
+
+
                             </div>
-                            <button class="btn btn-primary">Submit</button>
-                            <div class="mt-3">
-                                <p>File Uploaded</p>
-                                <ul class="list mt-4 mb-0">
-                                    <li class="mb-1"><i class="fas fa-file-pdf"></i> Guarantee Letter.pdf</li>
-                                    <li class="mb-1"><i class="fas fa-file-pdf"></i> Air Tickets.pdf</li>
-                                </ul>
-                            </div>
+
+
+
 
                         </div>
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -12,6 +13,7 @@ use App\Models\Ticket;
 use App\Models\Ordercrew;
 use Illuminate\Support\Facades\Redirect;
 use Alert;
+use App\Models\Orderdocument;
 use Barryvdh\Snappy\Facades\SnappyPdf;
 
 class OrderController extends Controller
@@ -23,9 +25,9 @@ class OrderController extends Controller
         $fix = Order::where('status', 'Fixed')->get();
         $all = Order::All();
 
-        toast('Info Toast','info');
+        toast('Info Toast', 'info');
         return view('order.index', [
-           
+
             'active' => $active,
             'cancel' => $cancel,
             'fix' => $fix,
@@ -47,22 +49,19 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $dataport = Order::where('portstart', $request->portstart)->first();
-        if($dataport != $request->portstart)
-        {
+        if ($dataport != $request->portstart) {
             $port = new Port;
             $port->name = $request->portstart;
             $port->save();
         }
         $datanat = Order::where('nationaly', $request->nationaly)->first();
-        if($datanat != $request->portstart)
-        {
+        if ($datanat != $request->portstart) {
             $nat = new National;
             $nat->name = $request->nationaly;
             $nat->save();
         }
         $shipp = Shipname::where('name', $request->shipname)->first();
-        if($shipp != $request->shipname)
-        {
+        if ($shipp != $request->shipname) {
             $nat = new Shipname;
             $nat->name = $request->shipname;
             $nat->save();
@@ -89,7 +88,7 @@ class OrderController extends Controller
         ]);
         // STEP 2 KE ORDERAN NYA
         $url = '/order/' . $request->inv;
-        toast('Post created successfully.','success');
+        toast('Post created successfully.', 'success');
         return redirect($url);
     }
     // STEP 2 ORDERANNYA
@@ -100,12 +99,15 @@ class OrderController extends Controller
         $crew = Crew::All();
         $ticket = Ticket::where('order_id', $order->id)->get();
         $ordercrew = Ordercrew::where('order_id', $order->id)->get();
+        $orderdocument = Orderdocument::where('order_id', $order->id)->get();
+
         return view('order.step2', [
             'order' => $order,
             'crew' => $crew,
             'orderjob' => $orderjob,
             'ordercrew' => $ordercrew,
             'tickets' => $ticket,
+            'orderdocuments' => $orderdocument,
         ]);
     }
     // STEP 2 ORDERANNYA
@@ -144,8 +146,7 @@ class OrderController extends Controller
         $order = Order::where('inv', $id)->first();
         $orderjob = Orderjob::where('order_id', $order->id)->get();
         $crew = Crew::All();
-        $ordercrew = Ordercrew::where('order_id', $order->id)->
-                where('status', 'ACC')->get();
+        $ordercrew = Ordercrew::where('order_id', $order->id)->where('status', 'ACC')->get();
         return view('print.crew', [
             'order' => $order,
             'crew' => $crew,
@@ -158,22 +159,23 @@ class OrderController extends Controller
         $order = Order::where('inv', $id)->first();
         $orderjob = Orderjob::where('order_id', $order->id)->get();
         $crew = Crew::All();
-        $ordercrew = Ordercrew::where('order_id', $order->id)->
-                where('status', 'ACC')->get();
+        $ordercrew = Ordercrew::where('order_id', $order->id)->where('status', 'ACC')->get();
         // share data to view
-      view()->share('print.crew',['order'=> $order,
-      'crew' => $crew,
-          'orderjob' => $orderjob,
-          'ordercrew' => $ordercrew,
+        view()->share('print.crew', [
+            'order' => $order,
+            'crew' => $crew,
+            'orderjob' => $orderjob,
+            'ordercrew' => $ordercrew,
         ]);
-      $pdf = SnappyPdf::loadView('print.crew', ['order'=> $order,
-      'crew' => $crew,
-          'orderjob' => $orderjob,
-          'ordercrew' => $ordercrew,
-  ]);
-      // download PDF file with download method
-    //   return $pdf->stream("filename.pdf", array("Attachment" => false));
-      return $pdf->download('filename.pdf');
+        $pdf = SnappyPdf::loadView('print.crew', [
+            'order' => $order,
+            'crew' => $crew,
+            'orderjob' => $orderjob,
+            'ordercrew' => $ordercrew,
+        ]);
+        // download PDF file with download method
+        //   return $pdf->stream("filename.pdf", array("Attachment" => false));
+        return $pdf->download('filename.pdf');
     }
     /**
      * Show the form for editing the specified resource.
@@ -211,9 +213,9 @@ class OrderController extends Controller
             'remarks' => $request->remarks,
             'status' => $request->status,
         ]);
-        alert()->success('Berhasil','Data telah di update');
+        alert()->success('Berhasil', 'Data telah di update');
         return redirect()->route('order.index')
-                        ->with('success','Order updated successfully');
+            ->with('success', 'Order updated successfully');
     }
     /**
      * Remove the specified resource from storage.
