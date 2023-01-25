@@ -10,7 +10,7 @@
             <div class="modal-body">
                 <div class="mb-3 row">
 
-                    @endif
+
                     <form action="{{ route('orderdocument.store') }}" enctype="multipart/form-data" method="POST">
                         @csrf
                         <input name="order_id" value="{{ $order->id }}" hidden>
