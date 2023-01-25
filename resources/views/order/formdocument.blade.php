@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 <div class="mb-3 row">
-                    @if ($ticket->status == 'client')
+
                     @endif
                     <form action="{{ route('orderdocument.store') }}" enctype="multipart/form-data" method="POST">
                         @csrf
