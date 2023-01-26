@@ -30,4 +30,24 @@ class Crew extends Model
     {
         return $this->belongsTo('App\Models\Ordercrew', 'crew_id');
     }
+
+    public function passport()
+    {
+        return $this->belongsTo('App\Models\Document', 'passport_id');
+    }
+
+    public function seamanbook()
+    {
+        return $this->belongsTo('App\Models\Document', 'seamanbook_id');
+    }
+
+    public function vissa()
+    {
+        return $this->belongsTo('App\Models\Document', 'vissa_id');
+    }
+
+    public function orangebook()
+    {
+        return $this->belongsTo('App\Models\Document', 'orangebook_id');
+    }
 }

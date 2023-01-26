@@ -745,7 +745,7 @@
                                                 <td>{{ $ordercrx->crew->birth }}
                                                 </td>
                                                 <td>{{ $ordercrx->crew->job->name }}</td>
-                                                <td>122211221</td>
+                                                <td>{{ $ordercrx->crew->passport->no ?? 'PASSPORT NO' }}</td>
                                                 <td>{{ $ordercrx->remark }}</td>
                                                 <td class="bg-primary">
                                                     <select name="status[]" class="form-control">
@@ -1135,12 +1135,12 @@
                                         <tr>
                                             <td>1</td>
                                             <td>{{ $crewnya->crew->subid }}</td>
-                                            <td>{{ $crewnya->crew->name }}</td>
-                                            <td><a name="" id="" href="#" role="button">NO
-                                                    PASSPORT</a>
+                                            <td></td>
+                                            <td><a name="" id="" href="#"
+                                                    role="button">{{ $crewnya->crew->passport->no ?? 'PASSPORT NO' }}</a>
                                             </td>
-                                            <td><a name="" id="" href="#" role="button">SEAMAN
-                                                    BOOK NO</a>
+                                            <td><a name="" id="" href="#"
+                                                    role="button">{{ $crewnya->crew->seamanbook->no ?? 'SEAMANBOOK NO' }}</a>
                                             </td>
                                             <td><a name="" id="" href="#" role="button">Contracts
                                                     No.</a>
@@ -1242,7 +1242,7 @@
                                                     hidden="">{{ $crewimigration->crew->name }}</td>
                                             <td>{{ $crewimigration->crew->birth }}</td>
                                             <td>{{ $crewimigration->crew->job->name }}</td>
-                                            <td>NO PASSPORT</td>
+                                            <td>{{ $crewimigration->crew->passport->no ?? 'PASSPORT NO' }}</td>
 
                                             <td>
                                                 <span class="badge bg-success">PASSED!</span>

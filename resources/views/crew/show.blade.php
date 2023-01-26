@@ -22,7 +22,7 @@
                             </option>
                         @endforeach
 
-                      
+
                     </select>
                 </div>
 
@@ -169,7 +169,10 @@
                                                         <label style="margin-left: 14px;margin-right: 7px;width: 16%;"
                                                             class="fs-5">年齢<br>Age</label>
 
-                                                        <span class="input-group-text" style=" width: 27%; ">{{ \Carbon\Carbon::parse($crew->birth)->diff(\Carbon\Carbon::now())->y }} 歳</span> </div>
+                                                        <span class="input-group-text"
+                                                            style=" width: 27%; ">{{ \Carbon\Carbon::parse($crew->birth)->diff(\Carbon\Carbon::now())->y }}
+                                                            歳</span>
+                                                    </div>
 
                                                 </div>
 
@@ -250,7 +253,7 @@
                                                 </div>
                                                 <label class="col-sm-5 fs-6">船員手帳<br>Seaman Book</label>
                                                 <div class="col-sm-7">
-                                                    <select class="form-select" id="seaman">
+                                                    <select class="form-select" id="seaman" name="seamanbook_id">
                                                         @foreach ($docs->where('type', 'Seaman Book') as $seaman)
                                                             <option value="{{ $seaman->id }}">{{ $seaman->no }}
                                                             </option>
@@ -405,7 +408,7 @@
                                                 <label class="col-sm-4">入国査証番号<br>Entry Visa No.</label>
                                                 <div class="col-sm-8">
 
-                                                    <select class="form-select" id="vissa">
+                                                    <select class="form-select" id="vissa" name="visa_id">
                                                         @foreach ($docs->where('type', 'Entry Visa') as $vissa)
                                                             <option value="{{ $vissa->id }}">{{ $vissa->no }}
                                                             </option>
@@ -436,7 +439,7 @@
                                                 <label for="" class="col-sm-5"
                                                     style=" font-size: smaller; ">オレンジブック<br>Orange Book</label>
                                                 <div class="col-sm-7">
-                                                    <select class="form-select" id="orange">
+                                                    <select class="form-select" id="orange" name="orangebook_id">
                                                         @foreach ($docs->where('type', 'Orange Book') as $orange)
                                                             <option value="{{ $orange->id }}">{{ $orange->no }}
                                                             </option>
@@ -510,7 +513,8 @@
                                         <tbody>
                                             @foreach ($exp as $exp)
                                                 <tr>
-                                                    <td style=" font-size: 0.4rem; ">{{ $exp->shipname->name }} {{ $exp->maru }} {{ $exp->number }}</td>
+                                                    <td style=" font-size: 0.4rem; ">{{ $exp->shipname->name }}
+                                                        {{ $exp->maru }} {{ $exp->number }}</td>
                                                     <td>{{ $exp->affiliation }}</td>
                                                     <td>{{ $exp->signon }}</td>
                                                     <td>{{ $exp->signoff }}</td>

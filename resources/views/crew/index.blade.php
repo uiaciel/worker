@@ -11,7 +11,7 @@
                             <h3 class="mb-0  text-white">Crew Database</h3>
                         </div>
                         <div>
-                            
+
                             <a href="{{ route('crew.create') }}" class="btn btn-white">Add New Crew</a>
                         </div>
                     </div>
@@ -23,7 +23,7 @@
             <div class="col-md-12 col-12">
                 <!-- card  -->
 
-                
+
                 <div class="card">
                     <!-- card header  -->
                     <div class="card-header bg-white  py-4">
@@ -66,47 +66,47 @@
                     <div class="card-body">
 
                         <div class="row card-header bg-white py-4">
-                            
+
                             <div class="col-md-6">
                                 <form action="">
-                                <div class="input-group mb-3">
-                                    
+                                    <div class="input-group mb-3">
 
-                                    
-                                    <select class="form-select" name="carijob" >
-                                      <option selected>== SELECT JOB ==</option>
-                                      
-                                      @foreach ($jobs as $job )
-                                      <option value="1">{{$job->name}}</option>
-                                      @endforeach
-                                     
-                                    </select>
 
-                                    <select class="form-select" name="cariage">
-                                        <option selected>== SELECT AGE ==</option>
-                                        <option value="1">18-30</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select>
 
-                                    <button class="btn btn-outline-danger" type="submit">SORT</button>
-                                
-                                  </div>
+                                        <select class="form-select" name="carijob">
+                                            <option selected>== SELECT JOB ==</option>
+
+                                            @foreach ($jobs as $job)
+                                                <option value="1">{{ $job->name }}</option>
+                                            @endforeach
+
+                                        </select>
+
+                                        <select class="form-select" name="cariage">
+                                            <option selected>== SELECT AGE ==</option>
+                                            <option value="1">18-30</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+
+                                        <button class="btn btn-outline-danger" type="submit">SORT</button>
+
+                                    </div>
                                 </form>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="input-group mb-3">
                                     <label class="input-group-text" for="inputGroupSelect01">Search</label>
-                                <input type="text" class="form-control" id="caridata">
+                                    <input type="text" class="form-control" id="caridata">
+                                </div>
                             </div>
-                        </div>
-                            
+
                         </div>
 
                         <div class="tab-content">
                             <div id="all" class="tab-pane fade show active">
-                                <table  id="" class="table table-striped datatable">
+                                <table id="" class="table table-striped datatable">
                                     <thead class="table-dark">
                                         <tr>
                                             <th>番号<br>No.</th>
@@ -129,7 +129,7 @@
                                                 <td>{{ \Carbon\Carbon::parse($crews->birth)->diff(\Carbon\Carbon::now())->y }}
                                                 </td>
                                                 <td>{{ $crews->job->code }}</td>
-                                                <td>{{ $crews->passport_id }}</td>
+                                                <td>{{ $crews->passport->no ?? 'PASSPORT NO' }}</td>
                                                 <td>
                                                     <div class="input-group mb-3">
 
@@ -145,12 +145,12 @@
                                         @endforeach
 
                                     </tbody>
-                                    
+
                                 </table>
                             </div>
                             <div id="onboard" class="tab-pane fade">
-                                <table  id="" class="table table-striped datatable">
-                                    <thead class="table-dark" >
+                                <table id="" class="table table-striped datatable">
+                                    <thead class="table-dark">
                                         <tr>
                                             <th>番号<br>No.</th>
                                             <th>船員ID<br>Crew ID</th>
@@ -174,7 +174,7 @@
                                                 <td>{{ \Carbon\Carbon::parse($onboard->birth)->diff(\Carbon\Carbon::now())->y }}
                                                 </td>
                                                 <td>{{ $onboard->job->code }}</td>
-                                                <td>{{ $onboard->passport_id }}</td>
+                                                <td>{{ $onboard->passport->no ?? 'PASSPORT NO' }}</td>
                                                 <td>
                                                     <div class="input-group mb-3">
                                                         <a href="{{ route('crew.show', $onboard->subid) }}"
@@ -187,12 +187,12 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-                                        
+
                                     </tbody>
                                 </table>
                             </div>
                             <div id="standby" class="tab-pane fade">
-                                <table id="" class="table table-striped datatable" >
+                                <table id="" class="table table-striped datatable">
                                     <thead class="table-dark">
                                         <tr>
                                             <th>番号<br>No.</th>
@@ -217,20 +217,22 @@
                                                 <td>{{ \Carbon\Carbon::parse($standby->birth)->diff(\Carbon\Carbon::now())->y }}
                                                 </td>
                                                 <td>{{ $standby->job->code }}</td>
-                                                <td>{{ $standby->passport_id }}</td>
+                                                <td>{{ $standby->passport->no ?? 'PASSPORT NO' }}</td>
                                                 <td>
                                                     <div class="input-group mb-3">
                                                         <a href="{{ route('crew.show', $standby->subid) }}"
-                                                            class="btn btn-sm btn-outline-primary" target="_blank">View</a>
+                                                            class="btn btn-sm btn-outline-primary"
+                                                            target="_blank">View</a>
 
                                                         <a href="/print/crew/{{ $standby->subid }}"
-                                                            class="btn btn-sm btn-outline-success" target="_blank">Print</a>
+                                                            class="btn btn-sm btn-outline-success"
+                                                            target="_blank">Print</a>
                                                     </div>
 
                                                 </td>
                                             </tr>
                                         @endforeach
-                                        
+
                                     </tbody>
                                 </table>
                             </div>
@@ -261,20 +263,22 @@
                                                 <td>{{ \Carbon\Carbon::parse($unstandby->birth)->diff(\Carbon\Carbon::now())->y }}
                                                 </td>
                                                 <td>{{ $unstandby->job->code }}</td>
-                                                <td>{{ $unstandby->passport_id }}</td>
+                                                <td>{{ $unstandby->passport->no ?? 'PASSPORT NO' }}</td>
                                                 <td>
                                                     <div class="input-group mb-3">
                                                         <a href="{{ route('crew.show', $unstandby->subid) }}"
-                                                            class="btn btn-sm btn-outline-primary" target="_blank">View</a>
+                                                            class="btn btn-sm btn-outline-primary"
+                                                            target="_blank">View</a>
 
                                                         <a href="/print/crew/{{ $unstandby->subid }}"
-                                                            class="btn btn-sm btn-outline-success" target="_blank">Print</a>
+                                                            class="btn btn-sm btn-outline-success"
+                                                            target="_blank">Print</a>
                                                     </div>
 
                                                 </td>
                                             </tr>
                                         @endforeach
-                                        
+
                                     </tbody>
                                 </table>
                             </div>
@@ -283,7 +287,7 @@
 
 
                     </div>
-                    
+
 
                 </div>
             </div>
@@ -291,6 +295,4 @@
 
     </div>
     </div>
-
-    
 @endsection

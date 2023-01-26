@@ -83,7 +83,7 @@
                                         <option value="{{ $op->id }}">
                                             {{ $op->subid }} -
                                             {{ $op->name }} - {{ $op->birth }}
-                                            - {{ $op->job->name }} - No Passport
+                                            - {{ $op->job->name }} - {{ $op->passport->no ?? 'PASSPORT NO' }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -98,7 +98,7 @@
                                     <option value="{{ $op->id }}">
                                         {{ $op->subid }} -
                                         {{ $op->name }} - {{ $op->birth }}
-                                        - {{ $op->job->name }} - No Passport
+                                        - {{ $op->job->name }} - {{ $op->passport->no ?? 'PASSPORT NO' }}
                                     </option>
                                 @endforeach
                             </select>
