@@ -15,7 +15,7 @@ use App\Models\Medical;
 
 class CrewController extends Controller
 {
-    
+
     public function index()
     {
         $crew = Crew::All();
@@ -33,7 +33,7 @@ class CrewController extends Controller
             'crew' => $crew
         ]);
     }
-    
+
     public function create()
     {
         return view('crew.create');
@@ -54,7 +54,7 @@ class CrewController extends Controller
 
         Crew::create($request->all());
 
-        if ($request->file('photo')) {
+        if ($request->hasfile('photo')) {
             $file = $request->file('photo');
             $nama = time() . '-' . $file->getClientOriginalName();
             $path = $file->storeAs(storage_path('photo'), $nama);
@@ -101,7 +101,7 @@ class CrewController extends Controller
     {
         $crew = Crew::where('subid', $crewid)->first();
         $document = Document::where('crew_id', $crew->id)->where('id', $id)->get();
-        
+
         return response()->json($document);
     }
 
@@ -131,9 +131,8 @@ class CrewController extends Controller
             $nama = time() . '-' . $request->file('photo')->getClientOriginalName();
             $path = $request->file('photo')->storeAs('photo', $nama, ['disk' => 'public']);
             $image = $path;
+            $crew->update(['photo' => $image]);
         }
-
-        $crew->update(['photo' => $image]);
 
         toast('Berhasil di update', 'success');
         return redirect()->back()
@@ -153,7 +152,4 @@ class CrewController extends Controller
     {
         // return Excel::download(new CrewExport, 'crew.xlsx');
     }
-
-
-    
 }

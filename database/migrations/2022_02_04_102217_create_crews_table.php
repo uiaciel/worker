@@ -15,7 +15,7 @@ class CreateCrewsTable extends Migration
     {
         Schema::create('crews', function (Blueprint $table) {
             $table->id();
- 
+
             $table->string('subid');
             $table->string('name')->nullable();
             $table->string('place')->nullable();
@@ -34,20 +34,22 @@ class CreateCrewsTable extends Migration
             $table->string('passport_id')->nullable();
             $table->string('orangebook_id')->nullable();
             $table->string('seamanbook_id')->nullable();
-            
-            
+
+
             $table->string('signoff')->nullable();
             $table->string('currencysalary')->nullable();
             $table->string('salary')->nullable();
-        
+
             $table->string('shoes')->nullable();
             $table->string('glove')->nullable();
             $table->string('kappa')->nullable();
             $table->string('remark')->nullable();
             $table->string('license')->nullable();
 
-            $table->integer('mobile')->nullable();
-            $table->string('email')->nullable();
+            $table->string('mobile_1')->nullable();
+            $table->string('email_1')->nullable();
+            $table->string('mobile_2')->nullable();
+            $table->string('email_2')->nullable();
 
             $table->string('emergency_name_1')->nullable();
             $table->string('emergency_relation_1')->nullable();
