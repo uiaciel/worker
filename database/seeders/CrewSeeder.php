@@ -26,34 +26,34 @@ class CrewSeeder extends Seeder
         //crew jobs
 
         $currency = [
-            ['symbol' => 'Rp','name' =>'Rp (Indonesian Rupiah)'],
-            ['symbol' => 'RM','name' =>'RM (Malaysian Ringgit)'],
-            ['symbol' => '₱','name' =>'₱ (Phillipphine Peso)'],
-            ['symbol' => '฿','name' =>'฿ (Thai Baht)'],
-            ['symbol' => '៛','name' =>'៛ (Cambodian Riel)'],
-            ['symbol' => '₫','name' =>'₫ (Vietnamese Dong)'],
-            ['symbol' => '₭','name' =>'₭ (Lao Kip)'],
-            ['symbol' => 'Ks','name' =>'Ks (Myanmar Kyat)'],
-            ['symbol' => '৳','name' =>'৳ (Bangladeshi Taka)'],
-            ['symbol' => '₹','name' =>'₹ (Indian Rupee)'],
-            ['symbol' => 'Rs','name' =>'Rs (Pakistani & Sri Lankan Rupee)'],
-            ['symbol' => 'SAR','name' =>'SAR (Saudi Riyal)'],
-            ['symbol' => 'AED','name' =>'AED (UAE Dirham)'],
-            ['symbol' => 'BD','name' =>'BD (Bahrain Dinar)'],
-            ['symbol' => 'QR','name' =>'QR (Qatari Riyal)'],
-            ['symbol' => '¥','name' =>'¥ (Japanese Yen & Chinese Yuan)'],
-            ['symbol' => '₩','name' =>'₩ (Korean Won)'],
-            ['symbol' => '₽','name' =>'₽ (Russian Ruble)'],
-            ['symbol' => '₴','name' =>'₴ (Ukrainian Hrynia)'],
-            ['symbol' => 'US$','name' =>'US$ (US Dollar)'],
-            ['symbol' => 'CA$','name' =>'CA$ (Canadian Dollar)'],
-            ['symbol' => 'AU$','name' =>'AU$ (Australian Dollar)'],
-            ['symbol' => 'NZ$','name' =>'NZ$ (New Zealand Dollar)'],
-            ['symbol' => 'SG$','name' =>'SG$ (Singapore Dollar)'],
-            ['symbol' => 'HK$','name' =>'HK$ (Hong Kong Dollar)'],
-            ['symbol' => '€','name' =>'€ (Euro)'],
-            ['symbol' => 'Fr','name' =>'Fr (Swiss Franc)'],
-            ['symbol' => '£','name' =>'£ (British Pound Sterling)'],
+            ['symbol' => 'Rp', 'name' => 'Rp (Indonesian Rupiah)'],
+            ['symbol' => 'RM', 'name' => 'RM (Malaysian Ringgit)'],
+            ['symbol' => '₱', 'name' => '₱ (Phillipphine Peso)'],
+            ['symbol' => '฿', 'name' => '฿ (Thai Baht)'],
+            ['symbol' => '៛', 'name' => '៛ (Cambodian Riel)'],
+            ['symbol' => '₫', 'name' => '₫ (Vietnamese Dong)'],
+            ['symbol' => '₭', 'name' => '₭ (Lao Kip)'],
+            ['symbol' => 'Ks', 'name' => 'Ks (Myanmar Kyat)'],
+            ['symbol' => '৳', 'name' => '৳ (Bangladeshi Taka)'],
+            ['symbol' => '₹', 'name' => '₹ (Indian Rupee)'],
+            ['symbol' => 'Rs', 'name' => 'Rs (Pakistani & Sri Lankan Rupee)'],
+            ['symbol' => 'SAR', 'name' => 'SAR (Saudi Riyal)'],
+            ['symbol' => 'AED', 'name' => 'AED (UAE Dirham)'],
+            ['symbol' => 'BD', 'name' => 'BD (Bahrain Dinar)'],
+            ['symbol' => 'QR', 'name' => 'QR (Qatari Riyal)'],
+            ['symbol' => '¥', 'name' => '¥ (Japanese Yen & Chinese Yuan)'],
+            ['symbol' => '₩', 'name' => '₩ (Korean Won)'],
+            ['symbol' => '₽', 'name' => '₽ (Russian Ruble)'],
+            ['symbol' => '₴', 'name' => '₴ (Ukrainian Hrynia)'],
+            ['symbol' => 'US$', 'name' => 'US$ (US Dollar)'],
+            ['symbol' => 'CA$', 'name' => 'CA$ (Canadian Dollar)'],
+            ['symbol' => 'AU$', 'name' => 'AU$ (Australian Dollar)'],
+            ['symbol' => 'NZ$', 'name' => 'NZ$ (New Zealand Dollar)'],
+            ['symbol' => 'SG$', 'name' => 'SG$ (Singapore Dollar)'],
+            ['symbol' => 'HK$', 'name' => 'HK$ (Hong Kong Dollar)'],
+            ['symbol' => '€', 'name' => '€ (Euro)'],
+            ['symbol' => 'Fr', 'name' => 'Fr (Swiss Franc)'],
+            ['symbol' => '£', 'name' => '£ (British Pound Sterling)'],
 
         ];
 
@@ -583,49 +583,155 @@ class CrewSeeder extends Seeder
                 'kappa' => $faker->randomElement(['S', 'M', 'L', 'XL', 'XXL', 'XXXL']),
                 'remark' => $faker->sentence(),
                 'license' => $faker->sentence(),
+                'visa_id' => 1,
+                'passport_id' => 1,
+                'orangebook_id' => 1,
+                'seamanbook_id' => 1,
+
 
             ]);
         }
 
-        $document = new Document;
-        $document->crew_id = 1;
-        $document->no = 123456789;
-        $document->type = 'Entry Visa';
-        $document->path = '/file/1672044060-visa-12345678pdf';
-        $document->place = 'Jakarta';
-        $document->issued = '2022/12/22';
-        $document->valid = '2022/12/22';
-        $document->country = 'UK';
-        $document->save();
+        $faker = Faker::create('id_ID');
+        for ($i = 1; $i <= 51; $i++) {
+            DB::table('documents')->insert([
+                'crew_id' => $i,
+                'no' => $faker->numberBetween(161212317, 163212317),
+                'type' => 'Entry Visa',
+                'path' => '/file/1672044060-visa-12345678pdf',
+                'place' => $faker->city,
+                'issued' => $faker->date('Y/m/d'),
+                'valid' => $faker->date('Y/m/d'),
+                'country' => 'Indonesia',
+            ]);
+        }
 
-        $document = new Document;
-        $document->crew_id = 1;
-        $document->no = 123456789;
-        $document->type = 'Passport';
-        $document->path = '/file/1672044060-visa-12345678pdf';
-        $document->place = 'Jakarta';
-        $document->issued = '2022/12/22';
-        $document->valid = '2022/12/22';
-        $document->save();
+        $faker = Faker::create('id_ID');
+        for ($i = 1; $i <= 51; $i++) {
+            DB::table('documents')->insert([
+                'crew_id' => $i,
+                'no' => $faker->numberBetween(161212317, 163212317),
+                'type' => 'Passport',
+                'path' => '/file/1672044060-visa-12345678pdf',
+                'place' => $faker->city,
+                'issued' => $faker->date('Y/m/d'),
+                'valid' => $faker->date('Y/m/d'),
 
-        $document = new Document;
-        $document->crew_id = 1;
-        $document->no = 123456789;
-        $document->type = 'Seaman Book';
-        $document->path = '/file/1672044060-visa-12345678pdf';
-        $document->place = 'Jakarta';
-        $document->issued = '2022/12/22';
-        $document->valid = '2022/12/22';
-        $document->save();
+            ]);
+        }
 
-        $document = new Document;
-        $document->crew_id = 1;
-        $document->no = 123456789;
-        $document->type = 'Orange Book';
-        $document->path = '/file/1672044060-visa-12345678pdf';
-        $document->place = 'Jakarta';
-        $document->issued = '2022/12/22';
-        $document->valid = '2022/12/22';
-        $document->save();
+        $faker = Faker::create('id_ID');
+        for ($i = 1; $i <= 51; $i++) {
+            DB::table('documents')->insert([
+                'crew_id' => $i,
+                'no' => $faker->numberBetween(161212317, 163212317),
+                'type' => 'Seaman Book',
+                'path' => '/file/1672044060-visa-12345678pdf',
+                'place' => $faker->city,
+                'issued' => $faker->date('Y/m/d'),
+                'valid' => $faker->date('Y/m/d'),
+
+            ]);
+        }
+
+        $faker = Faker::create('id_ID');
+        for ($i = 1; $i <= 51; $i++) {
+            DB::table('documents')->insert([
+                'crew_id' => $i,
+                'no' => $faker->numberBetween(161212317, 163212317),
+                'type' => 'Orange Book',
+                'path' => '/file/1672044060-visa-12345678pdf',
+                'place' => $faker->city,
+                'issued' => $faker->date('Y/m/d'),
+                'valid' => $faker->date('Y/m/d'),
+
+            ]);
+        }
+        //Education Competence Proficiency
+        $faker = Faker::create('id_ID');
+        for ($i = 1; $i <= 51; $i++) {
+            DB::table('certificates')->insert([
+                'crew_id' => $i,
+                'category' => 'Education',
+                'no' => $faker->numberBetween(161212317, 163212317),
+                'type' => $faker->randomElement(['SD/MI', 'D-3']),
+                'path' => '/file/1672044060-visa-12345678pdf',
+                'place' => $faker->city,
+                'issued' => $faker->date('Y/m/d'),
+                'valid' => $faker->date('Y/m/d'),
+
+            ]);
+        }
+
+        //Education Competence Proficiency
+        $faker = Faker::create('id_ID');
+        for ($i = 1; $i <= 51; $i++) {
+            DB::table('certificates')->insert([
+                'crew_id' => $i,
+                'category' => 'Competence',
+                'no' => $faker->numberBetween(161212317, 163212317),
+                'type' => $faker->randomElement(['ANT-II', 'ATT-IV']),
+                'path' => '/file/1672044060-visa-12345678pdf',
+                'place' => $faker->city,
+                'issued' => $faker->date('Y/m/d'),
+                'valid' => $faker->date('Y/m/d'),
+
+            ]);
+        }
+
+        //Education Competence Proficiency
+        $faker = Faker::create('id_ID');
+        for ($i = 1; $i <= 51; $i++) {
+            DB::table('certificates')->insert([
+                'crew_id' => $i,
+                'category' => 'Proficiency',
+                'no' => $faker->numberBetween(161212317, 163212317),
+                'type' => $faker->randomElement(['SCRB', 'SDSD']),
+                'path' => '/file/1672044060-visa-12345678pdf',
+                'place' => $faker->city,
+                'issued' => $faker->date('Y/m/d'),
+                'valid' => $faker->date('Y/m/d'),
+
+            ]);
+        }
+
+        //Medical
+        $faker = Faker::create('id_ID');
+        for ($i = 1; $i <= 51; $i++) {
+            DB::table('medicals')->insert([
+                'crew_id' => $i,
+                'type' => $faker->randomElement(['MCU', 'Vaccine']),
+                'path' => '/file/1672044060-visa-12345678pdf',
+                'date' => $faker->date('Y/m/d', 'now'),
+                'description' => $faker->sentence(),
+
+            ]);
+        }
+
+        $faker = Faker::create('id_ID');
+        for ($i = 1; $i <= 51; $i++) {
+            DB::table('contracts')->insert([
+                'crew_id' => $i,
+                'no' => $faker->numberBetween(161212317, 163212317),
+                'type' => $faker->randomElement(['SCRB', 'SDSD']),
+                'pdf' => '/file/1672044060-visa-12345678pdf',
+                'embarkation' => $faker->date('Y/m/d', 'now'),
+                'vessel_name' => $faker->randomElement(['Dai Maru 2', 'Takashi 4']),
+
+            ]);
+        }
+
+        $faker = Faker::create('id_ID');
+        for ($i = 1; $i <= 51; $i++) {
+            DB::table('contracts')->insert([
+                'crew_id' => $i,
+                'no' => $faker->numberBetween(161212317, 163212317),
+                'type' => $faker->randomElement(['PKL', 'Memorandum']),
+                'pdf' => '/file/1672044060-visa-12345678pdf',
+                'embarkation' => $faker->date('Y/m/d', 'now'),
+                'vessel_name' => $faker->randomElement(['Dai Maru 2', 'Takashi 4']),
+
+            ]);
+        }
     }
 }
