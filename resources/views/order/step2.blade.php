@@ -738,7 +738,8 @@
                                         @foreach ($ordercrew as $index => $ordercrx)
                                             <tr @if ($ordercrx->status == 'ACC') class="bg-primary text-white" @endif>
                                                 <td>{{ $index + 1 }}</td>
-                                                <td>{{ $ordercrx->crew->subid }}
+                                                <td><a href="/print/crew/{{ $ordercrx->crew->subid }}"
+                                                        target="_blank">{{ $ordercrx->crew->subid }}</a>
                                                 </td>
                                                 <td><input value="{{ $ordercrx->id }}" name="id[]"
                                                         hidden>{{ $ordercrx->crew->name }}</td>
@@ -1073,7 +1074,9 @@
                     </div>
                 </div>
             </div>
+        @endif
 
+        @if ($order->step_6 == 1)
             <div class="row mt-4">
                 <div class="col-12">
                     <div class="card">
@@ -1133,9 +1136,9 @@
                                 <tbody>
                                     @foreach ($ordercrew->where('status', 'ACC') as $crewnya)
                                         <tr>
-                                            <td>1</td>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>{{ $crewnya->crew->subid }}</td>
-                                            <td></td>
+                                            <td>{{ $crewnya->crew->name }}</td>
                                             <td><a name="" id="" href="#"
                                                     role="button">{{ $crewnya->crew->passport->no ?? 'PASSPORT NO' }}</a>
                                             </td>
@@ -1174,9 +1177,7 @@
 
                 </div>
             </div>
-        @endif
 
-        @if ($order->step_6 == 1)
             <div class="row mt-6">
                 <div class="col-12">
                     <!-- card -->
@@ -1237,7 +1238,7 @@
                                     @foreach ($ordercrew->where('status', 'ACC') as $crewimigration)
                                         <tr>
 
-                                            <td>1</td>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td><input value="3" name="id[]"
                                                     hidden="">{{ $crewimigration->crew->name }}</td>
                                             <td>{{ $crewimigration->crew->birth }}</td>

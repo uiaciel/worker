@@ -88,6 +88,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/ticket/update/{id}', [TicketController::class, 'update'])->name('ticket.update');
+Route::post('/order/update/step', [OrderController::class, 'updatestep'])->name('order.updatestep');
 // Route::get('/re/create', [ReController::class, 'stepOne'])->name('re.stepone');
 // Route::post('/re', [ReController::class, 'storeStepOne'])->name('re.storeone');
 // Route::get('/re/steptwo/{id}', [ReController::class, 'stepTwo'])->name('re.steptwo');

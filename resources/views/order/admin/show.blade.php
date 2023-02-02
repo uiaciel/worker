@@ -178,11 +178,19 @@
                         <div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="mb-2 mb-lg-0">
-                                    <h4 class="mb-0">Request Response </h4>
+                                    <h4 class="mb-0">Request Response</h4>
                                 </div>
                                 <div>
-                                    {{-- <a href="" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#datacrewnya">Add Crews</a> --}}
+                                    <form onsubmit="return confirm('Are you sure?');"
+                                        action="{{ route('order.update', $order->id) }}" enctype="multipart/form-data"
+                                        method="POST">
+                                        @csrf
+
+                                        @method('PUT')
+
+                                        <input value="1" name="step_2" hidden>
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -242,65 +250,134 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <h3>Air Ticket(s) Provided by : @if ($order->airticketby == $order->client->id)
+                            {{-- <h3>Air Ticket(s) Provided by : @if ($order->airticketby == $order->client->id)
                                     {{ $order->client->nama }}
                                 @else
                                     {{ $order->company->nama }}
                                 @endif
-                            </h3>
+                            </h3> --}}
                         </form>
+
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row mt-6">
-            <div class="col-md-12 col-12">
-                <div class="card">
-                    <div class="card-header bg-white  py-4">
-                        <div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="mb-2 mb-lg-0">
-                                    <h4 class="mb-0">Flight Schedule (TinyMCE) </h4>
-                                </div>
-                                <div>
-                                    <a href="" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#penawarantiket">Buat Penawaran</a>
+        @if ($order->airticketby == $order->company->id)
+            <div class="row mt-6">
+                <div class="col-md-12 col-12">
+                    <div class="card">
+                        <div class="card-header bg-white  py-4">
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="mb-2 mb-lg-0">
+                                        <h4 class="mb-0">Flight Schedule (TinyMCE) </h4>
+                                    </div>
+                                    <div>
+                                        <a href="" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#penawarantiket">Buat Penawaran</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="row align-items-center">
-                            <div class="accordion" id="accordionExample">
-                                @foreach ($tickets as $tikets)
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingOne">
-                                            <button class="accordion-button btn-primary" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#penawaran{{ $tikets->id }}"
-                                                aria-expanded="true" aria-controls="collapseOne">
-                                                Penawaran #{{ $tikets->id }} - <strong>
-                                                    @if (is_null($tikets->status))
-                                                        menunggu respon
-                                                    @else
-                                                        {{ $tikets->status }}
-                                                    @endif
-                                                </strong>
-                                            </button>
-                                        </h2>
-                                        <div id="penawaran{{ $tikets->id }}" class="accordion-collapse collapse"
-                                            aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                            <div class="accordion-body">
-                                                {!! $tikets->detail !!}
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="accordion" id="accordionExample">
+                                    @foreach ($tickets as $tikets)
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingOne">
+                                                <button class="accordion-button btn-primary" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#penawaran{{ $tikets->id }}" aria-expanded="true"
+                                                    aria-controls="collapseOne">
+                                                    Penawaran #{{ $tikets->id }} - <strong>
+                                                        @if (is_null($tikets->status))
+                                                            menunggu respon
+                                                        @else
+                                                            {{ $tikets->status }}
+                                                        @endif
+                                                    </strong>
+                                                </button>
+                                            </h2>
+                                            <div id="penawaran{{ $tikets->id }}" class="accordion-collapse collapse"
+                                                aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                                <div class="accordion-body">
+                                                    {!! $tikets->detail !!}
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        @endif
+
+        <div class="row mt-6">
+            <div class="col-12">
+                <!-- card -->
+                <div class="card">
+                    <div class="card-header bg-white  py-4">
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="mb-2 mb-lg-0">
+                                <h4 class="mb-0">Documents </h4>
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-primary btn-round" data-bs-toggle="modal"
+                                    data-bs-target="#formdocument">
+                                    Upload
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <!-- card body -->
+                    <div class="card-body">
+                        <div class="row">
+
+                            <div class="table-responsive mt-2">
+                                <table class="table table-hover table-bordered">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th scope="col">No</th>
+                                            <th scope="col">Type</th>
+                                            <th scope="col">File</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($orderdocuments as $orderdocument)
+                                            <tr class="">
+                                                <td scope="row">{{ $loop->iteration }}</td>
+                                                <td>{{ $orderdocument->type }}</td>
+                                                <td>{{ $orderdocument->path }}</td>
+                                                <td><button type="button"
+                                                        class="btn btn-sm btn-primary">Download</button></td>
+                                            </tr>
+                                        @endforeach
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+
+
+                        </div>
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
         </div>
+        @include('order.formdocument')
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog">

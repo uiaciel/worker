@@ -118,12 +118,15 @@ class OrderController extends Controller
         $crew = Crew::All();
         $ticket = Ticket::where('order_id', $order->id)->get();
         $ordercrew = Ordercrew::where('order_id', $order->id)->get();
+        $orderdocument = Orderdocument::where('order_id', $order->id)->get();
+
         return view('order.admin.show', [
             'order' => $order,
             'crew' => $crew,
             'orderjob' => $orderjob,
             'ordercrew' => $ordercrew,
             'tickets' => $ticket,
+            'orderdocuments' => $orderdocument,
         ]);
     }
     public function step2($id)
@@ -197,32 +200,37 @@ class OrderController extends Controller
     public function update(Request $request, Order $order)
     {
         $order->update([
-            'shipowner' => $request->shipowner,
-            'shipname' => $request->shipname,
-            'shipnumber' => $request->shipnumber,
-            'shiptype' => $request->shiptype,
-            'shipmaru' => $request->shipmaru,
-            'fishingarea' => $request->fishingarea,
-            'nationaly' => $request->nationaly,
-            'member' => $request->member,
-            'periode' => $request->periode,
-            'portstart' => $request->portstart,
-            'portend' => $request->portend,
-            'start' => $request->start,
-            'end' => $request->end,
-            'remarks' => $request->remarks,
-            'status' => $request->status,
+            // 'shipowner' => $request->shipowner,
+            // 'shipname' => $request->shipname,
+            // 'shipnumber' => $request->shipnumber,
+            // 'shiptype' => $request->shiptype,
+            // 'shipmaru' => $request->shipmaru,
+            // 'fishingarea' => $request->fishingarea,
+            // 'nationaly' => $request->nationaly,
+            // 'member' => $request->member,
+            // 'periode' => $request->periode,
+            // 'portstart' => $request->portstart,
+            // 'portend' => $request->portend,
+            // 'start' => $request->start,
+            // 'end' => $request->end,
+            // 'remarks' => $request->remarks,
+            // 'status' => $request->status,
+            'step_2' => $request->step_2,
         ]);
         alert()->success('Berhasil', 'Data telah di update');
         return redirect()->route('order.index')
             ->with('success', 'Order updated successfully');
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+    public function updatestep(Request $request, Order $order)
+    {
+        $order->update(['step_2' => $request->step_2]);
+
+        // alert()->success('Berhasil', 'Data telah di update');
+        // return redirect()->route('order.index')
+        //     ->with('success', 'Order updated successfully');
+    }
+
     public function destroy($id)
     {
         //

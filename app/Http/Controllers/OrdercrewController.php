@@ -51,38 +51,26 @@ class OrdercrewController extends Controller
         }
 
         $idorder = Order::where('id', $request->order_id)->first();
-        $order = Order::find($request->order_id);
-        $order->update(['step_2' => 1]);
+        // $order = Order::find($request->order_id);
+        // $order->update(['step_2' => 1]);
 
         return redirect()->route('order.show', $idorder->inv)->with('success', 'Data created successfully.');
     }
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Ordercrew  $ordercrew
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Ordercrew $ordercrew)
+
+    public function updatecrew(Request $request)
     {
-        //
+        // $idorder = Order::where('id', $request->order_id)->first();
+        $order = Order::find($request->order_id);
+        $order->update(['step_2' => 1]);
+
+        return redirect()->back();
     }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Ordercrew  $ordercrew
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Ordercrew $ordercrew)
     {
         //
     }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Ordercrew  $ordercrew
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request)
     {
     }
@@ -105,12 +93,7 @@ class OrdercrewController extends Controller
         alert()->success('Berhasil', 'Data telah di update');
         return redirect()->back()->with('success', 'Data Delete successfully.');
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Ordercrew  $ordercrew
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         $ordercrew = Ordercrew::findOrFail($id);

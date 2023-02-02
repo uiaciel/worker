@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Crew;
 use App\Models\Order;
 use App\Models\Ordercrew;
+use App\Models\Orderdocument;
 use App\Models\Orderjob;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
@@ -37,13 +38,15 @@ class AdminController extends Controller
         $crew = Crew::All();
         $ticket = Ticket::where('order_id', $order->id)->get();
         $ordercrew = Ordercrew::where('order_id', $order->id)->get();
+        $orderdocument = Orderdocument::where('order_id', $order->id)->get();
 
-        return view('admin.request.show', [
+        return view('order.step2', [
             'order' => $order,
             'crew' => $crew,
             'orderjob' => $orderjob,
             'ordercrew' => $ordercrew,
             'tickets' => $ticket,
+            'orderdocuments' => $orderdocument,
         ]);
     }
 

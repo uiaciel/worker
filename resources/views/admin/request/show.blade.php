@@ -103,7 +103,7 @@
                         <div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="mb-2 mb-lg-0">
-                                    <h4 class="mb-0">Request Response </h4>
+                                    <h4 class="mb-0">Request Response</h4>
                                 </div>
                                 <div>
                                     <a href="" class="btn btn-primary" data-bs-toggle="modal"
@@ -234,8 +234,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <h3>Air Ticket(s) Provided by : {{ $order->airticketby }}</h3>
+                            {{-- <h3>Air Ticket(s) Provided by : {{ $order->airticketby }}</h3> --}}
                         </form>
+                        <button class="btn btn-primary">UPDATE</button>
                     </div>
                 </div>
             </div>
