@@ -637,8 +637,7 @@
                                                 @foreach ($oj->ordercrew as $namacrew)
                                                     <li>{{ $namacrew->crew->subid }} - {{ $namacrew->crew->name }}
                                                         {{ $namacrew->crew->birth }} - {{ $namacrew->crew->job->name }} -
-                                                        NO
-                                                        PASSPORT</li>
+                                                        {{ $namacrew->crew->passport->no ?? 'PASSPORT NO' }}</li>
                                                 @endforeach
 
                                             </ol>
@@ -713,7 +712,7 @@
                         <div class="card-body">
                             <!-- card title -->
                             <form method="POST" enctype="multipart/form-data"
-                                action="{{ route('ordercrewall.update') }}">
+                                onsubmit="return confirm('Are you sure?');" action="{{ route('ordercrewall.update') }}">
                                 @csrf
                                 <table class="table table-bordered">
                                     <thead class="table-dark">
@@ -903,8 +902,10 @@
                                             @elseif ($ticket->status == 'deal')
                                                 <h4><span class="badge bg-success">DEAL</span></h4>
                                             @elseif($ticket->status == 'client')
-                                                <span class="badge bg-primary">Air Ticket by
-                                                    {{ $order->client->nama }}</span>
+                                                <h4><span class="badge bg-primary">Air Ticket by
+                                                        {{ $order->client->nama }}</span></h4>
+                                            @else
+                                                <h4><span class="badge badge-lg bg-warning">Please Response</span></h4>
                                             @endif
 
                                         </td>

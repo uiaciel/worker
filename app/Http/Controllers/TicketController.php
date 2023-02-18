@@ -26,8 +26,6 @@ class TicketController extends Controller
      */
     public function create()
     {
-
-
     }
 
     /**
@@ -47,9 +45,9 @@ class TicketController extends Controller
             'step_4' => 1
         ]);
 
-        $url = '/order/' . $request->orderinv;
+        $url = '/admin/order/' . $request->orderinv;
 
-        toast('Post created successfully.','success');
+        toast('Penawaran Tiket berhasil dibuat.', 'success');
         return redirect($url);
     }
 
@@ -93,24 +91,22 @@ class TicketController extends Controller
         // return redirect()->route('admin.author.index')->with('success', 'Data berhasil diubah');
         // Ticket::where('id', $request->ticketid)->update(['status' => $request->status]);
 
-        if($request->status == "deal") {
+        if ($request->status == "deal") {
             Order::where('id', $request->orderid)->update([
                 'step_5' => 1
             ]);
-
         }
 
-        if($request->status == "client") {
+        if ($request->status == "client") {
             Order::where('id', $request->orderid)->update([
                 'step_5' => 1
             ]);
-
         }
 
 
         $url = '/order/' . $request->orderinv;
 
-        toast('Post created successfully.','success');
+        toast('Post created successfully.', 'success');
         return redirect($url);
     }
 

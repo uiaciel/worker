@@ -218,7 +218,9 @@ class OrderController extends Controller
             'step_2' => $request->step_2,
         ]);
         alert()->success('Berhasil', 'Data telah di update');
-        return redirect()->route('order.index')
+
+
+        return redirect()->back()
             ->with('success', 'Order updated successfully');
     }
 

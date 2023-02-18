@@ -6,6 +6,8 @@ use App\Models\Order;
 use App\Models\Ordercrew;
 use Illuminate\Http\Request;
 use Alert;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class OrdercrewController extends Controller
 {
@@ -54,7 +56,12 @@ class OrdercrewController extends Controller
         // $order = Order::find($request->order_id);
         // $order->update(['step_2' => 1]);
 
-        return redirect()->route('order.show', $idorder->inv)->with('success', 'Data created successfully.');
+        //if admin redirect to admin
+        if (Gate::check('admin')) {
+            return redirect()->route('order.adminview', $idorder->inv)->with('success', 'Data created successfully.');
+        } else {
+            return redirect()->route('order.show', $idorder->inv)->with('success', 'Data created successfully.');
+        }
     }
 
     public function updatecrew(Request $request)
