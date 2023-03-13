@@ -51,7 +51,7 @@ class PrintController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) 
+    public function show($id)
     {
         $order = Order::where('inv', $id)->first();
         $orderjob = Orderjob::where('order_id', $order->id)->get();
@@ -68,16 +68,15 @@ class PrintController extends Controller
         // $pdf = PDF::loadView('print.order', $data);
 
         //Aktifkan Local File Access supaya bisa pakai file external ( cth File .CSS )
-        $pdf->setOption('enable-local-file-access', true);
+        // $pdf->setOption('enable-local-file-access', true);
         // Stream untuk menampilkan tampilan PDF pada browser
-        return $pdf->stream('table.pdf');
-        // return view('print.order', [
-        //     'order' => $order,
-        //     'crew' => $crew,
-        //     'orderjob' => $orderjob,
-        //     'ordercrew' => $ordercrew,
-        // ]);
-
+        // return $pdf->stream('table.pdf');
+        return view('print.order', [
+            'order' => $order,
+            'crew' => $crew,
+            'orderjob' => $orderjob,
+            'ordercrew' => $ordercrew,
+        ]);
     }
 
     public function klien($id)

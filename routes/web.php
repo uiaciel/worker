@@ -95,3 +95,4 @@ Route::post('/order/update/step', [OrderController::class, 'updatestep'])->name(
 Route::get('/filter/crews/{id}', [HomeController::class, 'filter'])->name('filter.crew');
 
 Route::resource('/admin', AdminController::class);
+Route::get('/printing', [HomeController::class, 'printing']);
